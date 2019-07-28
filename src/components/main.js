@@ -39,7 +39,7 @@ class Main extends Component {
 
 
         
-        <div className="gallery">
+        {/* <div className="gallery">
          <div className="gallery-item-one"></div>
          <div className="gallery-item-two"></div>
          <div className="gallery-item-three"></div>
@@ -47,7 +47,7 @@ class Main extends Component {
          <div className="gallery-item-five"></div>
          <div className="gallery-item-six"></div>
          
-        </div>
+        </div> */}
 
         <section>
             <h2>Our Mission</h2>
@@ -59,7 +59,7 @@ class Main extends Component {
 
 
         <section>
-            <h2>Contact Us</h2>
+            <h2>Interested? Get in touch</h2>
             <Form />
           
         </section>

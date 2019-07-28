@@ -2,8 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: Raleway;
-  background: #eee;
-  color: #111;
+  background: #ffffff;
+  color: #18181a;
 
 }
 body * {
@@ -15,9 +15,9 @@ body * {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+  /* -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75); */
 }
 
 /*------------- NAVIGATION BAR -------------------*/
@@ -33,9 +33,9 @@ nav {
   padding: 12px 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+  /* -webkit-box-shadow: 0px 18px 15px -18px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 18px 15px -18px rgba(0,0,0,0.75);
+box-shadow: 0px 18px 15px -18px rgba(0,0,0,0.75); */
 }
 
 
@@ -79,12 +79,12 @@ nav ul li a{
 /*------------- HEADER -------------------*/
 
 header {
-  background: url("./images/photo-1525184648845-66cbe3b6c59c.jpg");
-  background-size: 100%;
+  /* background: url("https://meetshotty.com/static/b546522e8da1928dabadfd2f3e5bd136/024a5/laptop1.png"); */
+  background-size: 34%;
   height: 700px;
-  background-position: center;
+  background-position: bottom;
   position: relative;
- 
+  background-repeat: no-repeat;
 }
 
 header div.head {
@@ -100,7 +100,7 @@ header div.head {
 }
 
 header div.head  {
-  color: #222;
+  color: #6b8feb;
 
 }
 
@@ -112,16 +112,17 @@ header div.head h1 {
   padding-top: 0px;
   margin: 0;
   letter-spacing: 4px;
-  border-right: 2px solid #111;
+  border-right: 2px solid #ece7e7b8;
 }
 
 header div.head p {
   padding-left: 30px;
+  color: #111111;
 }
 
 
 .contact {
- background: rgb(0, 99, 248);
+ background: black;
  display: block;
  color: #fff;
  font-weight: bold;
@@ -149,7 +150,7 @@ main {
 
 
 main section {
-  width: 70%;
+  width: 60%;
   padding: 90px 0;
   margin: 50px auto 150px auto;
   display: grid;
@@ -160,11 +161,11 @@ main section {
 
 main section h2 {
   font-size: 4.3rem;
-  color: #ddd;
+  color: #444;
   text-transform: uppercase;
  line-height: 4.2rem; 
  padding-right: 10px;
- border-right: 3px solid #ddd;
+ border-right: 2px solid #ece7e7b8;
 }
 
 
@@ -217,6 +218,11 @@ main section div p {
   background-size: 160%;
 }
 
+.logo-icon {
+  background: url("./images/chip.png");
+  background-size: 100%;
+}
+
 .gallery div.gallery-item-four {
   background: url("./images/rawpixel-284723-unsplash.jpg");
   background-size: 160%;
@@ -247,25 +253,25 @@ div.services {
 
 .services div {
   text-align: center;
-  background: #fff;
+  background: rgb(240, 240, 248);
   width: 90%;
-  border-radius: 10px;
+  border-radius: 30px;
   margin: 10px auto 50px auto;
   
-  -webkit-box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
-  box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
+  /* -webkit-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75); */
   
 }
 
 .services p.service-icon {
   font-size: 3.4rem;
-  padding: 30px 0px 30px 90px;
-  margin: 0px 0px 30px 0px;
-  text-align: left;
-  color: rgb(0, 99, 248);
+  padding: 30px 30px 30px 30px;
+  margin: 0px 0px 0px 0px;
+  text-align: center;
+  color: #6b8feb;
   filter: grayscale(0%);
-  border-bottom: 2px solid rgb(0, 99, 248);
+  /* border-bottom: 2px solid #d1dadc; */
 }
 .services p.service-title{
   font-size: 3.1rem;
@@ -303,12 +309,12 @@ align-items: center;
 
 main section form div:last-of-type {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 0fr;
 
 } 
 
 main section form div:last-of-type input {
-  background: rgb(0, 99, 248);
+  background: black;
   padding: 10px;
   color: #fff;
   border-radius: 10px;
@@ -319,7 +325,7 @@ main section form div:last-of-type input {
 }
 
 main section form div label {
-  background: #444;
+  background: black;
   color: #fff;
   font-weight: bold;
   font-size: 1rem;
@@ -353,7 +359,7 @@ main section form div textarea {
 
 
 footer {
-  background: rgb(0, 99, 248);
+  background: black;
   color: #fff;
   padding: 20px;
   margin-top: 80px;
@@ -361,6 +367,7 @@ footer {
   grid-template-columns:1fr 1fr 1fr;
   align-items: center;
   text-align: center;
+  border-radius: 5px;
  
 }
 
@@ -375,7 +382,7 @@ footer ul {
 }
 
 footer ul li a {
-  color: #eee;
+  color: #6b8feb;
 }
 
 
@@ -559,7 +566,7 @@ footer ul li a {
     
   }
   nav ul:first-of-type {
-    border-bottom:1px solid #111;
+    /* border-bottom:1px solid #111; */
     padding-bottom: 10px; 
   }
   
@@ -572,7 +579,7 @@ footer ul li a {
   
   header {
      
-    background-size: 160%;
+    background-size: 55%;
     height: 270px;
     position: relative;
    
