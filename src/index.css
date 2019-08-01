@@ -58,7 +58,7 @@ nav ul:first-of-type li{
 }
 nav ul:first-of-type li span {
   font-weight: 500;
-  color: #444;
+  color:#42b71d;
 }
 
 nav ul:last-of-type{
@@ -72,9 +72,14 @@ nav ul li a{
   text-decoration: none; 
   font-weight: bold;
   display: block;
-
 }
 
+a {
+  cursor: pointer;
+}
+nav ul li .active {
+  font-weight: bolder;
+}
 
 /*------------- HEADER -------------------*/
 
@@ -100,7 +105,7 @@ header div.head {
 }
 
 header div.head  {
-  color: #6b8feb;
+  color: #50df24;
 
 }
 
@@ -132,9 +137,6 @@ header div.head p {
  padding: 12px;
  border-radius: 10px;
  text-decoration: none; 
- -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
- -moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
- box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
 }
 
 
@@ -169,6 +171,23 @@ main section h2 {
 }
 
 
+.results {
+  width: 90%;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+}
+
+main section ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style-type: none;
+}
+
+main section ul li{
+  padding: 20px;
+  margin: 0 auto;
+}
 
 main section div {
   position: relative;
@@ -269,7 +288,7 @@ div.services {
   padding: 30px 30px 30px 30px;
   margin: 0px 0px 0px 0px;
   text-align: center;
-  color: #6b8feb;
+  color: #50df24;
   filter: grayscale(0%);
   /* border-bottom: 2px solid #d1dadc; */
 }
@@ -382,7 +401,7 @@ footer ul {
 }
 
 footer ul li a {
-  color: #6b8feb;
+  color: #50df24;
 }
 
 
@@ -394,6 +413,7 @@ footer ul li a {
     }
     header div.head h1 {
       font-size: 4rem;
+      margin-bottom: 50px;
       
     }
     
@@ -409,7 +429,10 @@ footer ul li a {
       padding: 0px 90px;
     }
     
-    
+    main section ul {
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 20px;
+    }
 
     .services p.service-icon {
       font-size: 2.4rem;
@@ -449,6 +472,7 @@ footer ul li a {
   }
   header div.head h1 {
     font-size: 4rem;
+    margin-bottom: 50px;
     
   }
   main section:first-of-type{
@@ -467,6 +491,10 @@ footer ul li a {
     padding: 0px 90px;
   }
   
+  main section ul {
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+  }
   
   .services p.service-icon {
     font-size: 2.4rem;
@@ -505,7 +533,7 @@ footer ul li a {
   }
   header div.head h1 {
     font-size: 3rem;
-    
+    margin-bottom: 50px;
   }
 
 
@@ -522,7 +550,11 @@ footer ul li a {
   main section div p {
     padding: 0px 90px;
   }
-  
+  main section ul {
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+  }
+
  div.services {
    display: grid;
    grid-template-columns: 1fr;
@@ -594,6 +626,7 @@ footer ul li a {
   header div.head h1 {
     font-size: 2.3rem;
     border: none;
+    margin-bottom: 50px;
   }
   
   header div.head p {
@@ -615,6 +648,10 @@ footer ul li a {
   }
   main section div p {
     padding: 0px 10px;
+  }
+  main section ul {
+    grid-template-columns: 1fr;
+    padding: 20px;
   }
   
   div.services {
