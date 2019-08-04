@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from "./form";
 import RecipeReviewCard from "./cards";
+import DiscoverResults from "./discover-results";
 
 class Main extends Component {
   render() {
@@ -9,19 +10,7 @@ class Main extends Component {
 
         <section className="results" id="discover">
           <h2>Discover</h2>
-          <ul>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-            <li><RecipeReviewCard /></li>
-          </ul>
+          <DiscoverResults/>
         </section>
 
         <section className="intro" id="about" >

@@ -25,6 +25,8 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    'max-width': '50%',
+    margin: '0 auto'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -41,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -62,18 +64,19 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.title}
+        subheader={props.subheader}
       />
       <CardMedia
         className={classes.media}
-        image={CardImage}
+        image={props.image}
         title="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
+          {props.content || <div>This impressive paella is a perfect party dish and a fun meal to cook together with your
+          guests. Add 1 cup of frozen peas along with the mussels, if you like.</div>}
+          
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
