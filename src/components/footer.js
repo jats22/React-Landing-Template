@@ -6,8 +6,8 @@ class Footer extends Component {
     return (
      
       <footer>
-          <h3>SilconLabs Co. </h3>
-          <p>support@siliconlabs.com</p>
+          <h3>HalalStreet Co. </h3>
+          <p>support@halalstreet.co</p>
           <ul>
             <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
             <li><a href="#"><i className="fab fa-twitter"></i></a></li>
@@ -16,7 +16,7 @@ class Footer extends Component {
       </footer>
       
     );
-  }
+  } 
 }
 
 export default Footer;

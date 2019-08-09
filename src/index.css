@@ -133,7 +133,7 @@ header div.head h1 span{
 }
 
 .contact {
- background: black;
+ background: #4b4b4c;
  display: block;
  color: #fff;
  font-weight: bold;
@@ -149,7 +149,7 @@ header div.head h1 span{
 }
 
 .seemore {
-  background: black;
+  background: #4b4b4c;
   display: block;
   color: #fff;
   font-weight: bold;
@@ -646,7 +646,7 @@ footer ul li a {
   header div.head {
     width: 75%;
     grid-template-columns: 1fr;
-    padding-top: 260px;
+    padding-top: 295px;
     
   }
   header div.head h1 {
