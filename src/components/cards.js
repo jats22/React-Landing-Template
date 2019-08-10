@@ -20,7 +20,7 @@ import CardImage from '../images/halal.png';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 245,
+    maxWidth: 295,
   },
   media: {
     height: 0,
