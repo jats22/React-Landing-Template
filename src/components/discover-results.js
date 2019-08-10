@@ -138,7 +138,7 @@ class DiscoverResults extends Component {
 
         return (
             <Fragment key="1" >
-                {!locationAvailable && 
+                {!locationAvailable && !isLoading && 
                     <div>
                     <a className="locateme" 
                             onClick={this.getLocation}> 
