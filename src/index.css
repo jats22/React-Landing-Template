@@ -93,6 +93,7 @@ header {
   background-repeat: no-repeat;
   background: url("./images/back8.webp");
   background-size: 100%; 
+  z-index: 4;
 }
 
 header div.head {
