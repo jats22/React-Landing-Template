@@ -6,30 +6,6 @@ import Nav from "./nav";
 
 class Header extends Component {
 
-  
-  getLocation = () => {
-
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log("Lat : " + position.coords.latitude + " Long: " + position.coords.longitude);
-        this.setState({
-          lat:position.coords.latitude,
-          long:position.coords.longitude
-        })
-        return;
-      },()=>{
-
-        alert('Please enable your GPS position feature.');  
-
-        },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
-      )
-    }
-    else {
-      console.info("geolocation is not supported in this environment");
-    }
-
-  }
-
   render() {
     return (
 
