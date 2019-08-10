@@ -41,12 +41,7 @@ class Header extends Component {
             <div> <Link className="contact" to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
               duration={500} >Get Started</Link> 
             </div>
-            <div>
-              <a className="locateme" 
-                    onClick={this.getLocation}> 
-                    <i class="fas fa-map-marker-alt"></i>  Locate Me
-              </a>
-            </div>
+
             <div>
               {this.state && <h3> {this.state.lat} </h3>}
               {this.state && <h3> {this.state.long} </h3>}

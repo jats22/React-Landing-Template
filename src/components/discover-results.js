@@ -16,6 +16,35 @@ const override = css`
 
 class DiscoverResults extends Component {
 
+    getLocation = () => {
+
+    this.setState({
+        isLoading:true
+    })
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("Lat : " + position.coords.latitude + " Long: " + position.coords.longitude);
+            this.setState({
+            lat:position.coords.latitude,
+            long:position.coords.longitude,
+            locationAvailable: true,
+            isLoading:false
+            })
+            this.loadRestos();
+            return;
+        },()=>{
+    
+            alert('Please enable your GPS position feature.');  
+    
+            },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
+        )
+    }
+        else {
+        console.info("geolocation is not supported in this environment");
+    }
+    
+    }
+
     constructor(props) {
         super(props);
 
@@ -25,6 +54,9 @@ class DiscoverResults extends Component {
             hasMore: true,
             isLoading: false,
             restos: [],
+            lat:null,
+            long:null,
+            locationAvailable:false
         };
 
         // Binds our scroll event handler
@@ -56,7 +88,7 @@ class DiscoverResults extends Component {
 
     componentWillMount() {
         // Loads some users on initial load
-        this.loadRestos();
+        // this.loadRestos();
     }
 
     loadRestos = () => {
@@ -101,16 +133,26 @@ class DiscoverResults extends Component {
             hasMore,
             isLoading,
             restos,
+            locationAvailable
         } = this.state;
 
         return (
             <Fragment key="1" >
+                {!locationAvailable && 
+                    <div>
+                    <a className="locateme" 
+                            onClick={this.getLocation}> 
+                            <i class="fas fa-map-marker-alt"></i>  Locate Me
+                    </a>
+                    </div>
+                }
                 <ul>
-                    {restos.map(user => (
+                    {locationAvailable && restos.map(user => (
                         <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} /></li>
 
                     ))}
-                    {hasMore &&
+ 
+                    {locationAvailable && hasMore && ! isLoading &&
                         <li><a className="seemore" onClick={this.loadRestos} >See More</a></li>
                     }
                 </ul>

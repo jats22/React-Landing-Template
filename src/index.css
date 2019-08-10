@@ -166,11 +166,11 @@ header div.head h1 span{
  }
 
  .locateme {
-  background: #bcbcca;
+  background: #d9d9e6;
   display: block;
   color: #5a5a5d;
   font-weight: bold;
-  width: 50%;
+  width: 20%;
   margin: 10px auto;
   text-align: center;
   padding: 12px;
@@ -181,7 +181,24 @@ header div.head h1 span{
   box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.9);
  }
 
- /*------------- MAIN SECTION -------------------*/
+
+
+.makeStyles-card-1:hover { 
+ box-shadow: 0px 1px 15px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+.makeStyles-avatar-5 {
+  background-color: #44b321 !important;
+}
+
+.makeStyles-card-1 {
+  max-width: 245px !important;
+}
+
+.fa-map-marker-alt{
+  color: #52ce2b;
+}
+/*------------- MAIN SECTION -------------------*/
 
 
 main {
@@ -759,5 +776,7 @@ footer ul li a {
  font-size: 1.8rem;
   }
   
-  
+  .locateme{
+    width: 50%;
+  }
 }
