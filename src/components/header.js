@@ -17,7 +17,12 @@ class Header extends Component {
           long:position.coords.longitude
         })
         return;
-      })
+      },()=>{
+
+        alert('Please enable your GPS position feature.');  
+
+        },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
+      )
     }
     else {
       console.info("geolocation is not supported in this environment");
