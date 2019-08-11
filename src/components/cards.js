@@ -16,7 +16,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import CardImage from '../images/halal.png';
+import CardImage from '../images/food.jpg';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    'max-width': '50%',
+    'max-width': '90%',
     margin: '0 auto'
   },
   expand: {
@@ -44,6 +44,8 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: green[500],
+    fontWeight : 800,
+    fontSize : 'x-small',
   },
 }));
 
@@ -60,7 +62,7 @@ export default function RecipeReviewCard(props) {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.subheader[0]}
+            { (props.subheader[0].charCodeAt(0) % 10)} km
           </Avatar>
         }
         // action={
@@ -73,7 +75,7 @@ export default function RecipeReviewCard(props) {
       />
       <CardMedia
         className={classes.media}
-        image={props.image}
+        image={CardImage}
         title="Paella dish"
       />
       <CardContent>
