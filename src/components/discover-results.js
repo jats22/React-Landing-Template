@@ -32,10 +32,20 @@ class DiscoverResults extends Component {
             })
             this.loadRestos();
             return;
-        },()=>{
+        },(err)=>{
     
             alert('Please enable your GPS position feature.');  
-    
+            
+            console.log(err)
+            
+            this.setState({
+                locationAvailable: false,
+                isLoading:false,
+                gpsError:true, 
+            })
+            
+            console.log(this.state)
+
             },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
         )
     }
@@ -51,6 +61,7 @@ class DiscoverResults extends Component {
         // Sets up our initial state
         this.state = {
             error: false,
+            gpsError:false,
             hasMore: true,
             isLoading: false,
             restos: [],
@@ -133,17 +144,23 @@ class DiscoverResults extends Component {
             hasMore,
             isLoading,
             restos,
-            locationAvailable
+            locationAvailable,
+            gpsError
         } = this.state;
 
         return (
             <Fragment key="1" >
-                {!locationAvailable && !isLoading && 
+                {!locationAvailable && !isLoading  && 
                     <div>
                     <a className="locateme" 
                             onClick={this.getLocation}> 
-                            <i class="fas fa-map-marker-alt"></i>  Locate Me
+                            <i className="fas fa-map-marker-alt"></i>  Locate Me
                     </a>
+                    </div>
+                }
+                {!locationAvailable && !isLoading && gpsError && 
+                    <div style={{ color: '#900',margin: '0px auto' }} >
+                        <h3>Uh oh! Looks like we're having trouble finding your location. Make sure GPS is enabled. </h3>
                     </div>
                 }
                 <ul>
@@ -157,7 +174,7 @@ class DiscoverResults extends Component {
                     }
                 </ul>
                 {error &&
-                    <div style={{ color: '#900' }}>
+                    <div style={{ color: '#900',margin: '0px auto'}}>
                         {error}
                     </div>
                 }
