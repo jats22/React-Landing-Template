@@ -20,41 +20,6 @@ class Main extends Component {
           </div>
         </section>
 
-        {/* <div>
-          <div className="services">
-            <div className="service-one">
-              <p className="service-icon"><i className="far fa-calendar-alt"></i></p>
-              <p className="service-title">Planning</p>
-              <p>Mauris vitae turpis ut sem blandit consequat et at ligula. Suspendisse quam lectus, tristique dapibus sapien et, tempus suscipit nisl.</p>
-            </div>
-            <div className="service-two">
-              <p className="service-icon"><i className="fas fa-crop"></i></p>
-              <p className="service-title">Design</p>
-              <p>Nulla eu metus faucibus, vehicula tortor quis, venenatis odio. Nullam purus mauris, feugiat in odio vitae, posuere volutpat libero. Sed et convallis libero.</p>
-
-            </div>
-            <div className="service-three">
-              <p className="service-icon"><i className="fas fa-code"></i></p>
-              <p className="service-title">Development</p>
-              <p>Ut ornare vitae enim a rhoncus. Nullam aliquet tristique scelerisque. Sed volutpat dictum risus ac laoreet. Suspendisse id lorem in enim sollicitudin varius.</p>
-
-            </div>
-          </div>
-
-        </div> */}
-
-
-
-        {/* <div className="gallery">
-         <div className="gallery-item-one"></div>
-         <div className="gallery-item-two"></div>
-         <div className="gallery-item-three"></div>
-         <div className="gallery-item-four"></div>
-         <div className="gallery-item-five"></div>
-         <div className="gallery-item-six"></div>
-         
-        </div> */}
-
         <section id="mission">
           <h2>Our Mission</h2>
           <div>

@@ -54,7 +54,7 @@ nav ul:first-of-type{
   grid-template-columns: 1fr;
 }
 nav ul:first-of-type li{
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
   text-indent: 30px;
   margin-right: 40px;
@@ -91,8 +91,8 @@ header {
   background-position: bottom;
   position: relative;
   background-repeat: no-repeat;
-  background: url("./images/back8.webp");
-  background-size: 100%; 
+  background: url("./images/back9.jpg");
+  background-size: 50%; 
   z-index: 4;
 }
 
@@ -580,7 +580,7 @@ footer ul li a {
 
 @media (max-width:849px) and (min-width:600px) {
   header {
-  height: 440px;
+  height: 375px;
 
   }
   
@@ -671,8 +671,7 @@ footer ul li a {
   
   header {
      
-    background-size: 100%;
-    height: 270px;
+    height: 190px;
     position: relative;
    
   }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-scroll";
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
 
-import Logo from '../images/halal.png';
+import Logo from '../images/chicken-leg.png';
 
 
 function Nav() {
@@ -30,7 +30,7 @@ function Nav() {
   return (
     <nav style={style} >
       <ul>
-        <li className="logo"><img src={Logo} style={{ height: '22px' }}></img> Halal<span>Street</span></li>
+        <li className="logo"><div><img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img> Halal<span>Street</span></div></li>
       </ul>
       <ul>
         <li><Link to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
