@@ -20,7 +20,7 @@ import CardImage from '../images/food.jpg';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 295,
+    width: 305,
     '&:hover': {
       boxShadow: '0px 1px 15px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
     }
