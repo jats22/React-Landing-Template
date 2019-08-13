@@ -73,7 +73,7 @@ class DiscoverResults extends Component {
         // Binds our scroll event handler
         // window.onscroll = () => {
         //   const {
-        //     loadRestos,
+        //     getLocationAndRestos,
         //     state: {
         //       error,
         //       isLoading,
@@ -92,7 +92,7 @@ class DiscoverResults extends Component {
         //     window.innerHeight + document.documentElement.scrollTop
         //     === document.documentElement.offsetHeight
         //   ) {
-        //     loadRestos();
+        //     getLocationAndRestos();
         //   }
         // };
     }
