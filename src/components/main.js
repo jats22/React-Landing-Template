@@ -14,7 +14,7 @@ class Main extends Component {
         <section className="intro" id="about" >
           <h2>About Us</h2>
           <div>
-            <p>Finding verfied halal restaurants is tough. <b>But we've got you covered!</b> <br/><br/>Discover the best halal outlets near you with us. </p>
+            <p>Finding verified halal restaurants is tough. <b>But we've got you covered!</b> <br/><br/>Discover the best halal outlets near you with us. </p>
           </div>
         </section>
 
