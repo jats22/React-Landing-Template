@@ -208,7 +208,7 @@ header div.head h1 span{
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #fff;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -226,7 +226,7 @@ header div.head h1 span{
 }
 
 .sidenav a:hover{
-  color: #f1f1f1;
+  color: #46b622;
 }
 
 .hamburger{
@@ -238,6 +238,7 @@ header div.head h1 span{
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  color: #45b720;
 }
 
 @media screen and (max-height: 450px) {
@@ -271,7 +272,8 @@ main section h2 {
   text-transform: uppercase;
  line-height: 4.2rem; 
  padding-right: 10px;
- border-right: 2px solid #ece7e7b8;
+ /* border-right: 2px solid #ece7e7b8; */
+ text-align: center;
 }
 
 
@@ -693,13 +695,13 @@ footer ul li a {
 
 @media (max-width:599px) and (min-width:0px) {
   nav {
-   text-align: center;
+   /* text-align: center; */
     display: grid;
     grid-template-columns: 1fr;
   }
   
   nav ul {
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     
   }
   nav ul:first-of-type {
@@ -740,7 +742,7 @@ footer ul li a {
   
 
   main section:first-of-type{
-    margin-top: 390px;
+    /* margin-top: 390px; */
   }
 
   main section {
@@ -756,7 +758,7 @@ footer ul li a {
   }
   main section ul {
     grid-template-columns: 1fr;
-    padding: 20px;
+    /* padding: 20px; */
   }
   
   div.services {
@@ -830,5 +832,18 @@ footer ul li a {
   }
   .mainNav{
     display: none;
+  }
+
+  #mission {
+    display: none;
+  }
+  #contact {
+    display: none;
+  }
+  .intro {
+    display: none;
+  }
+  .head { 
+    display: none !important;
   }
 }
