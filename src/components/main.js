@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Form from "./form";
-import RecipeReviewCard from "./cards";
 import DiscoverResults from "./discover-results";
 
 class Main extends Component {
@@ -22,8 +20,8 @@ class Main extends Component {
 
 
         <section id="contact" >
-          <h2>Get in touch</h2>
-          <Form />
+          <h2>Get in touch &#128071;</h2>
+          <a className="contact" href="mailto:sandilya.jatin@gmail.com?subject=Halal Street : Feedback/Suggestion">Email Us</a> 
 
         </section>
 
