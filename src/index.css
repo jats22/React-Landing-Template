@@ -834,7 +834,7 @@ footer ul li a {
     display: none;
   }
 
-  #mission {
+  /* #mission {
     display: none;
   }
   #contact {
@@ -842,7 +842,7 @@ footer ul li a {
   }
   .intro {
     display: none;
-  }
+  } */
   .head { 
     display: none !important;
   }
