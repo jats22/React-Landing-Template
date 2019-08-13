@@ -19,8 +19,6 @@ function SideNav() {
                     duration={500} onClick={closeNav} >Discover</Link>
                 <Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
                     duration={500} onClick={closeNav} >About</Link>
-                <Link to="mission" smooth={true} spy={true} activeClass="active" offset={-70}
-                    duration={500} onClick={closeNav}>Mission</Link>
                 <Link to="contact" smooth={true} spy={true} activeClass="active" offset={-70}
                     duration={500} onClick={closeNav}>Contact</Link>
             </div>

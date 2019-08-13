@@ -719,9 +719,9 @@ footer ul li a {
   
   header {
      
-    height: 190px;
+    height: 70px;
     position: relative;
-   
+    background: none;
   }
   
   header div.head {
@@ -748,7 +748,7 @@ footer ul li a {
   main section {
     width: 90%;
     padding: 10px 0;
-    margin: 50px auto 0px auto;
+    margin: 0px auto 0px auto;
     display: grid;
     grid-template-columns: 1fr;
     
@@ -756,6 +756,10 @@ footer ul li a {
   main section div p {
     padding: 0px 10px;
   }
+  main .results h2{
+    display: none;
+  }
+
   main section ul {
     grid-template-columns: 1fr;
     /* padding: 20px; */

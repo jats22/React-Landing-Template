@@ -16,7 +16,7 @@ const override = css`
 
 class DiscoverResults extends Component {
 
-    getLocation = () => {
+    getLocationAndRestos = () => {
 
     this.setState({
         isLoading:true
@@ -99,7 +99,7 @@ class DiscoverResults extends Component {
 
     componentWillMount() {
         // Loads some users on initial load
-        // this.loadRestos();
+        this.getLocationAndRestos();
     }
 
     loadRestos = () => {
@@ -153,7 +153,7 @@ class DiscoverResults extends Component {
                 {!locationAvailable && !isLoading  && 
                     <div>
                     <a className="locateme" 
-                            onClick={this.getLocation}> 
+                            onClick={this.getLocationAndRestos}> 
                             <i className="fas fa-map-marker-alt"></i>  Locate Me
                     </a>
                     </div>
