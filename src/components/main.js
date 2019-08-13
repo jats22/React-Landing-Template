@@ -16,13 +16,13 @@ class Main extends Component {
         <section className="intro" id="about" >
           <h2>About Us</h2>
           <div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel gravida nisi. Vestibulum ac consequat lorem. In in mi massa. Donec ut tellus sit amet sem ornare fermentum at et nunc. Pellentesque ac elementum metus. Praesent non venenatis lacus. In sagittis urna in nulla sagittis mattis.</p>
+            <p>Finding verfied halal restaurants is tough. <b>But we've got you covered!</b> <br/><br/>Discover the best halal outlets near you with us. </p>
           </div>
         </section>
 
 
         <section id="contact" >
-          <h2>Interested? Get in touch</h2>
+          <h2>Get in touch</h2>
           <Form />
 
         </section>

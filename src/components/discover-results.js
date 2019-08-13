@@ -11,7 +11,6 @@ import { MoonLoader } from 'react-spinners';
 const override = css`
     display: block;
     margin: 0 auto;
-    border-color: green;
 `;
 
 class DiscoverResults extends Component {
@@ -185,6 +184,7 @@ class DiscoverResults extends Component {
                             sizeUnit={"px"}
                             size={60}
                             loading={isLoading}
+                            color='#42b71d'
                         />
                     </div>
                 }
