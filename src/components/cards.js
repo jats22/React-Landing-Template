@@ -10,11 +10,12 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { green } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import { green, grey, red} from '@material-ui/core/colors';
+import Phone from '@material-ui/icons/Phone';
+import Map from '@material-ui/icons/Map';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 
 import CardImage from '../images/food.jpg';
 
@@ -47,23 +48,49 @@ const useStyles = makeStyles(theme => ({
     fontWeight : 800,
     fontSize : 'x-small',
   },
+  upvote:{
+    color : green[400],
+  },
+  upvoteRevert:{
+    color : grey[700],
+  },
+  downvote:{
+    color : red[400],
+  },
+  downvoteRevert:{
+    color : grey[700],
+  },
 }));
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [upvote, setUpvote] = React.useState(true);
+  const [downvote, setDownvote] = React.useState(true);
 
   function handleExpandClick() {
     setExpanded(!expanded);
   }
 
+  function handleUpvote(){
+    setUpvote(!upvote)
+  }
+
+  function handleDownvote(){
+    setDownvote(!downvote)
+  }
+
+
   return (
     <Card className={classes.card}>
+
       <CardHeader
         avatar={
+          <div>
           <Avatar aria-label="recipe" className={classes.avatar}>
             { (props.subheader[0].charCodeAt(0) % 10)} km
           </Avatar>
+          </div>
         }
         // action={
         //   <IconButton aria-label="settings">
@@ -86,11 +113,23 @@ export default function RecipeReviewCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
+        </IconButton> */}
+        <IconButton aria-label="Upvote" 
+            onClick={handleUpvote}
+            className={clsx(classes.upvote,{[classes.upvoteRevert]:upvote, } ) }
+        >
+          <ExpandMoreIcon style={{transform: 'rotate(180deg)'}}/>
+        </IconButton>
+        <IconButton aria-label="Downvote"
+                  onClick={handleDownvote}
+                  className={clsx(classes.downvote,{[classes.downvoteRevert]:downvote, } ) }
+        >
+          <ExpandMoreIcon />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -105,28 +144,13 @@ export default function RecipeReviewCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography paragraph><Phone/> Contact Details:</Typography>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
+            Phone no: +919994362189
           </Typography>
+          <Typography paragraph><Map/> Directions:</Typography>
           <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography>
         </CardContent>
       </Collapse>

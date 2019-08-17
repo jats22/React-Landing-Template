@@ -234,9 +234,9 @@ header div.head h1 span{
 }
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
+  top: -10px;
+  left: -50px;
+  font-size: 55px;
   margin-left: 50px;
   color: #45b720;
 }
@@ -485,7 +485,7 @@ main section form div textarea {
 
 
 footer {
-  background: black;
+  background: #4e4e4f;
   color: #fff;
   padding: 20px;
   margin-top: 80px;
@@ -849,5 +849,9 @@ footer ul li a {
   } */
   .head { 
     display: none !important;
+  }
+
+  footer h3 {
+    display: none;
   }
 }
