@@ -80,6 +80,15 @@ export default function RecipeReviewCard(props) {
     setDownvote(!downvote)
   }
 
+  function handleDirection(){
+    
+    var latDes = 12.9113413 ,longDes = 77.6772604
+    var url = "https://www.google.com/maps/dir/?api=1";
+    var origin = "&origin=" + props.location.lat + "," + props.location.long;
+    var destination = "&destination=" + latDes + "," + longDes;
+    var newUrl = new URL(url + origin + destination);
+    window.open(newUrl, "_blank")
+  }
 
   return (
     <Card className={classes.card}>
@@ -135,11 +144,16 @@ export default function RecipeReviewCard(props) {
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon />
+          <a href="tel:+91-9994361298" style={{color: '#46cc1f'}}><Phone/></a>
+          
+          
+          {/* <ExpandMoreIcon /> */}
+        </IconButton>
+        <IconButton onClick={handleDirection}>
+            <Map/>
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

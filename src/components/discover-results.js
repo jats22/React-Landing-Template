@@ -144,7 +144,9 @@ class DiscoverResults extends Component {
             isLoading,
             restos,
             locationAvailable,
-            gpsError
+            gpsError,
+            lat,
+            long,
         } = this.state;
 
         return (
@@ -164,7 +166,7 @@ class DiscoverResults extends Component {
                 }
                 <ul>
                     {locationAvailable && restos.map(user => (
-                        <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} /></li>
+                        <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} location={{lat:lat,long:long}} /></li>
 
                     ))}
  
