@@ -18,10 +18,11 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 
 import CardImage from '../images/food.jpg';
+import Card1Image from '../images/food3.jpg';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    width: 325,
+    width: 345,
     '&:hover': {
       boxShadow: '0px 1px 15px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
     }
@@ -80,6 +81,15 @@ export default function RecipeReviewCard(props) {
     setDownvote(!downvote)
   }
 
+  function toTitleCase(str){
+    return str.replace(
+        /\w\S*/g,
+        (txt) => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    );
+   }
+
   function handleDirection(){
     
     var latDes = 12.9113413 ,longDes = 77.6772604
@@ -106,21 +116,22 @@ export default function RecipeReviewCard(props) {
         //     <MoreVertIcon />
         //   </IconButton>
         // }
-        title={props.title}
-        subheader={props.subheader}
+        title={toTitleCase(props.title)}
+        titleTypographyProps={{variant:'h6' }}
+        // subheader={props.subheader}
       />
       <CardMedia
         className={classes.media}
-        image={CardImage}
+        image={ props.title[0].charCodeAt(0)%2 ? CardImage : Card1Image}
         title="Paella dish"
       />
-      <CardContent>
+      {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {props.content || <div>This impressive paella is a perfect party dish and a fun meal to cook together with your
           guests. Add 1 cup of frozen peas along with the mussels, if you like.</div>}
           
         </Typography>
-      </CardContent>
+      </CardContent> */}
       <CardActions disableSpacing>
         {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />

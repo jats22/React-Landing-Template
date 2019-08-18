@@ -109,7 +109,7 @@ class DiscoverResults extends Component {
                     // Creates a massaged array of user data
                     const nextUsers = results.body.results.map(user => ({
                         email: user.email,
-                        name: Object.values(user.name).join(' '),
+                        name: Object.values(user.name).slice(1).join(' '),
                         photo: user.picture.medium,
                         username: user.login.username,
                         uuid: user.login.uuid,
