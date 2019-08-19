@@ -6,6 +6,8 @@
   "dependencies": {
     "@material-ui/core": "^4.3.0",
     "@material-ui/icons": "^4.2.1",
+    "@material-ui/lab": "^4.0.0-alpha.23",
+    "@rehooks/window-scroll-position": "1.0.1",
     "ajv": "6.10.2",
     "gh-pages": "^2.0.1",
     "prop-types": "^15.7.2",
@@ -15,7 +17,6 @@
     "react-scripts": "2.0.3",
     "react-scroll": "^1.7.12",
     "react-spinners": "^0.5.13",
-    "@rehooks/window-scroll-position": "1.0.1",
     "superagent": "3.8.3"
   },
   "scripts": {

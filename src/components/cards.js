@@ -20,6 +20,9 @@ import Button from '@material-ui/core/Button';
 import CardImage from '../images/food.jpg';
 import Card1Image from '../images/food3.jpg';
 import FlagIcon from '@material-ui/icons/Flag';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -66,6 +69,14 @@ const useStyles = makeStyles(theme => ({
     color : grey[500],
   }
 }));
+
+
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#4fb052',
+  },
+})(Rating);
+
 
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
@@ -161,6 +172,7 @@ export default function RecipeReviewCard(props) {
           <FlagIcon fontSize="small"/> 
           Report
         </Button>
+        <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
