@@ -16,9 +16,10 @@ import Map from '@material-ui/icons/Map';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-
+import Button from '@material-ui/core/Button';
 import CardImage from '../images/food.jpg';
 import Card1Image from '../images/food3.jpg';
+import FlagIcon from '@material-ui/icons/Flag';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -61,6 +62,9 @@ const useStyles = makeStyles(theme => ({
   downvoteRevert:{
     color : grey[700],
   },
+  report:{
+    color : grey[500],
+  }
 }));
 
 export default function RecipeReviewCard(props) {
@@ -139,7 +143,7 @@ export default function RecipeReviewCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton> */}
-        <IconButton aria-label="Upvote" 
+        {/* <IconButton aria-label="Upvote" 
             onClick={handleUpvote}
             className={clsx(classes.upvote,{[classes.upvoteRevert]:upvote, } ) }
         >
@@ -150,7 +154,13 @@ export default function RecipeReviewCard(props) {
                   className={clsx(classes.downvote,{[classes.downvoteRevert]:downvote, } ) }
         >
           <ExpandMoreIcon />
-        </IconButton>
+        </IconButton> */}
+        <Button size="small" color="inherit" 
+          className={clsx(classes.report)}
+        >
+          <FlagIcon fontSize="small"/> 
+          Report
+        </Button>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -167,7 +177,7 @@ export default function RecipeReviewCard(props) {
             <Map/>
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph><Phone/> Contact Details:</Typography>
           <Typography paragraph>
@@ -178,7 +188,7 @@ export default function RecipeReviewCard(props) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography>
         </CardContent>
-      </Collapse>
+      </Collapse> */}
     </Card>
   );
 }
