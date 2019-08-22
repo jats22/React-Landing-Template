@@ -10,15 +10,16 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { green, grey, red} from '@material-ui/core/colors';
+import { green, grey, red,blue,deepPurple} from '@material-ui/core/colors';
 import Phone from '@material-ui/icons/Phone';
 import Map from '@material-ui/icons/Map';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import Button from '@material-ui/core/Button';
-import CardImage from '../images/food.jpg';
-import Card1Image from '../images/food3.jpg';
+import CardImage from '../images/analog.png';
+import Card1Image from '../images/digital.jpg';
+import Card2Image from '../images/circuit.gif';
 import FlagIcon from '@material-ui/icons/Flag';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: green[500],
+    backgroundColor: deepPurple[300],
     fontWeight : 800,
     fontSize : 'x-small',
   },
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 
 const StyledRating = withStyles({
   iconFilled: {
-    color: '#4fb052',
+    color: '#8d52f8',
   },
 })(Rating);
 
@@ -83,6 +84,7 @@ export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [upvote, setUpvote] = React.useState(true);
   const [downvote, setDownvote] = React.useState(true);
+  const images = [CardImage,Card1Image,Card2Image];
 
   function handleExpandClick() {
     setExpanded(!expanded);
@@ -137,7 +139,7 @@ export default function RecipeReviewCard(props) {
       />
       <CardMedia
         className={classes.media}
-        image={ props.title[0].charCodeAt(0)%2 ? CardImage : Card1Image}
+        image={ images[props.index]}
         title="Paella dish"
       />
       {/* <CardContent>
@@ -154,24 +156,12 @@ export default function RecipeReviewCard(props) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton> */}
-        {/* <IconButton aria-label="Upvote" 
-            onClick={handleUpvote}
-            className={clsx(classes.upvote,{[classes.upvoteRevert]:upvote, } ) }
-        >
-          <ExpandMoreIcon style={{transform: 'rotate(180deg)'}}/>
-        </IconButton>
-        <IconButton aria-label="Downvote"
-                  onClick={handleDownvote}
-                  className={clsx(classes.downvote,{[classes.downvoteRevert]:downvote, } ) }
-        >
-          <ExpandMoreIcon />
-        </IconButton> */}
-        <Button size="small" color="inherit" 
+        {/* <Button size="small" color="inherit" 
           className={clsx(classes.report)}
         >
           <FlagIcon fontSize="small"/> 
           Report
-        </Button>
+        </Button> */}
         <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  />
         <IconButton
           className={clsx(classes.expand, {
@@ -179,17 +169,17 @@ export default function RecipeReviewCard(props) {
           })}
           aria-expanded={expanded}
           aria-label="show more"
+          onClick={handleExpandClick}
         >
-          <a href="tel:+91-9994361298" style={{color: '#46cc1f'}}><Phone/></a>
           
           
-          {/* <ExpandMoreIcon /> */}
+          <ExpandMoreIcon />
         </IconButton>
-        <IconButton onClick={handleDirection}>
+        {/* <IconButton onClick={handleDirection}>
             <Map/>
-        </IconButton>
+        </IconButton> */}
       </CardActions>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph><Phone/> Contact Details:</Typography>
           <Typography paragraph>
@@ -200,7 +190,7 @@ export default function RecipeReviewCard(props) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography>
         </CardContent>
-      </Collapse> */}
+      </Collapse>
     </Card>
   );
 }

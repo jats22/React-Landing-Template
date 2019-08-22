@@ -7,7 +7,7 @@ class Main extends Component {
       <main>
 
         <section className="results" id="discover">
-          <h2>Discover</h2>
+          <h2>Learn</h2>
           <DiscoverResults/>
         </section>
 

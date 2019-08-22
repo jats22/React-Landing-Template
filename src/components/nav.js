@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-scroll";
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
 
-import Logo from '../images/chicken-leg.png';
+import Logo from '../images/chip_3.png';
 
 import SideNav from "./sidenav";
 
@@ -36,11 +36,11 @@ function Nav() {
       <SideNav/>
       <ul style={{gridTemplateColumns: '0.2fr 8fr 1fr'}}>
         <li><span style={{fontSize:'26px',cursor:'pointer'}} onClick={openNav} className="hamburger"> &#9776;</span></li>
-        <li className="logo"><div><img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img> Halal<span>Street</span></div></li>
+        <li className="logo"><div><img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img> Circuit<span>Candy</span></div></li>
       </ul>
       <ul className="mainNav">
         <li><Link to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
-          duration={500} >Discover</Link></li>
+          duration={500} >Learn</Link></li>
         <li><Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500} >About</Link></li>
         <li><Link to="mission" smooth={true} spy={true} activeClass="active" offset={-70}

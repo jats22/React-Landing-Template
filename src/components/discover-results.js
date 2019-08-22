@@ -66,7 +66,7 @@ class DiscoverResults extends Component {
             restos: [],
             lat:null,
             long:null,
-            locationAvailable:false
+            locationAvailable:false,
         };
 
         // Binds our scroll event handler
@@ -104,15 +104,18 @@ class DiscoverResults extends Component {
     loadRestos = () => {
         this.setState({ isLoading: true }, () => {
             request
-                .get('https://randomuser.me/api/?results=10')
+                .get('https://randomuser.me/api/?results=3')
                 .then((results) => {
                     // Creates a massaged array of user data
-                    const nextUsers = results.body.results.map(user => ({
+                    var x = 1
+                    var y = ["Analog Circuits","Digital Systems","Circuit Theory"]
+                    const nextUsers = results.body.results.map((user,index) => ({
                         email: user.email,
-                        name: Object.values(user.name).slice(1).join(' '),
+                        name: y[index],
                         photo: user.picture.medium,
                         username: user.login.username,
                         uuid: user.login.uuid,
+                        index: index,
                     }));
 
                     // Merges the next users into our existing users
@@ -166,12 +169,11 @@ class DiscoverResults extends Component {
                 }
                 <ul>
                     {locationAvailable && restos.map(user => (
-                        <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} location={{lat:lat,long:long}} /></li>
+                        <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} location={{lat:lat,long:long}} index={user.index}  /></li>
 
                     ))}
  
-                    {locationAvailable && hasMore && ! isLoading &&
-                        <li><a className="seemore" onClick={this.loadRestos} >See More</a></li>
+                    {locationAvailable && hasMore && ! isLoading
                     }
                 </ul>
                 {error &&

@@ -4,7 +4,7 @@ body {
   font-family: Raleway;
   background: #ffffff;
   color: #18181a;
-  background: url("./images/back4.jpg");
+  background: url("./images/back10.jpg");
   background-size: 28%;
   opacity: 0.98;
 }
@@ -30,7 +30,7 @@ nav {
   background: #fff;
   z-index: 99;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1800px;
   margin: 0 auto;  
   padding: 12px 0;
   display: grid;
@@ -61,7 +61,7 @@ nav ul:first-of-type li{
 }
 nav ul:first-of-type li span {
   font-weight: 500;
-  color:#42b71d;
+  color:#8d52f8;
 }
 
 nav ul:last-of-type{
@@ -91,7 +91,7 @@ header {
   background-position: bottom;
   position: relative;
   background-repeat: no-repeat;
-  background: url("./images/back9.jpg");
+  background: snow;
   background-size: 50%; 
   z-index: 4;
 }
@@ -130,7 +130,7 @@ header div.head p {
 }
 
 header div.head h1 span{
-    color: #46b822;
+    color: #8d52f8;
 }
 
 .contact {
@@ -286,7 +286,7 @@ main section h2 {
 
 main section ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
   list-style-type: none;
   padding: 0px;
 }
