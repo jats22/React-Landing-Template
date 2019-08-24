@@ -22,8 +22,19 @@ import Card1Image from '../images/digital.jpg';
 import Card2Image from '../images/circuit.gif';
 import FlagIcon from '@material-ui/icons/Flag';
 import Rating from '@material-ui/lab/Rating';
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -45,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    color:'#5c10e4',
   },
   expandOpen: {
     transform: 'rotate(180deg)',
@@ -68,7 +80,17 @@ const useStyles = makeStyles(theme => ({
   },
   report:{
     color : grey[500],
-  }
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
 }));
 
 
@@ -123,9 +145,10 @@ export default function RecipeReviewCard(props) {
       <CardHeader
         avatar={
           <div>
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          {/* <Avatar aria-label="recipe" className={classes.avatar}>
             { (props.subheader[0].charCodeAt(0) % 10)} km
-          </Avatar>
+          </Avatar> */}
+          <LockOpenIcon fontSize="large"/>
           </div>
         }
         // action={
@@ -149,7 +172,7 @@ export default function RecipeReviewCard(props) {
           
         </Typography>
       </CardContent> */}
-      <CardActions disableSpacing>
+      <CardActions>
         {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -162,33 +185,53 @@ export default function RecipeReviewCard(props) {
           <FlagIcon fontSize="small"/> 
           Report
         </Button> */}
-        <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  />
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          aria-expanded={expanded}
-          aria-label="show more"
-          onClick={handleExpandClick}
-        >
-          
-          
-          <ExpandMoreIcon />
-        </IconButton>
+        {/* <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  /> */}
+        <div>
+        <Tooltip enterDelay={1000000000000} TransitionComponent={Zoom}  title="Explore" placement="bottom" >
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            aria-expanded={expanded}
+            aria-label="Explore"
+            onClick={handleExpandClick}
+          >
+            
+              <ExpandMoreIcon fontSize="large"/>
+          </IconButton>
+        </Tooltip>
+        </div>
+
         {/* <IconButton onClick={handleDirection}>
             <Map/>
         </IconButton> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph><Phone/> Contact Details:</Typography>
+        <CardContent >
+          {/* <Typography paragraph><Phone/> Contact Details:</Typography>
           <Typography paragraph>
             Phone no: +919994362189
           </Typography>
           <Typography paragraph><Map/> Directions:</Typography>
           <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
-          </Typography>
+          </Typography> */}
+          <List component="div" aria-label="main mailbox folders">
+            <ListItem button>
+              <ListItemText primary=" Number Systems" />
+              <LockOpenIcon/>
+              <ListItemIcon>
+                <StyledRating value={2} readOnly  size="small"  />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Memory And Programmable Logic " />
+              <LockIcon/>
+              <ListItemIcon>
+                <StyledRating value={2} readOnly  size="small"  />
+              </ListItemIcon>
+            </ListItem>
+          </List>
         </CardContent>
       </Collapse>
     </Card>

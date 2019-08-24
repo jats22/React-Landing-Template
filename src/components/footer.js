@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
      
       <footer>
-          <h3>HalalStreet Co.</h3>
+          <h3>Circuital Co.</h3>
           <ul>
             <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
             <li><a href="#"><i className="fab fa-twitter"></i></a></li>

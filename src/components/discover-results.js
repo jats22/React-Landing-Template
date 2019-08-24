@@ -20,33 +20,34 @@ class DiscoverResults extends Component {
     this.setState({
         isLoading:true
     })
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log("Lat : " + position.coords.latitude + " Long: " + position.coords.longitude);
-            this.setState({
-            lat:position.coords.latitude,
-            long:position.coords.longitude,
-            locationAvailable: true,
-            isLoading:false
-            })
-            this.loadRestos();
-            return;
-        },(err)=>{
+   if ("geolocation" in navigator) {
+        this.loadRestos();
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     console.log("Lat : " + position.coords.latitude + " Long: " + position.coords.longitude);
+        //     this.setState({
+        //     lat:position.coords.latitude,
+        //     long:position.coords.longitude,
+        //     locationAvailable: true,
+        //     isLoading:false
+        //     }) 
+            
+        //     return;
+        // },(err)=>{
     
-            alert('Please enable your GPS position feature.');  
+        //     alert('Please enable your GPS position feature.');  
             
-            console.log(err)
+        //     console.log(err)
             
-            this.setState({
-                locationAvailable: false,
-                isLoading:false,
-                gpsError:true, 
-            })
+        //     this.setState({
+        //         locationAvailable: false,
+        //         isLoading:false,
+        //         gpsError:true, 
+        //     })
             
-            console.log(this.state)
+        //     console.log(this.state)
 
-            },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
-        )
+        //     },{maximumAge:600000, timeout:5000, enableHighAccuracy: false}
+        // )
     }
         else {
         console.info("geolocation is not supported in this environment");
@@ -108,7 +109,7 @@ class DiscoverResults extends Component {
                 .then((results) => {
                     // Creates a massaged array of user data
                     var x = 1
-                    var y = ["Analog Circuits","Digital Systems","Circuit Theory"]
+                    var y = ["Analog Circuits","Digital Systems","Computer Architecture"]
                     const nextUsers = results.body.results.map((user,index) => ({
                         email: user.email,
                         name: y[index],
@@ -154,21 +155,26 @@ class DiscoverResults extends Component {
 
         return (
             <Fragment key="1" >
-                {!locationAvailable && !isLoading  && 
+                {
+                    <div style={{ margin: '0px auto' }} >
+                        <h3>Measure your electronics chops and know where you stand. 
+                            Take the quick adaptive diagnostic test. </h3>
+                    </div>
+                }
+                {
                     <div>
                     <a className="locateme" 
                             onClick={this.getLocationAndRestos}> 
-                            <i className="fas fa-map-marker-alt"></i>  Locate Me
+                            <i className="fa fa-info-circle"></i>  Take Assessment
                     </a>
+                    <br/>
+                    <br/>
                     </div>
-                }
-                {!locationAvailable && !isLoading && gpsError && 
-                    <div style={{ color: '#900',margin: '0px auto' }} >
-                        <h3>Uh oh! Looks like we're having trouble finding your location. Make sure GPS is enabled. </h3>
-                    </div>
+                    
                 }
                 <ul>
-                    {locationAvailable && restos.map(user => (
+
+                    {restos.map(user => (
                         <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} location={{lat:lat,long:long}} index={user.index}  /></li>
 
                     ))}

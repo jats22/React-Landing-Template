@@ -166,9 +166,9 @@ header div.head h1 span{
  }
 
  .locateme {
-  background: #d9d9e6;
+  background: #484848;;
   display: block;
-  color: #5a5a5d;
+  color: #ffffff;
   font-weight: bold;
   width: 20%;
   margin: 10px auto;
@@ -195,8 +195,8 @@ header div.head h1 span{
   max-width: 245px !important;
 } */
 
-.fa-map-marker-alt{
-  color: #52ce2b;
+.fa-info-circle{
+  color: #c6a9fb;
 }
 
 /*------------- SIDENAV BAR --------------------*/
@@ -508,7 +508,7 @@ footer ul {
 }
 
 footer ul li a {
-  color: #46b821;
+  color: #a67bf9;
 }
 
 

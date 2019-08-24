@@ -36,7 +36,7 @@ function Nav() {
       <SideNav/>
       <ul style={{gridTemplateColumns: '0.2fr 8fr 1fr'}}>
         <li><span style={{fontSize:'26px',cursor:'pointer'}} onClick={openNav} className="hamburger"> &#9776;</span></li>
-        <li className="logo"><div><img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img> Circuit<span>Candy</span></div></li>
+        <li className="logo"><div><img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img> Circuit<span>al</span></div></li>
       </ul>
       <ul className="mainNav">
         <li><Link to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
