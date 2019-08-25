@@ -64,6 +64,9 @@ class App extends Component {
     this.state = {
       isAuthenticated : false,
     }
+
+    this.signIn = this.signIn.bind(this)
+    this.signOut = this.signOut.bind(this)
   }
 
   signIn(){
