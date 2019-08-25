@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import {
-    Redirect,
     withRouter,
     Link
 } from 'react-router-dom'
@@ -15,7 +14,7 @@ const responseGoogle = (response) => {
 const redirect = (props) => {
     console.log("redirect")
     console.log(props)
-    if(props.isAuthenticated){
+    if (props.isAuthenticated) {
         props.history.push("/arena");
         return;
     }
@@ -24,10 +23,10 @@ const redirect = (props) => {
 
 class Auth extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
-    
+
     render() {
         console.log(this.props);
 
@@ -52,7 +51,7 @@ const AuthDecorator = withRouter((props) => {
     if (props.match.path === "/auth" && !props.isAuthenticated)
         return (
             <div>
-                <Auth signIn={()=> props.history.push("/arena") && props.signIn() } />
+                <Auth signIn={() => props.history.push("/arena") && props.signIn()} />
             </div>
         )
     else
