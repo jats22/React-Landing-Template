@@ -704,10 +704,10 @@ footer ul li a {
     /* margin-bottom: 10px; */
     
   }
-  nav ul:first-of-type {
+  /* nav ul:first-of-type {
     /* border-bottom:1px solid #111; */
-    /* padding-bottom: 10px;  */
-  }
+    /* padding-bottom: 10px;  } 
+  */
   
   nav ul:last-of-type li{
    text-align: center;
@@ -741,9 +741,8 @@ footer ul li a {
   }
   
 
-  main section:first-of-type{
-    /* margin-top: 390px; */
-  }
+  /* main section:first-of-type{
+    /* margin-top: 390px; *} */
 
   main section {
     width: 90%;
