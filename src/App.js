@@ -44,7 +44,7 @@ function Auth() {
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL} >
         <Route default exact path="/" component={Home} />
         <Route exact path="/arena" component={Arena} />
         <Route exact path="/auth" component={Auth} />
