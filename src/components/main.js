@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import DiscoverResults from "./discover-results";
 
 class Main extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <main>
 
         <section className="results" id="discover">
           <h2>Learn</h2>
-          <DiscoverResults/>
+          <DiscoverResults isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} />
         </section>
 
         <section className="intro" id="about" >

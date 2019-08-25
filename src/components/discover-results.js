@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import RecipeReviewCard from "./cards";
 import NotesIcon from '@material-ui/icons/Notes';
+import AuthButton from './auth';
 
 import { css } from '@emotion/core';
 // First way to import
@@ -71,7 +72,7 @@ class DiscoverResults extends Component {
             long:null,
             locationAvailable:false,
         };
-
+        console.log(this.state);
         // Binds our scroll event handler
         // window.onscroll = () => {
         //   const {
@@ -169,7 +170,7 @@ class DiscoverResults extends Component {
                 }
                 {
                     <div>
-                    <Link className="locateme" to="/arena"><i className="fa fa-info-circle"></i>  Take Assessment</Link>
+                    <AuthButton isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} /> 
                     <br/>
                     <br/>
                     </div>

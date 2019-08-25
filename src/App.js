@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleLogin } from 'react-google-login';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -14,8 +14,8 @@ import Footer from "./components/footer";
 
 
 
-const fakeAuth = {
-  isAuthenticated: false,
+export const fakeAuth = {
+  isAuthenticated: true,
   authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100)
@@ -26,67 +26,25 @@ const fakeAuth = {
   }
 }
 
-const Public = () => <h3>Public</h3>
-const Protected = () => <h3>Protected</h3>
-
-class Login extends React.Component {
-  render() {
-
-
-    return (
-      <div>
-        <p>You must log in to view the page</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    )
-  }
-}
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     fakeAuth.isAuthenticated === true
       ? <Component {...props} />
       : <Redirect to={{
         pathname: '/auth',
-        state: { from: props.location }
+        state: { from: props.location , showAuth : true }
       }} />
   )} />
 )
 
-const login = () => {
-  fakeAuth.authenticate(() => {
-    this.setState(() => ({
-      redirectToReferrer: true
-    }))
-  })
-}
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
-      }}>Sign out</button>
-    </p>
-  ) : (
-      <div>
-        <p>You are not logged in.</p>
-      </div>
-    )
-))
-
-function Home() {
+function Home(props) {
   return (
     <div className="container">
       <Header />
-      <AuthButton />
-      {!fakeAuth.isAuthenticated && <button onClick={login}>Log in</button>}
-      <Main />
+      <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} />
       <Footer />
     </div>
   )
-}
-const responseGoogle = (response) => {
-  console.log(response);
 }
 
 function Arena() {
@@ -98,55 +56,35 @@ function Arena() {
   )
 }
 
-class Auth extends React.Component {
+class App extends Component {
 
-  state = {
-    redirectToReferrer: false
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isAuthenticated : false,
+    }
   }
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }))
+
+  signIn(){
+    this.setState({
+        isAuthenticated : true,
     })
   }
 
-  render = () => {
-
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state
-    console.log(from);
-    
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />
-    }
-
-    return (
-      <div>
-        <GoogleLogin
-          clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
-          buttonText="Login with Google"
-          onSuccess={this.login}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-      </div>
-    )
-  }
-}
-
-class App extends Component {
-
-  componentWillMount() {
-    console.log(process.env);
+  signOut() {
+    this.setState({
+      isAuthenticated : false,
+    })
   }
 
   render() {
+    const { isAuthenticated,signIn } = this.state; 
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" component={Home} />
-        <PrivateRoute exact path="/arena" component={Arena} />
-        <Route exact path="/auth" component={Auth} />
+        <Route default exact path="/" component={()=><Home isAuthenticated={isAuthenticated} signIn={signIn} /> }/>
+        <PrivateRoute exact path="/arena" component={Arena}/>
+        <Route exact path="/auth" component={Home} />
       </Router>
     );
   }
