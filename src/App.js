@@ -42,6 +42,10 @@ function Auth() {
 }
 
 class App extends Component {
+  componentWillMount(){
+    console.log(process.env);
+  }
+
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} >
