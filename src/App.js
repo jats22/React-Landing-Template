@@ -79,10 +79,10 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated,signIn } = this.state; 
+    const { isAuthenticated } = this.state; 
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" component={()=><Home isAuthenticated={isAuthenticated} signIn={signIn} /> }/>
+        <Route default exact path="/" component={()=><Home isAuthenticated={isAuthenticated} signIn={this.signIn} /> }/>
         <PrivateRoute exact path="/arena" component={Arena}/>
         <Route exact path="/auth" component={Home} />
       </Router>
