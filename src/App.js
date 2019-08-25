@@ -69,10 +69,11 @@ class App extends Component {
     this.signOut = this.signOut.bind(this)
   }
 
-  signIn(){
+  signIn(next){
     this.setState({
         isAuthenticated : true,
     })
+    setTimeout(next, 100);
   }
 
   signOut() {
