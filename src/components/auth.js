@@ -5,7 +5,6 @@ import {
     withRouter,
     Link
 } from 'react-router-dom'
-import fakeAuth from '../App';
 
 const responseGoogle = (response) => {
     console.log(response);
@@ -14,7 +13,6 @@ const responseGoogle = (response) => {
 
 
 const redirect = (props) => {
-    console.log(props)
     if(props.isAuthenticated){
         props.history.push("/arena");
         return;
@@ -29,12 +27,14 @@ class Auth extends Component {
     }
     
     render() {
+        console.log(this.props);
+
         return (
             <div className="signin">
                 <GoogleLogin
                     clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
-                    onSuccess={this.props.signIn}
+                    onSuccess={this.signIn}
                     theme="dark"
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
@@ -50,7 +50,7 @@ const AuthDecorator = withRouter((props) => {
     if (props.match.path === "/auth" && !props.isAuthenticated)
         return (
             <div>
-                <Auth {...props} />
+                <Auth signIn={props.signIn} />
             </div>
         )
     else
