@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import request from "superagent";
+import {Link} from 'react-router-dom';
 
 import RecipeReviewCard from "./cards";
+import NotesIcon from '@material-ui/icons/Notes';
 
 import { css } from '@emotion/core';
 // First way to import
@@ -102,6 +104,10 @@ class DiscoverResults extends Component {
         this.getLocationAndRestos();
     }
 
+    takeAssessment(){
+
+    }
+
     loadRestos = () => {
         this.setState({ isLoading: true }, () => {
             request
@@ -163,10 +169,7 @@ class DiscoverResults extends Component {
                 }
                 {
                     <div>
-                    <a className="locateme" 
-                            onClick={this.getLocationAndRestos}> 
-                            <i className="fa fa-info-circle"></i>  Take Assessment
-                    </a>
+                    <Link className="locateme" to="/arena"><i className="fa fa-info-circle"></i>  Take Assessment</Link>
                     <br/>
                     <br/>
                     </div>

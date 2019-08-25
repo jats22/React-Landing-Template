@@ -4,9 +4,9 @@ body {
   font-family: Raleway;
   background: #ffffff;
   color: #18181a;
-  background: url("./images/back10.jpg");
+  /* background: url("./images/back10.jpg"); */
   background-size: 28%;
-  opacity: 0.98;
+  /* opacity: 0.98; */
 }
 body * {
   transition: all 0.300s ease-in-out;
