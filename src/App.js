@@ -70,7 +70,7 @@ class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" component={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />}/>
+        <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />}/>
         <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
         {/* <Route exact path="/auth" component={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} /> */}
       </Router>
