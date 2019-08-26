@@ -102,7 +102,7 @@ class DiscoverResults extends Component {
 
     componentWillMount() {
         // Loads some users on initial load
-        this.getLocationAndRestos();
+        // this.getLocationAndRestos();
     }
 
     takeAssessment(){
@@ -153,13 +153,12 @@ class DiscoverResults extends Component {
             error,
             hasMore,
             isLoading,
-            restos,
             locationAvailable,
             gpsError,
             lat,
             long,
         } = this.state;
-
+        const restos = [];
         return (
             <Fragment key="1" >
                 {
@@ -170,7 +169,7 @@ class DiscoverResults extends Component {
                 }
                 {
                     <div>
-                    <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} /> 
+                    <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} /> 
                     <br/>
                     <br/>
                     </div>

@@ -16,17 +16,19 @@ const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, 
     IsAuthenticated === true
       ? <Component {...props} />
       : <Redirect to={{
-        pathname: '/auth',
+        pathname: '/',
         state: { from: props.location, showAuth: true }
       }} />
   )} />
 )
 
 function Home(props) {
+  console.log("home")
+  console.log(props)
   return (
     <div className="container">
       <Header />
-      <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} />
+      <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} showAuth={props.location && props.location.state && props.location.state.showAuth}/>
       <Footer />
     </div>
   )
@@ -57,7 +59,6 @@ class App extends Component {
     this.setState({
       isAuthenticated: true,
     })
-    setTimeout(next, 100);
   }
 
   signOut() {
@@ -69,9 +70,9 @@ class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" component={() => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} />} />
+        <Route default exact path="/" component={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />}/>
         <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
-        <Route exact path="/auth" component={() => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} />} />
+        {/* <Route exact path="/auth" component={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} /> */}
       </Router>
     );
   }

@@ -12,7 +12,7 @@ class Main extends Component {
 
         <section className="results" id="discover">
           <h2>Learn</h2>
-          <DiscoverResults isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} />
+          <DiscoverResults isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
         </section>
 
         <section className="intro" id="about" >

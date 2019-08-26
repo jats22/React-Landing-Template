@@ -7,39 +7,67 @@ import {
 
 const responseGoogle = (response) => {
     console.log(response);
+    // if(response.error == "popup_closed_by_user"){
+    //     props.signIn();
+    //     props.history.push("/arena")
+    // }
 }
 
 
 
-const redirect = (props) => {
-    console.log("redirect")
-    console.log(props)
-    if (props.isAuthenticated) {
-        props.history.push("/arena");
-        return;
-    }
-    props.history.push("/auth");
-}
 
 class Auth extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            showLogin : false,
+        }
     }
+
+    componentDidUpdate(prevProps,prevState){
+        // console.log(prevProps)
+        // console.log(this.props)
+        // if( (prevProps.match.path != this.props.match.path) 
+        //         && !this.state.showLogin
+        //         && this.props.match.path === "/auth" 
+        //         && !this.props.isAuthenticated){
+        //     this.setState({
+        //         showLogin : true,
+        //     })
+        // }
+
+    }
+
 
     render() {
         console.log(this.props);
-
+        const { showAuth } = this.props;
         return (
             <div className="signin">
+               
+                { !this.props.isAuthenticated && showAuth && 
                 <GoogleLogin
                     clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
-                    onSuccess={this.props.signIn}
+                    onSuccess={ () => { this.props.signIn(); this.props.history.push("/arena") }}
                     theme="dark"
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
-                />
+                /> }
+                { !this.props.isAuthenticated && !showAuth ? 
+                (<Link className="locateme"  to={{
+                    pathname: '/',
+                    state: {showAuth: true }}}>
+                    <i className="fa fa-info-circle"></i>  Take Assessment
+                    </Link>)
+                    :
+                ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  to={{
+                    pathname: '/arena'}}>
+                    <i className="fa fa-info-circle"></i>  Take Assessment
+                    </Link>)
+                }
 
             </div>
         )
@@ -47,20 +75,6 @@ class Auth extends Component {
 }
 
 
-const AuthDecorator = withRouter((props) => {
-    if (props.match.path === "/auth" && !props.isAuthenticated)
-        return (
-            <div>
-                <Auth signIn={() => props.history.push("/arena") && props.signIn()} />
-            </div>
-        )
-    else
-        return (
-            <div>
-                <Link className="locateme" onClick={() => redirect(props)} ><i className="fa fa-info-circle"></i>  Take Assessment</Link>
-            </div>
-        )
-}
-)
+const AuthDecorator = withRouter((props) => <Auth {...props} />)
 
 export default AuthDecorator;
