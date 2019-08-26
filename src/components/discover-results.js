@@ -158,7 +158,32 @@ class DiscoverResults extends Component {
             lat,
             long,
         } = this.state;
-        const restos = [];
+        const  y = ["Analog Circuits","Digital Systems","Computer Architecture"]
+        const restos = [
+            {
+            email: "",
+            name: y[0],
+            photo: "user.picture.medium",
+            username: "user.login.username",
+            uuid: "user.login.uuid",
+            index: 0
+            },
+            {
+                email: "",
+                name: y[1],
+                photo: "user.picture.medium",
+                username: "user.login.username",
+                uuid: "user.login.uuid",
+                index: 1
+            },
+            {
+                email: "",
+                name: y[2],
+                photo: "user.picture.medium",
+                username: "user.login.username",
+                uuid: "user.login.uuid",
+                index: 2}];
+
         return (
             <Fragment key="1" >
                 {
