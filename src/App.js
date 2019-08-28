@@ -9,7 +9,7 @@ import {
 import Header from "./components/header";
 import Main from "./components/main";
 import Footer from "./components/footer";
-
+import Nav from "./components/nav";
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -28,16 +28,61 @@ function Home(props) {
   return (
     <div className="container">
       <Header />
-      <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} showAuth={props.location && props.location.state && props.location.state.showAuth}/>
+      <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} showAuth={props.location && props.location.state && props.location.state.showAuth} />
       <Footer />
     </div>
   )
 }
 
+const iconList = [
+  "fa-graduation-cap",
+  "fa-book-open",
+  "fa-bolt",
+  "fa-chalkboard-teacher",
+]
+const messageList = [
+  "Selecting the best questions for you.",
+  "Preparing curated questions",
+  "Sit tight !",
+  "Almost there ...",
+]
+
+function Loader() {
+
+  // Start the changing images
+  const [counter, setCounter] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter(counter => (counter < 3) ? counter + 1 : 0);
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+
+  return (
+    <div className="loader">
+      <div className="image">
+        <i className={"fa " + iconList[counter || 0]}></i>
+      </div>
+      <span>
+        <h2>
+          {messageList[counter]}
+        </h2>
+      </span>
+    </div>
+  )
+}
 function Arena() {
   return (
-    <div style={{ margin: '0px auto', textAlign: 'center' }}>
-      <h1>This is the quiz placeholder</h1>
+    <div>
+      <Nav />
+      <div style={{ margin: 'auto', textAlign: 'center' }}>
+        <Loader />
+      </div>
     </div>
   )
 }
@@ -70,9 +115,8 @@ class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />}/>
+        <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
         <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
-        {/* <Route exact path="/auth" component={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} /> */}
       </Router>
     );
   }

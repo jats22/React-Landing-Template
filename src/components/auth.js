@@ -7,14 +7,7 @@ import {
 
 const responseGoogle = (response) => {
     console.log(response);
-    // if(response.error == "popup_closed_by_user"){
-    //     props.signIn();
-    //     props.history.push("/arena")
-    // }
 }
-
-
-
 
 class Auth extends Component {
 
@@ -24,20 +17,6 @@ class Auth extends Component {
         this.state = {
             showLogin : false,
         }
-    }
-
-    componentDidUpdate(prevProps,prevState){
-        // console.log(prevProps)
-        // console.log(this.props)
-        // if( (prevProps.match.path != this.props.match.path) 
-        //         && !this.state.showLogin
-        //         && this.props.match.path === "/auth" 
-        //         && !this.props.isAuthenticated){
-        //     this.setState({
-        //         showLogin : true,
-        //     })
-        // }
-
     }
 
 
