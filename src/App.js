@@ -10,6 +10,7 @@ import Header from "./components/header";
 import Main from "./components/main";
 import Footer from "./components/footer";
 import Nav from "./components/nav";
+import Arena from "./components/arena";
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -30,59 +31,6 @@ function Home(props) {
       <Header />
       <Main isAuthenticated={props.isAuthenticated} signIn={props.signIn} showAuth={props.location && props.location.state && props.location.state.showAuth} />
       <Footer />
-    </div>
-  )
-}
-
-const iconList = [
-  "fa-graduation-cap",
-  "fa-book-open",
-  "fa-bolt",
-  "fa-chalkboard-teacher",
-]
-const messageList = [
-  "Selecting the best questions for you.",
-  "Preparing curated questions",
-  "Sit tight !",
-  "Almost there ...",
-]
-
-function Loader() {
-
-  // Start the changing images
-  const [counter, setCounter] = React.useState(0);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter(counter => (counter < 3) ? counter + 1 : 0);
-    }, 3000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-
-  return (
-    <div className="loader">
-      <div className="image">
-        <i className={"fa " + iconList[counter || 0]}></i>
-      </div>
-      <span>
-        <h2>
-          {messageList[counter]}
-        </h2>
-      </span>
-    </div>
-  )
-}
-function Arena() {
-  return (
-    <div>
-      <Nav />
-      <div style={{ margin: 'auto', textAlign: 'center' }}>
-        <Loader />
-      </div>
     </div>
   )
 }
