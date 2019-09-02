@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import Quiz from 'react-quiz-component';
-
+import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
 import Nav from "./nav";
+import HoverRating from "./rating";
+import StartQuiz from "./start-quiz";
+import OptionButton from "./option";
+import NextQuestion from "./next-question";
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+    },
+    chip: {
+      margin: theme.spacing(1),
+    },
+}));
+  
+export function Tag(props){  
+  const classes = useStyles();
+  return <Chip {...props} label={props.label} className={classes.chip}/>
+}
 
 const iconList = [
     "fa-graduation-cap",
@@ -60,6 +81,7 @@ const quiz =  {
           "this.state",
           "this.values"
         ],
+        "questionBody" : "Optional description of the question",
         "correctAnswer": "3",
         "messageForCorrectAnswer": "Correct answer. Good job.",
         "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
@@ -133,9 +155,11 @@ const quiz =  {
           "React can be used on client and as well as server side too",
           "Using React increases readability and makes maintainability easier. Component, Data patterns improves readability and thus makes it easier for manitaining larger apps",
           "React components have lifecycle events that fall into State/Property Updates",
-          "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer"
+          "React can be used with any other framework (Backbone.js, Angular.js) as it is only a view layer",
+          "This is correct",
+          "This is correct"
         ],
-        "correctAnswer": [1, 2, 4],
+        "correctAnswer": [1, 2, 4,5,6],
         "messageForCorrectAnswer": "Correct answer. Good job.",
         "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
         "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -166,7 +190,7 @@ class Arena extends Component {
                 { isLoading && <Loader /> }
                 </div>
                 <main>
-                { !isLoading && <Quiz quiz={quiz}/>}
+                { !isLoading && <Quiz quiz={quiz} Tag={Tag} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
                 </main>
             </div>
         )

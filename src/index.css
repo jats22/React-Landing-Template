@@ -90,6 +90,9 @@ nav ul li .active {
   font-weight: bolder;
 }
 
+.rating{
+  float: right;
+}
 /*------------- HEADER -------------------*/
 
 header {
