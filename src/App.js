@@ -63,9 +63,9 @@ class App extends Component {
   render() {
     return (
       <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
-        <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
-        {/* <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} /> */}
+        {/* <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} /> */}
+        {/* <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} /> */}
+        <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} />
       </Router>
     );
   }

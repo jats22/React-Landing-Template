@@ -18,7 +18,7 @@ export default function NextQuestion(props) {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" className={classes.button} onClick={props.onClick}>
+      <Button variant="text" color="primary" className={classes.button} onClick={props.onClick}>
         {props.children}
         {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
         <Icon className={classes.nextIcon}>keyboard_arrow_right</Icon>
