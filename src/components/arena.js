@@ -7,6 +7,7 @@ import HoverRating from "./rating";
 import StartQuiz from "./start-quiz";
 import OptionButton from "./option";
 import NextQuestion from "./next-question";
+import Timer from "./timer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 export function Tag(props) {
     const classes = useStyles();
-    return <Chip {...props} label={props.label} className={classes.chip} />
+    return <Chip {...props} label={props.label} className={classes.chip} component={props.children}/>
 }
 
 const iconList = [
@@ -208,7 +209,7 @@ class Arena extends Component {
                     {isLoading && <Loader />}
                 </div>
                 <main>
-                    {!isLoading && <Quiz quiz={quiz} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
+                    {!isLoading && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
                 </main>
             </div>
         )

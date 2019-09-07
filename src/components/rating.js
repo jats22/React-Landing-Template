@@ -36,7 +36,7 @@ export default function RatingSnacker() {
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         open={open}
         autoHideDuration={5000}
@@ -44,7 +44,7 @@ export default function RatingSnacker() {
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        message={<HoverRating/>}
+        message={<HoverRating handleClose={handleClose}/>}
         action={[
           <IconButton
             key="close"
@@ -96,7 +96,7 @@ const useStyles1 = makeStyles({
   },
 });
 
-export function HoverRating() {
+export function HoverRating(props) {
   const [value,SetValue] = React.useState(4);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles1();
@@ -113,7 +113,10 @@ export function HoverRating() {
             onChangeActive={(event, newHover) => {
               setHover(newHover);
             }}
-            onChange={ (evt,newValue) => SetValue(newValue)}
+            onChange={ (evt,newValue) => {
+              SetValue(newValue);
+              props.handleClose();
+            }}
           />
           <Box ml={3}>{labels[hover !== -1 ? hover : value]}</Box>
         </div>
