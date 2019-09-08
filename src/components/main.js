@@ -37,7 +37,10 @@ class Main extends Component {
         <section className="intro" id="about" >
           <h2>About Us</h2>
           <div>
-            <p>Finding verified halal restaurants is tough. <b>But we've got you covered!</b> <br /><br />Discover the best halal outlets near you with us. </p>
+            <p>
+            We want to build a resource that helps aspiring hardware engineers work through engaging problems and structured prep that helps them develop an intuition for difficult-to-visualize esoteric subject. 
+            Build analogies and visualizations for foundational concepts.
+            </p>
           </div>
         </section>
         <div>
