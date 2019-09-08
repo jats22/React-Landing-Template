@@ -456,7 +456,7 @@ div.services {
   display: grid;
   height: auto;
   grid-template-columns: repeat(3,1fr);
- padding: 10px;
+ padding: 30px;
 
 }
 
@@ -465,7 +465,6 @@ div.services {
   text-align: center;
   background: rgb(240, 240, 248);
   width: 90%;
-  border-radius: 30px;
   margin: 10px auto 50px auto;
   
   /* -webkit-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
@@ -475,11 +474,11 @@ div.services {
 }
 
 .services p.service-icon {
-  font-size: 3.4rem;
+  font-size: 4.0rem;
   padding: 30px 30px 30px 30px;
   margin: 0px 0px 0px 0px;
   text-align: center;
-  color: #50df24;
+  color: #8a82bb;
   filter: grayscale(0%);
   /* border-bottom: 2px solid #d1dadc; */
 }
