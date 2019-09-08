@@ -46,32 +46,32 @@ class Main extends Component {
         <div>
           <div >
             <Paper className="services" elevation={0} >
-              <Card >
+              <Card elevation={0}>
                 <CardContent>
                   <Typography component="p" className="service-icon"><EventNoteIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="h4" component="h3" className="service-title">Flash Cards</Typography>
-                  <Typography component="p">
+                  <Typography variant="p" component="p" className="service-title">Flash Cards</Typography>
+                  <Typography component="p" className="service-text">
                     Never forget a concept ever again. Learn from the people that take your interviews.
                 </Typography>
                 </CardContent>
               </Card>
-              <Card>
+              <Card elevation={0}>
                 <CardContent>
                   <Typography component="p" className="service-icon"><BorderColorIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="h4" component="h4" className="service-title">Learn at your own pace </Typography>
-                  <Typography component="p">
+                  <Typography variant="p" component="p" className="service-title">Learn at your own pace </Typography>
+                  <Typography component="p" className="service-text">
                     Self paced interactive content, that will enable you to master your foundations giving you access to the best in class jobs and future.
                 </Typography>
                 </CardContent>
               </Card>
-              <Card>
+              <Card elevation={0}>
                 <CardContent>
                   <Typography component="p" className="service-icon"><DeveloperBoardIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="h4" component="h4" className="service-title">Unlimited practice</Typography>
-                  <Typography component="p">
+                  <Typography variant="p" component="p" className="service-title">Unlimited practice</Typography>
+                  <Typography component="p" className="service-text">
                     Our algorithm generates questions on the fly best suited to you, so that you nail a concept.
                 </Typography>
                 </CardContent>
