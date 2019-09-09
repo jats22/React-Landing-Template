@@ -470,6 +470,10 @@ div.services {
   box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75); */
   
 }
+.chapters{
+  height: 350px;
+  overflow-y: scroll;
+}
 
 .services p.service-icon {
   font-size: 4.0rem;

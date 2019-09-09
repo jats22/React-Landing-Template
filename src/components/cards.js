@@ -10,7 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { green, grey, red,blue,deepPurple} from '@material-ui/core/colors';
+import { green, grey, red, blue, deepPurple } from '@material-ui/core/colors';
 import Phone from '@material-ui/icons/Phone';
 import Map from '@material-ui/icons/Map';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    'max-width': '90%',
+    'max-width': '70%',
     margin: '0 auto'
   },
   expand: {
@@ -56,30 +56,30 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
-    color:'#5c10e4',
+    color: '#5c10e4',
   },
   expandOpen: {
     transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: deepPurple[300],
-    fontWeight : 800,
-    fontSize : 'x-small',
+    fontWeight: 800,
+    fontSize: 'x-small',
   },
-  upvote:{
-    color : green[400],
+  upvote: {
+    color: green[400],
   },
-  upvoteRevert:{
-    color : grey[700],
+  upvoteRevert: {
+    color: grey[700],
   },
-  downvote:{
-    color : red[400],
+  downvote: {
+    color: red[400],
   },
-  downvoteRevert:{
-    color : grey[700],
+  downvoteRevert: {
+    color: grey[700],
   },
-  report:{
-    color : grey[500],
+  report: {
+    color: grey[500],
   },
   absolute: {
     position: 'absolute',
@@ -91,6 +91,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  list:{
+    display : 'flex',
+    flexDirection : 'row-reverse',
+  }
 }));
 
 
@@ -106,32 +110,32 @@ export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [upvote, setUpvote] = React.useState(true);
   const [downvote, setDownvote] = React.useState(true);
-  const images = [CardImage,Card1Image,Card2Image];
+  const images = [CardImage, Card1Image, Card2Image];
 
   function handleExpandClick() {
     setExpanded(!expanded);
   }
 
-  function handleUpvote(){
+  function handleUpvote() {
     setUpvote(!upvote)
   }
 
-  function handleDownvote(){
+  function handleDownvote() {
     setDownvote(!downvote)
   }
 
-  function toTitleCase(str){
+  function toTitleCase(str) {
     return str.replace(
-        /\w\S*/g,
-        (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        }
+      /\w\S*/g,
+      (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
     );
-   }
+  }
 
-  function handleDirection(){
-    
-    var latDes = 12.9113413 ,longDes = 77.6772604
+  function handleDirection() {
+
+    var latDes = 12.9113413, longDes = 77.6772604
     var url = "https://www.google.com/maps/dir/?api=1";
     var origin = "&origin=" + props.location.lat + "," + props.location.long;
     var destination = "&destination=" + latDes + "," + longDes;
@@ -140,15 +144,19 @@ export default function RecipeReviewCard(props) {
   }
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card}
+      onMouseEnter={handleExpandClick}
+      onMouseLeave={handleExpandClick}
+
+    >
 
       <CardHeader
         avatar={
           <div>
-          {/* <Avatar aria-label="recipe" className={classes.avatar}>
+            {/* <Avatar aria-label="recipe" className={classes.avatar}>
             { (props.subheader[0].charCodeAt(0) % 10)} km
           </Avatar> */}
-          <LockOpenIcon fontSize="large"/>
+            <LockOpenIcon fontSize="large" />
           </div>
         }
         // action={
@@ -157,12 +165,12 @@ export default function RecipeReviewCard(props) {
         //   </IconButton>
         // }
         title={toTitleCase(props.title)}
-        titleTypographyProps={{variant:'h6' }}
-        // subheader={props.subheader}
+        titleTypographyProps={{ variant: 'h6' }}
+      // subheader={props.subheader}
       />
       <CardMedia
         className={classes.media}
-        image={ images[props.index]}
+        image={images[props.index]}
         title="Paella dish"
       />
       {/* <CardContent>
@@ -172,7 +180,7 @@ export default function RecipeReviewCard(props) {
           
         </Typography>
       </CardContent> */}
-      <CardActions>
+      <CardActions className={classes.list}>
         {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -187,19 +195,16 @@ export default function RecipeReviewCard(props) {
         </Button> */}
         {/* <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  /> */}
         <div>
-        <Tooltip enterDelay={1000000000000} TransitionComponent={Zoom}  title="Explore" placement="bottom" >
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            aria-expanded={expanded}
-            aria-label="Explore"
-            onClick={handleExpandClick}
-          >
-            
-              <ExpandMoreIcon fontSize="large"/>
-          </IconButton>
-        </Tooltip>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+              aria-expanded={expanded}
+              aria-label="Explore"
+            >
+
+              <ExpandMoreIcon />
+            </IconButton>
         </div>
 
         {/* <IconButton onClick={handleDirection}>
@@ -216,19 +221,61 @@ export default function RecipeReviewCard(props) {
           <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography> */}
-          <List component="div" aria-label="main mailbox folders">
+          <List component="div" aria-label="main mailbox folders" className="chapters">
             <ListItem button>
-              <ListItemText primary=" Number Systems" />
-              <LockOpenIcon/>
+              <ListItemText primary=" Basics of Analog circuits and Signals" />
+              <LockOpenIcon />
               <ListItemIcon>
-                <StyledRating value={2} readOnly  size="small"  />
+                <StyledRating value={2} readOnly size="small" />
               </ListItemIcon>
             </ListItem>
             <ListItem button>
-              <ListItemText primary="Memory And Programmable Logic " />
-              <LockIcon/>
+              <ListItemText primary="Diodes And Applications" />
+              <LockIcon />
               <ListItemIcon>
-                <StyledRating value={0} readOnly  size="small"  />
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Bipolar Junction Transistors" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Bipolar Junction Transistors" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Special Purpose Amplifiers" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Communication Circuits" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Data Conversion Circuits" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
+              </ListItemIcon>
+            </ListItem>
+            <ListItem button>
+              <ListItemText primary="Measurement and Control Circuits" />
+              <LockIcon />
+              <ListItemIcon>
+                <StyledRating value={0} readOnly size="small" />
               </ListItemIcon>
             </ListItem>
           </List>
