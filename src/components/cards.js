@@ -143,6 +143,8 @@ export default function RecipeReviewCard(props) {
     window.open(newUrl, "_blank")
   }
 
+  const { chapters } = props;
+
   return (
     <Card className={classes.card}
       onMouseEnter={handleExpandClick}
@@ -222,62 +224,15 @@ export default function RecipeReviewCard(props) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography> */}
           <List component="div" aria-label="main mailbox folders" className="chapters">
-            <ListItem button>
-              <ListItemText primary=" Basics of Analog circuits and Signals" />
-              <LockOpenIcon />
-              <ListItemIcon>
-                <StyledRating value={2} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Diodes And Applications" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Bipolar Junction Transistors" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Bipolar Junction Transistors" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Special Purpose Amplifiers" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Communication Circuits" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Data Conversion Circuits" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Measurement and Control Circuits" />
-              <LockIcon />
-              <ListItemIcon>
-                <StyledRating value={0} readOnly size="small" />
-              </ListItemIcon>
-            </ListItem>
+            {chapters.map(chapter => (
+                                  <ListItem button>
+                                    <ListItemText primary={chapter} />
+                                    <LockIcon />
+                                    <ListItemIcon>
+                                      <StyledRating value={0} readOnly size="small" />
+                                    </ListItemIcon>
+                                  </ListItem>
+            ))}
           </List>
         </CardContent>
       </Collapse>

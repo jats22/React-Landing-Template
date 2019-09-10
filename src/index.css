@@ -81,10 +81,11 @@ nav ul:first-of-type li{
   font-weight: bold;
   text-indent: 30px;
   margin-right: 30px;
+  color: #ffffff;
 }
 nav ul:first-of-type li span {
   font-weight: 500;
-  color:#a59fca;
+  color:#b5abf2;
 }
 
 nav ul:last-of-type{
@@ -94,7 +95,7 @@ nav ul:last-of-type{
 
 
 nav ul li a{
-  color:#111;
+  color:#ffffff;
   text-decoration: none; 
   font-weight: bold;
   display: block;
@@ -121,7 +122,7 @@ header {
   background-position: bottom;
   position: relative;
   background-repeat: no-repeat;
-  background: #6d626208;
+  background:#5943e8;
   background-size: 50%; 
   z-index: 4;
 }
@@ -139,7 +140,7 @@ header div.head {
 }
 
 header div.head  {
-  color: #474748;
+  color: #ffffff;
 
 }
 
@@ -151,7 +152,7 @@ header div.head h1 {
   padding-top: 0px;
   margin: 0;
   letter-spacing: 4px;
-  border-right: 2px solid #ece7e7b8;
+  /* border-right: 2px solid #ece7e7b8; */
 }
 
 header div.head p {
@@ -160,18 +161,40 @@ header div.head p {
 }
 
 header div.head h1 span{
-    color: #8a82bb;
+    color: #b5abf2;
+}
+
+
+.nav-class-active {
+  background-color: white;
+  box-shadow: 0px 13px 13px -18px rgba(0,0,0,0.75);
+}
+
+
+.nav-class {
+  background-color: transparent;
+}
+
+.nav-class-active .logo {
+  color: #5241bb;
+}
+
+.nav-class-active .fa-bolt{
+  color: #5241bb;
+}
+.nav-class-active .mainNav a{
+  color: #444444;
 }
 
 .contact {
- background: #4b4b4c;
+ background: #5242bb;
  display: block;
  color: #fff;
  font-weight: bold;
  width: 50%;
  margin: 0 auto;
  text-align: center;
- padding: 12px;
+ padding: 20px;
  border-radius: 5px;
  text-decoration: none; 
 }
@@ -193,7 +216,7 @@ header div.head h1 span{
  }
 
  .locateme {
-  background: #484848;;
+  background: #5241bb;
   display: block;
   color: #ffffff;
   font-weight: bold;
@@ -224,7 +247,7 @@ header div.head h1 span{
 } */
 
 .fa-info-circle{
-  color: #c6a9fb;
+  color: #fafafa;
 }
 
 /*-------------- CUSTOM LOADER -----------------*/
@@ -363,6 +386,7 @@ main section h2 {
   width: 90%;
   grid-template-columns: 1fr;
   align-items: center;
+  background: #dcdcdc24;
 
 }
 

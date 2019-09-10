@@ -159,13 +159,14 @@ class DiscoverResults extends Component {
             long,
         } = this.state;
         const  y = ["Analog Circuits","Digital Systems","Computer Architecture"]
-        const restos = [
+        const topics = [
             {
             email: "",
             name: y[0],
             photo: "user.picture.medium",
             username: "user.login.username",
             uuid: "user.login.uuid",
+            chapters:["Basics of Analog circuits and Signals","Diodes And Applications","Measurement and Control Circuits","Bipolar Junction Transistors","Special Purpose Amplifiers","Communication Circuits","Data Conversion Circuits"],
             index: 0
             },
             {
@@ -174,6 +175,7 @@ class DiscoverResults extends Component {
                 photo: "user.picture.medium",
                 username: "user.login.username",
                 uuid: "user.login.uuid",
+                chapters:["Number Systems","Digital and Analog Systems","Logic Circuits","Memory","Parellel And Serial Transmission"],
                 index: 1
             },
             {
@@ -182,6 +184,7 @@ class DiscoverResults extends Component {
                 photo: "user.picture.medium",
                 username: "user.login.username",
                 uuid: "user.login.uuid",
+                chapters:["The Memory System","MicroProgramming And Microarchitecture","Operating System","Pipelining","Embedded Systems","Control Unit Operation","Assembly"],
                 index: 2}];
 
         return (
@@ -202,8 +205,8 @@ class DiscoverResults extends Component {
                 }
                 <ul>
 
-                    {restos.map(user => (
-                        <li><RecipeReviewCard title={user.name} subheader={user.email} content={user.username} image={user.photo} location={{lat:lat,long:long}} index={user.index}  /></li>
+                    {topics.map(topic => (
+                        <li><RecipeReviewCard title={topic.name} content={topic.topicname} image={topic.photo} chapters={topic.chapters} index={topic.index}  /></li>
 
                     ))}
  
