@@ -9,7 +9,7 @@ body {
   /* opacity: 0.98; */
 }
 body * {
-  transition: all 0.300s ease-in-out;
+  transition: all 0.100s ease-out;
 }
 
 .container { 
@@ -272,7 +272,7 @@ header div.head h1 span{
   transform-origin: bottom center;
   animation: 3s rotate infinite;
   opacity: 0;
-  color:#8c52f8;
+  color:#5943e8;
 }
 .loader span {
   display: block;
@@ -280,6 +280,12 @@ header div.head h1 span{
   text-align: center;
   position: absolute;
   bottom: -250px;
+}
+
+.resultSuggestion {
+  background: #7665ea;
+  padding: 15px;
+  color: white;
 }
 
 @keyframes rotate{
