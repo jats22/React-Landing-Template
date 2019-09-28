@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import TopicListing from "./topic-listing";
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-
+import Fade from 'react-reveal/Fade';
 import KeyFeatures from './key-features';
+import lpImage1 from '../images/landing-page.png'
+import lpImage2 from '../images/landing-page 2.png'
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -21,7 +24,29 @@ class Main extends Component {
     return (
       <main>
 
- 
+        <Fade left>
+          <section className="intro" id="about" >
+            <h2>Solve Real Interview Questions</h2>
+            <div>
+              <img src={lpImage1}></img>
+              <p>
+                We provide detailed explainations of real interview technical questions using illustrations and circuits you can play with online!
+                </p>
+            </div>
+          </section>
+        </Fade>
+
+        <Fade right>
+          <section className="intro" id="about" >
+            <h2>Get the Feedback you need!</h2>
+            <div>
+              <img src={lpImage2}></img>
+              <p>
+                Make sure your not so great areas of hardware are not getting rusted. We help you focus on your strengths as well as improve upon your weak spots.
+              </p>
+            </div>
+          </section>
+        </Fade>
         <section className="results" id="discover">
           <h2>Learn</h2>
           <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
@@ -31,13 +56,13 @@ class Main extends Component {
           <h2>About Us</h2>
           <div>
             <p>
-            We want to build a resource that helps aspiring hardware engineers work through engaging problems and structured prep that helps them develop an intuition for difficult-to-visualize esoteric subject. 
-            Build analogies and visualizations for foundational concepts.
+              We want to build a resource that helps aspiring hardware engineers work through engaging problems and structured prep that helps them develop an intuition for difficult-to-visualize esoteric subject.
+              Build analogies and visualizations for foundational concepts.
             </p>
           </div>
         </section>
-        
-        <KeyFeatures/>
+
+        <KeyFeatures />
         <section id="contact" >
           <h2>Get in touch &#128071;</h2>
           <a className="contact" href="mailto:sandilya.jatin@gmail.com?subject=Circuital : Feedback/Suggestion">Email Us</a>

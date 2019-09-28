@@ -187,10 +187,10 @@ header div.head h1 span{
 }
 
 .contact {
- background: #5242bb;
+ background: #f0db00;
  display: block;
- color: #fff;
- font-weight: bold;
+ color: #452de4;
+ font-weight: bolder;
  width: 50%;
  margin: 0 auto;
  text-align: center;
@@ -287,7 +287,10 @@ header div.head h1 span{
   padding: 15px;
   color: white;
 }
-
+.worstTopic{
+  padding: 5px;
+  color: aquamarine;
+}
 @keyframes rotate{
   0% {
     transform: rotate(90deg);
