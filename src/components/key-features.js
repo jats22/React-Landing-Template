@@ -18,9 +18,9 @@ class KeyFeatures extends Component {
                 <CardContent>
                   <Typography component="p" className="service-icon"><EventNoteIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="p" component="p" className="service-title">Flash Cards</Typography>
+                  <Typography variant="p" component="p" className="service-title">Curated Questions</Typography>
                   <Typography component="p" className="service-text">
-                    Never forget a concept ever again. Learn from the people that take your interviews.
+                    Never forget a concept ever again. Learn by solving questions made by the people that take your interviews.
                 </Typography>
                 </CardContent>
               </Card>

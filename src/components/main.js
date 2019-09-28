@@ -24,8 +24,9 @@ class Main extends Component {
     return (
       <main>
 
+        <KeyFeatures />
         <Fade left>
-          <section className="intro" id="about" >
+          <section className="intro"  >
             <h2>Solve Real Interview Questions</h2>
             <div>
               <img src={lpImage1}></img>
@@ -37,7 +38,7 @@ class Main extends Component {
         </Fade>
 
         <Fade right>
-          <section className="intro" id="about" >
+          <section className="intro">
             <h2>Get the Feedback you need!</h2>
             <div>
               <img src={lpImage2}></img>
@@ -48,7 +49,7 @@ class Main extends Component {
           </section>
         </Fade>
         <section className="results" id="discover">
-          <h2>Learn</h2>
+          <h2>Practice</h2>
           <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
         </section>
 
@@ -62,9 +63,8 @@ class Main extends Component {
           </div>
         </section>
 
-        <KeyFeatures />
         <section id="contact" >
-          <h2>Get in touch &#128071;</h2>
+          <h2>Get in touch <i class="fa fa-phone" aria-hidden="true"></i></h2>
           <a className="contact" href="mailto:sandilya.jatin@gmail.com?subject=Circuital : Feedback/Suggestion">Email Us</a>
 
         </section>

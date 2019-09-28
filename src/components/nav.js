@@ -37,19 +37,19 @@ function Nav() {
   return (
     <nav className={navClass}>
       <SideNav/>
-      <ul style={{gridTemplateColumns: '0.2fr 8fr 1fr'}}>
+      <ul style={{gridTemplateColumns: '0.6fr 8fr 1fr'}}>
         <li><span style={{fontSize:'26px',cursor:'pointer'}} onClick={openNav} className="hamburger"> &#9776;</span></li>
         <li className="logo"><div>
           {/* <img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img>  */}
           <i className="fa fa-bolt"> </i> Circuit<span>al</span></div></li>
       </ul>
       <ul className="mainNav">
+        <li><Link to="sign-up" smooth={true} spy={true} className="sign-up" activeClass="active" offset={-70}
+          duration={500}><b>Sign Up</b></Link></li>
         <li><Link to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
-          duration={500} >Learn</Link></li>
+          duration={500} >Practice</Link></li>
         <li><Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500} >About</Link></li>
-        <li><Link to="mission" smooth={true} spy={true} activeClass="active" offset={-70}
-          duration={500}>Mission</Link></li>
         <li><Link to="contact" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500}>Contact</Link></li>
       </ul>

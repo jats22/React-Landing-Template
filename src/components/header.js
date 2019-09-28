@@ -26,7 +26,7 @@ export default function Header(props) {
     <header>
       <Nav />
       <div className="head">
-        <h1>Learn Hardware< br /> <span>The Right Way.</span></h1>
+        <h1>Practice Hardware Interview Questions< br /> <span>Get that Job!</span></h1>
         <div>
           <h2>
             <div> <Link className="contact" to="discover" smooth={true} spy={true} activeClass="active" offset={-70}
