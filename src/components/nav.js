@@ -41,7 +41,7 @@ function Nav(props) {
         <li><span style={{ fontSize: '26px', cursor: 'pointer' }} onClick={openNav} className="hamburger"> &#9776;</span></li>
         <li className="logo"><div>
           {/* <img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img>  */}
-          <i className="fa fa-bolt"> </i> {!props.arena && <div style={{ display: 'initial' }} >Circuit<span>al</span></div>}
+          <i className="fa fa-bolt"> </i> <div style={{ display: 'initial' }} >Circuit<span>al</span></div>
         </div>
         </li>
       </ul>
@@ -50,8 +50,8 @@ function Nav(props) {
           duration={500} > <b>Practice</b></Link></li>
         {props.arena && <li><Link activeClass="active" offset={-70}
           duration={500} >Dashboard</Link></li>}
-        {/* {props.arena && <li><Link activeClass="active" offset={-70}
-          duration={500} > <i class="fa fa-user" aria-hidden="true"></i>  Jatin</Link></li>} */}
+        {props.arena && <li><Link activeClass="active" offset={-70}
+          duration={500} > <i class="fa fa-user" aria-hidden="true"></i>    User</Link></li>}
         {!props.arena && <li><Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500} >About</Link></li>}
         {!props.arena && <li><Link to="contact" smooth={true} spy={true} activeClass="active" offset={-70}

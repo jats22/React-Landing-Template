@@ -14,11 +14,11 @@ import Arena from "./components/arena";
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
   <Route {...rest} render={(props) => (
-    IsAuthenticated === true
+    IsAuthenticated === true || !props.match.params.quizId
       ? <Component {...props} />
       : <Redirect to={{
         pathname: '/',
-        state: { from: props.location, showAuth: true }
+        state: { from: props.location.pathname, showAuth: true }
       }} />
   )} />
 )

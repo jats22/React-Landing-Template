@@ -158,7 +158,6 @@ export default function RecipeReviewCard(props) {
             {/* <Avatar aria-label="recipe" className={classes.avatar}>
             { (props.subheader[0].charCodeAt(0) % 10)} km
           </Avatar> */}
-            <LockOpenIcon fontSize="large" />
           </div>
         }
         // action={
@@ -205,7 +204,7 @@ export default function RecipeReviewCard(props) {
               aria-label="Explore"
             >
 
-              <ExpandMoreIcon />
+              {/* <ExpandMoreIcon /> */}
             </IconButton>
         </div>
 
@@ -213,7 +212,7 @@ export default function RecipeReviewCard(props) {
             <Map/>
         </IconButton> */}
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse in={true} timeout="auto" unmountOnExit>
         <CardContent >
           {/* <Typography paragraph><Phone/> Contact Details:</Typography>
           <Typography paragraph>
@@ -223,7 +222,7 @@ export default function RecipeReviewCard(props) {
           <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography> */}
-          <List component="div" aria-label="main mailbox folders" className="chapters">
+          <List component="div" aria-label="main mailbox folders" className="">
             {chapters.map(chapter => (
                                   <ListItem button>
                                     <ListItemText primary={chapter} />

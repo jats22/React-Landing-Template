@@ -30,7 +30,7 @@ class Auth extends Component {
                 <GoogleLogin
                     clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
-                    onSuccess={ (resp) => { console.log(resp);this.props.signIn(); this.props.history.replace("/arena",{}) }}
+                    onSuccess={ (resp) => { console.log(resp);this.props.signIn(); this.props.history.replace("/arena?quizId=33103eea76083afe55b7") }}
                     theme="dark"
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
@@ -44,7 +44,9 @@ class Auth extends Component {
                     </Link>)
                     :
                 ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  to={{
-                    pathname: '/arena'}}>
+                    pathname: '/arena',
+                    search: 'quizId=33103eea76083afe55b7'
+                    }}>
                     <i className="fa fa-info-circle"></i>  Take Assessment
                     </Link>)
                 }

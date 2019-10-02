@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Quiz from 'react-quiz-component';
 import { makeStyles } from '@material-ui/core/styles';
+import {
+    withRouter
+} from 'react-router-dom'
+
 import Chip from '@material-ui/core/Chip';
 import Nav from "./nav";
 import HoverRating from "./rating";
@@ -8,6 +12,8 @@ import StartQuiz from "./start-quiz";
 import OptionButton from "./option";
 import NextQuestion from "./next-question";
 import Timer from "./timer";
+import TopicListing from "./topic-listing";
+import Footer from "./footer";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 export function Tag(props) {
     const classes = useStyles();
-    return <Chip {...props} label={props.label} className={classes.chip} component={props.children}/>
+    return <Chip {...props} label={props.label} className={classes.chip} component={props.children} />
 }
 
 const iconList = [
@@ -72,45 +78,84 @@ class Arena extends Component {
 
     state = {
         isLoading: true,
-        quiz:null,
+        quiz: null,
     }
+
+    constructor(props) {
+        super(props)
+    }
+
     componentDidMount() {
 
         const url = "https://api.npoint.io/33103eea76083afe55b7";
 
-        fetch(url)
-        .then((resp) => resp.json()) 
-        .then((data)=>{
-            console.log(data)
-            this.setState({
-                quiz:data
-            })
+        console.log(this.props)
+        const { location } = this.props;
+        if (location && location.search) {
+            fetch(url)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    console.log(data)
+                    this.setState({
+                        quiz: data
+                    })
+                    setTimeout(() => {
+                        this.setState({
+                            isLoading: false,
+                        })
+                    }, 4000)
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        }
+        else {
             setTimeout(() => {
                 this.setState({
                     isLoading: false,
                 })
-            }, 4000)
-        })
-        .catch(e =>{
-            console.log(e)
-        })
+            }, 1000)
+        }
+
 
     }
 
     render() {
-        const { isLoading,quiz } = this.state;
+        const { isLoading, quiz } = this.state;
         return (
             <div className="container" >
-                <Nav arena/>
-                <div style={{ margin: 'auto' }}>
-                    {isLoading && <Loader />}
-                </div>
-                <main>
-                    {!isLoading && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
-                </main>
-            </div>
-        )
-    }
-}
+                <Nav arena />
+                {!quiz &&
+                    <div>
+                        <div style={{ margin: 'auto' }}>
+                            {isLoading && <Loader />}
+                        </div>
+                        <main>
+                            {!isLoading &&
+                                <div>
+                                    <section className="topics-list" >
+                                        <h3 style={{ textAlign: 'center', fontSize: 'x-large', padding: '50px', color: '#332c5c' }}> Pick a quiz from these tracks</h3>
+                                        <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+                                    </section>
+                                    <Footer />
+                                </div>
+                            }
 
-export default Arena;
+                        </main>
+                    </div>}
+                {quiz &&
+                            <div>
+                                <div style={{ margin: 'auto' }}>
+                                    {isLoading && <Loader />}
+                                </div>
+                                <main>
+                                    {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
+                                </main>
+                            </div>}
+
+                    </div>
+        )
+                }
+            }
+            
+            export default withRouter(Arena);

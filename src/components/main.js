@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import TopicListing from "./topic-listing";
+
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Fade from 'react-reveal/Fade';
 import KeyFeatures from './key-features';
 import lpImage1 from '../images/landing-page.png'
 import lpImage2 from '../images/landing-page 2.png'
 import lpImage3 from '../images/hired2.gif'
+import AuthDecorator from './auth';
+
 import { Link } from 'react-router-dom';
 
 
@@ -49,7 +51,7 @@ class Main extends Component {
             </h1>
           </div>
         </section>
-        
+
         <Fade right>
           <section className="intro">
             <h2>Get the Feedback you need!</h2>
@@ -81,7 +83,13 @@ class Main extends Component {
             <h3>Measure your electronics chops and know where you stand.
                             <b> Take the quick adaptive diagnostic test to get started..</b> </h3>
           </div>
-          <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+
+          <div>
+                        <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+                        <br />
+                        <br />
+          </div>
+  
         </section>
 
         <section className="intro" id="about" >

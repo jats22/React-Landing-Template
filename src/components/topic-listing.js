@@ -190,24 +190,14 @@ class DiscoverResults extends Component {
 
         return (
             <Fragment key="1" >
-                {
-                }
-                {
-                    <div>
-                        <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
-                        <br />
-                        <br />
-                    </div>
-
-                }
 
 
                 <ul>
 
-                    {/* {topics.map(topic => (
+                    {topics.map(topic => (
                         <li><RecipeReviewCard title={topic.name} content={topic.topicname} image={topic.photo} chapters={topic.chapters} index={topic.index} /></li>
 
-                    ))} */}
+                    ))}
 
                     {locationAvailable && hasMore && !isLoading
                     }

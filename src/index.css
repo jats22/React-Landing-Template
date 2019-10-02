@@ -25,7 +25,7 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75); */
 .react-quiz-container{
   padding: 70px !important;
   margin: 20px auto !important;
-  width: 90% !important;
+  width: 75% !important;
 }
 .explaination{
   padding: 20px;
@@ -153,6 +153,15 @@ header div.head {
 header div.head  {
   color: #ffffff;
 
+}
+
+.topics-list {
+  width: 80%;
+  grid-template-columns: 1fr 3fr;
+  background: #d6d6d71a;
+  padding: 20px;
+  margin-top: 100px;
+  /* box-shadow: 0px 20px 6px -22px rgba(0.75,0.75,0.75,0.75); */
 }
 
 .sign-up{
