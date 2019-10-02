@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
-    background: 'linear-gradient(45deg, #05bffa 30%, #5b0eea 90%)',
+    background: '#6057a0',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(187, 168, 202, 0.3)',

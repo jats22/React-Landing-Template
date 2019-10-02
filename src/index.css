@@ -89,7 +89,7 @@ nav ul:first-of-type li span {
 }
 
 nav ul:last-of-type{
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 0.8fr 0.8fr 0.8fr 0.6fr 0.9fr 0.5fr;
 
 }
 
@@ -101,6 +101,17 @@ nav ul li a{
   display: block;
 }
 
+.login {
+  border: solid thin;
+    border-radius: 5px;
+    padding: 6px;
+    margin-left: 0px;
+    margin-right: 10px;
+    border-color: #ffcb00;
+    background: #f0db01;
+    color: #2100f0;
+    text-align: center;
+}
 a {
   cursor: pointer;
 }
@@ -122,8 +133,8 @@ header {
   background-position: bottom;
   position: relative;
   background-repeat: no-repeat;
-  background:#5943e8;
-  background-size: 50%; 
+  background:linear-gradient(45deg, #4e42a2, #726ba2);
+  background-size: 100%; 
   z-index: 4;
 }
 
@@ -146,12 +157,12 @@ header div.head  {
 
 .sign-up{
   color: #ffffff !important;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
-  background: #513ec7;
-  border-radius: 20px;
+  background: #6057a0;
+  border-radius: 6px;
   margin-right: 25px;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 header div.head h1 {
@@ -176,23 +187,23 @@ header div.head h1 span{
 
 .nav-class-active {
   background-color: white;
-  box-shadow: 0px 13px 13px -18px rgba(0,0,0,0.75);
+  box-shadow: 0px 13px 13px -21px rgba(0,0,0,0.75);
 }
 
 
 .nav-class {
-  background-color: #5943e8;
+  background-color: transparent;
 }
 
 .nav-class-active .logo {
-  color: #5241bb;
+  color: #4a4089;
 }
 
 .nav-class-active .fa-bolt{
-  color: #5241bb;
+  color: #6057a0;
 }
 .nav-class-active .mainNav a{
-  color: #444444;
+  color: #6057a0;
 }
 
 .contact {
@@ -234,7 +245,7 @@ header div.head h1 span{
  }
 
  .locateme {
-  background: #5241bb;
+  background: #6057a0;
   display: block;
   color: #ffffff;
   font-weight: bold;
@@ -249,6 +260,7 @@ header div.head h1 span{
  .signin{
    margin: 10px auto;
    text-align: center;
+   font-size: larger;
  }
 
 
@@ -320,7 +332,7 @@ header div.head h1 span{
   transform-origin: bottom center;
   animation: 3s rotate infinite;
   opacity: 0;
-  color:#5943e8;
+  color:#6057a0;
 }
 .loader span {
   display: block;
@@ -420,8 +432,8 @@ main {
 
 main section {
   width: 60%;
-  padding: 90px 0;
-  margin: 50px auto 150px auto;
+  padding: 40px 0;
+  margin: 50px auto 50px auto;
   display: grid;
   grid-template-columns: 2fr 3fr;
   align-items: center;
@@ -431,7 +443,7 @@ main section {
 main section h2 {
   font-size: 4.3rem;
   color: #444;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
  line-height: 4.2rem; 
  padding-right: 10px;
  /* border-right: 2px solid #ece7e7b8; */

@@ -5,6 +5,8 @@ import Fade from 'react-reveal/Fade';
 import KeyFeatures from './key-features';
 import lpImage1 from '../images/landing-page.png'
 import lpImage2 from '../images/landing-page 2.png'
+import lpImage3 from '../images/hired2.gif'
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) =>
@@ -37,6 +39,17 @@ class Main extends Component {
           </section>
         </Fade>
 
+        <section className="results" >
+          <div style={{ textAlign: 'center', fontSize: 'larger' }}>
+            <h1><Link className="locateme" to={{
+              pathname: '/arena'
+            }}>
+              <i class="fa fa-globe" aria-hidden="true"></i> Explore Quizzes
+                            </Link>
+            </h1>
+          </div>
+        </section>
+        
         <Fade right>
           <section className="intro">
             <h2>Get the Feedback you need!</h2>
@@ -48,8 +61,26 @@ class Main extends Component {
             </div>
           </section>
         </Fade>
+
+        <Fade right>
+          <section className="intro">
+            <h2>Get Hired</h2>
+            <div>
+              <img src={lpImage3}></img>
+              <p>
+                We refer you to the best companies out there looking for hardware ninjas like yourself for interviews.<br /><br /> <b>Solve questions, prove your mettle and you're all set to sky rocket your career.</b>
+              </p>
+            </div>
+          </section>
+        </Fade>
+
         <section className="results" id="discover">
           <h2>Practice</h2>
+          <h1 style={{ margin: '0 auto' }}>We've got the breadth of Hardware Engineering Covered. </h1>
+          <div style={{ textAlign: 'center' }} >
+            <h3>Measure your electronics chops and know where you stand.
+                            <b> Take the quick adaptive diagnostic test to get started..</b> </h3>
+          </div>
           <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
         </section>
 

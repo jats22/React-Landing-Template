@@ -30,11 +30,12 @@ class Auth extends Component {
                 <GoogleLogin
                     clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
-                    onSuccess={ () => { this.props.signIn(); this.props.history.replace("/arena",{}) }}
+                    onSuccess={ (resp) => { console.log(resp);this.props.signIn(); this.props.history.replace("/arena",{}) }}
                     theme="dark"
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 /> }
+                
                 { !this.props.isAuthenticated && !showAuth ? 
                 (<Link className="locateme"  to={{
                     pathname: '/',

@@ -101,7 +101,7 @@ class Arena extends Component {
         const { isLoading,quiz } = this.state;
         return (
             <div className="container" >
-                <Nav />
+                <Nav arena/>
                 <div style={{ margin: 'auto' }}>
                     {isLoading && <Loader />}
                 </div>
