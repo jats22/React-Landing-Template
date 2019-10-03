@@ -154,7 +154,12 @@ class Arena extends Component {
                 {quiz &&
                     <div>
                         <div style={{ margin: 'auto' }}>
-                            {isLoading && <Loader />}
+                            {isLoading && <Loader
+                                type="ThreeDots"
+                                color="#6057a0"
+                                style={{textAlign:'center'}}
+                                height={'60vh'}
+                                width={60}/>}
                         </div>
                         <main>
                             {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
