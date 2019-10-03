@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner'
 import Quiz from 'react-quiz-component';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -14,6 +15,7 @@ import NextQuestion from "./next-question";
 import Timer from "./timer";
 import TopicListing from "./topic-listing";
 import Footer from "./footer";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,35 +46,35 @@ const messageList = [
     "Almost there ...",
 ]
 
-function Loader() {
+// function Loader() {
 
-    // Start the changing images
-    const [counter, setCounter] = React.useState(0);
+//     // Start the changing images
+//     const [counter, setCounter] = React.useState(0);
 
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            setCounter(counter => (counter < 3) ? counter + 1 : 0);
-        }, 3000);
+//     React.useEffect(() => {
+//         const interval = setInterval(() => {
+//             setCounter(counter => (counter < 3) ? counter + 1 : 0);
+//         }, 3000);
 
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
+//         return () => {
+//             clearInterval(interval);
+//         };
+//     }, []);
 
 
-    return (
-        <div className="loader">
-            <div className="image">
-                <i className={"fa " + iconList[counter || 0]}></i>
-            </div>
-            <span>
-                <h2>
-                    {messageList[counter]}
-                </h2>
-            </span>
-        </div>
-    )
-}
+//     return (
+//         <div className="loader">
+//             <div className="image">
+//                 <i className={"fa " + iconList[counter || 0]}></i>
+//             </div>
+//             <span>
+//                 <h2>
+//                     {messageList[counter]}
+//                 </h2>
+//             </span>
+//         </div>
+//     )
+// }
 
 class Arena extends Component {
 
@@ -128,7 +130,13 @@ class Arena extends Component {
                 {!quiz &&
                     <div>
                         <div style={{ margin: 'auto' }}>
-                            {isLoading && <Loader />}
+                            { isLoading && <Loader
+                                type="ThreeDots"
+                                color="#6057a0"
+                                style={{textAlign:'center'}}
+                                height={'60vh'}
+                                width={60}/>
+                            }
                         </div>
                         <main>
                             {!isLoading &&
@@ -144,18 +152,18 @@ class Arena extends Component {
                         </main>
                     </div>}
                 {quiz &&
-                            <div>
-                                <div style={{ margin: 'auto' }}>
-                                    {isLoading && <Loader />}
-                                </div>
-                                <main>
-                                    {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
-                                </main>
-                            </div>}
+                    <div>
+                        <div style={{ margin: 'auto' }}>
+                            {isLoading && <Loader />}
+                        </div>
+                        <main>
+                            {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
+                        </main>
+                    </div>}
 
-                    </div>
+            </div>
         )
-                }
-            }
-            
-            export default withRouter(Arena);
+    }
+}
+
+export default withRouter(Arena);
