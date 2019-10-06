@@ -28,7 +28,7 @@ class Auth extends Component {
                
                 { !this.props.isAuthenticated && showAuth && 
                 <GoogleLogin
-                    clientId="1098012249427-811i7d4t6f17837buv7dmmeqh7lfmqmb.apps.googleusercontent.com"
+                    clientId="881804489987-rcq59p85ff6lssk6knkf9a6i58t2unv0.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
                     onSuccess={ (resp) => { console.log(resp);this.props.signIn(); this.props.history.replace("/arena?quizId=33103eea76083afe55b7") }}
                     theme="dark"

@@ -11,6 +11,8 @@ import Main from "./components/main";
 import Footer from "./components/footer";
 import Nav from "./components/nav";
 import Arena from "./components/arena";
+import HttpsRedirect from 'react-https-redirect';
+
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -62,11 +64,13 @@ class App extends Component {
 
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL} >
-        <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
-        <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
-        {/* <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} /> */}
-      </Router>
+      <HttpsRedirect>
+        <Router basename={process.env.PUBLIC_URL} >
+          <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
+          <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
+          {/* <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} /> */}
+        </Router>
+      </HttpsRedirect>
     );
   }
 }

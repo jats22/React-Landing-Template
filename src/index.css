@@ -53,7 +53,6 @@ nav {
   background: #fff;
   z-index: 99;
   width: 100%;
-  max-width: 1800px;
   margin: 0 auto;  
   padding: 12px 0;
   display: grid;
@@ -206,6 +205,10 @@ header div.head h1 span{
 
 .nav-class-active .logo {
   color: #4a4089;
+}
+
+.fa-bolt {
+  color: #7168b9;
 }
 
 .nav-class-active .fa-bolt{
