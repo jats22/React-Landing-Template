@@ -35,6 +35,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
+import { toast } from 'react-toastify';
+
+toast.configure()
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -50,7 +53,8 @@ const useStyles = makeStyles(theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
     'max-width': '70%',
-    margin: '0 auto'
+    margin: '0 auto',
+    backgroundSize:'84%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -93,9 +97,9 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
-  list:{
-    display : 'flex',
-    flexDirection : 'row-reverse',
+  list: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
   }
 }));
 
@@ -198,16 +202,16 @@ export default function RecipeReviewCard(props) {
         </Button> */}
         {/* <StyledRating value={(props.subheader[0].charCodeAt(0) % 10)} readOnly  size="small"  /> */}
         <div>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              aria-expanded={expanded}
-              aria-label="Explore"
-            >
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            aria-expanded={expanded}
+            aria-label="Explore"
+          >
 
-              {/* <ExpandMoreIcon /> */}
-            </IconButton>
+            {/* <ExpandMoreIcon /> */}
+          </IconButton>
         </div>
 
         {/* <IconButton onClick={handleDirection}>
@@ -226,13 +230,17 @@ export default function RecipeReviewCard(props) {
           </Typography> */}
           <List component="div" aria-label="main mailbox folders" className="">
             {chapters.map(chapter => (
-                                  <ListItem button>
-                                    <ListItemText primary={chapter} />
-                                    <LockIcon />
-                                    <ListItemIcon>
-                                      <StyledRating value={0} readOnly size="small" />
-                                    </ListItemIcon>
-                                  </ListItem>
+              <ListItem button onClick={() => {
+                toast.info("This topic seems to be locked for you. Become a pro member to access it!", {
+                  position: toast.POSITION.TOP_RIGHT
+                });
+              }}>
+                <ListItemText primary={chapter} />
+                <LockIcon />
+                <ListItemIcon>
+                  <StyledRating value={0} readOnly size="small" />
+                </ListItemIcon>
+              </ListItem>
             ))}
           </List>
         </CardContent>

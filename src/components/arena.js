@@ -7,6 +7,9 @@ import {
 } from 'react-router-dom'
 
 import Chip from '@material-ui/core/Chip';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Nav from "./nav";
 import HoverRating from "./rating";
 import StartQuiz from "./start-quiz";
@@ -16,6 +19,9 @@ import Timer from "./timer";
 import TopicListing from "./topic-listing";
 import Footer from "./footer";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
+
+toast.configure()
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -81,6 +87,8 @@ class Arena extends Component {
     state = {
         isLoading: true,
         quiz: null,
+        userName: null,
+        showTopics: true,
     }
 
     constructor(props) {
@@ -89,56 +97,102 @@ class Arena extends Component {
 
     componentDidMount() {
 
-        const url = "https://api.npoint.io/33103eea76083afe55b7";
+        const baseUrl = "https://api.npoint.io/" 
+
 
         console.log(this.props)
+
         const { location } = this.props;
+
+        this.setState({
+            isLoading: true,
+            quiz: null,
+        })
+
+        if (location && location.state && location.state.profileObj) {
+            this.setState({
+                userName: location.state.profileObj.name,
+            })
+        }
+
         if (location && location.search) {
+            const params = new URLSearchParams(location.search)
+            const quizId = params.get('quizId')
+            var url = baseUrl + quizId;
+            console.log(url)
             fetch(url)
                 .then((resp) => resp.json())
                 .then((data) => {
                     console.log(data)
                     this.setState({
-                        quiz: data
+                        quiz: data,
+                        showTopics: false,
                     })
                     setTimeout(() => {
                         this.setState({
                             isLoading: false,
                         })
-                    }, 4000)
+                    }, 3000)
                 })
                 .catch(e => {
                     console.log(e)
+                    this.setState({
+                        isLoading: false,
+                        showTopics: true,
+                        errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
+                        quiz: {},
+                    })
+                    toast.error(this.state.errorMessage)
                 })
         }
         else {
             setTimeout(() => {
                 this.setState({
                     isLoading: false,
+                    quiz: null,
                 })
             }, 1000)
         }
 
 
     }
+    forceRender = () => {
+        this.setState({
+            isLoading: true,
+            quiz: null,
+            showTopics: false,
+        })
 
+        setTimeout(() => {
+            this.setState({
+                isLoading: false,
+                quiz: null,
+                showTopics: true,
+            })
+        }, 1000)
+
+
+    }
     render() {
-        const { isLoading, quiz } = this.state;
+        const { isLoading, quiz, userName, showTopics, errorMessage } = this.state;
+        console.log(this.props)
+        console.log(this.state)
         return (
             <div className="container" >
-                <Nav arena />
-                {!quiz &&
+                <Nav arena userName={userName} forceRender={this.forceRender} />
+                {showTopics &&
                     <div>
                         <div style={{ margin: 'auto' }}>
-                            { isLoading && <Loader
+                            {isLoading && <Loader
                                 type="ThreeDots"
-                                color="#6057a0"
-                                style={{textAlign:'center'}}
+                                color="#362f6e"
+                                style={{ textAlign: 'center' }}
                                 height={'60vh'}
-                                width={60}/>
+                                width={60} />
                             }
                         </div>
                         <main>
+                            
                             {!isLoading &&
                                 <div>
                                     <section className="topics-list" >
@@ -151,15 +205,15 @@ class Arena extends Component {
 
                         </main>
                     </div>}
-                {quiz &&
+                {!showTopics &&
                     <div>
                         <div style={{ margin: 'auto' }}>
                             {isLoading && <Loader
                                 type="ThreeDots"
                                 color="#6057a0"
-                                style={{textAlign:'center'}}
+                                style={{ textAlign: 'center' }}
                                 height={'60vh'}
-                                width={60}/>}
+                                width={60} />}
                         </div>
                         <main>
                             {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}

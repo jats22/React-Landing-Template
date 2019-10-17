@@ -29,82 +29,80 @@ class Main extends Component {
       <main>
 
         <KeyFeatures />
-        <Fade left>
-          <section className="intro"  >
-            <h2>Solve Real Interview Questions</h2>
+        <section className="intro"  >
+          <h2>Solve Real Interview Questions</h2>
+          <Fade right>
             <div>
               <img src={lpImage1}></img>
               <p>
-                We provide detailed explainations of real interview technical questions using illustrations and circuits you can play with online!
+                We provide detailed explanations of real interview technical questions using illustrations and circuits you can play with online!
                 </p>
             </div>
-          </section>
-        </Fade>
+          </Fade>
+        </section>
 
         <section className="results" >
           <div style={{ textAlign: 'center', fontSize: 'larger' }}>
             <h1><Link className="locateme" to={{
               pathname: '/arena'
             }}>
-              <i class="fa fa-globe" aria-hidden="true"></i> Explore Quizzes
+              Explore Quizzes
                             </Link>
             </h1>
           </div>
         </section>
 
-        <Fade right>
-          <section className="intro">
-            <h2>Get the Feedback you need!</h2>
+        <section className="intro">
+          <h2>Get the feedback you need!</h2>
+          <Fade right>
             <div>
               <img src={lpImage2}></img>
               <p>
-                Make sure your not so great areas of hardware are not getting rusted. We help you focus on your strengths as well as improve upon your weak spots.
+                Obtain detailed explanations to hardware interview questions that include engaging illustrations and a circuit simulator that you can play with to really ensure that you're able to ace your fundamentals.
               </p>
             </div>
-          </section>
-        </Fade>
+          </Fade>
+        </section>
 
-        <Fade right>
-          <section className="intro">
-            <h2>Get Hired</h2>
+
+        <section className="intro">
+          <h2>Get hired.</h2>
             <div>
               <img src={lpImage3}></img>
               <p>
-                We refer you to the best companies out there looking for hardware ninjas like yourself for interviews.<br /><br /> <b>Solve questions, prove your mettle and you're all set to sky rocket your career.</b>
+                We help you focus on your strengths and make sure you avoid any blind spots in the process just so you can nail your dream hardware job! Our goal is to help you get through to the hardware companies that are on the lookout for you.<br /><br />
               </p>
             </div>
-          </section>
-        </Fade>
+        </section>
+
 
         <section className="results" id="discover">
           <h2>Practice</h2>
-          <h1 style={{ margin: '0 auto' }}>We've got the breadth of Hardware Engineering Covered. </h1>
+          <h1 style={{ margin: '0 auto',textAlign: 'center',padding: '15px' }}> Take the quick adaptive diagnostic test to get started and know where you stand.</h1>
           <div style={{ textAlign: 'center' }} >
-            <h3>Measure your electronics chops and know where you stand.
-                            <b> Take the quick adaptive diagnostic test to get started..</b> </h3>
+            <h3>Measure your electronics chops.
+                            <b> </b> </h3>
           </div>
 
           <div>
-                        <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
-                        <br />
-                        <br />
+            <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+            <br />
+            <br />
           </div>
-  
+
         </section>
 
         <section className="intro" id="about" >
           <h2>About Us</h2>
           <div>
             <p>
-              We want to build a resource that helps aspiring hardware engineers work through engaging problems and structured prep that helps them develop an intuition for difficult-to-visualize esoteric subject.
-              Build analogies and visualizations for foundational concepts.
+            We help aspiring hardware engineers work through engaging problems and structured prep that helps them develop an intuition for hardware. Build analogies and visualizations for foundational concepts required to get you ready.
             </p>
           </div>
         </section>
 
         <section id="contact" >
-          <h2>Get in touch <i class="fa fa-phone" aria-hidden="true"></i></h2>
-          <a className="contact" href="mailto:sandilya.jatin@gmail.com?subject=Circuital : Feedback/Suggestion">Email Us</a>
+          <a className="contact" href="mailto:team@circuit.al?subject=Circuital : Feedback/Suggestion"> Get in touch</a>
 
         </section>
 

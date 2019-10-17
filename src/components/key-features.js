@@ -28,9 +28,9 @@ class KeyFeatures extends Component {
                 <CardContent>
                   <Typography component="p" className="service-icon"><BorderColorIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="p" component="p" className="service-title">Learn at your own pace </Typography>
+                  <Typography variant="p" component="p" className="service-title">Self-paced</Typography>
                   <Typography component="p" className="service-text">
-                    Self paced interactive content, that will enable you to master your foundations giving you access to the best in class jobs and future.
+                    Self-paced interactive content, that will enable you to master your foundations giving you access to the best in class jobs and future.
                 </Typography>
                 </CardContent>
               </Card>
@@ -38,7 +38,7 @@ class KeyFeatures extends Component {
                 <CardContent>
                   <Typography component="p" className="service-icon"><DeveloperBoardIcon fontSize="inherit" />
                   </Typography>
-                  <Typography variant="p" component="p" className="service-title">Unlimited practice</Typography>
+                  <Typography variant="p" component="p" className="service-title">Unlimited Practice</Typography>
                   <Typography component="p" className="service-text">
                     Our algorithm generates questions on the fly best suited to you, so that you nail a concept.
                 </Typography>

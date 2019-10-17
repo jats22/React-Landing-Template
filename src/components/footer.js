@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
 
       <footer>
-        <h3>&copy; Circuit.al</h3>
+        <h3>&copy; 2019 Circuit.al</h3>
         <ul>
           <li>FAQ</li>
           <li>Privacy Policy</li>

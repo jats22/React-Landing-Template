@@ -54,6 +54,7 @@ class App extends Component {
     this.setState({
       isAuthenticated: true,
     })
+    next();
   }
 
   signOut() {
@@ -67,7 +68,7 @@ class App extends Component {
       <HttpsRedirect>
         <Router basename={process.env.PUBLIC_URL} >
           <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
-          <PrivateRoute exact path="/arena" component={Arena} isAuthenticated={this.state.isAuthenticated} />
+          <PrivateRoute exact path="/arena" isAuthenticated={this.state.isAuthenticated} component={Arena} />
           {/* <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} /> */}
         </Router>
       </HttpsRedirect>

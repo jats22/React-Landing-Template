@@ -23,6 +23,7 @@
     "react-scripts": "2.0.3",
     "react-scroll": "^1.7.12",
     "react-spinners": "^0.5.13",
+    "react-toastify": "^5.4.0",
     "superagent": "3.8.3"
   },
   "scripts": {
