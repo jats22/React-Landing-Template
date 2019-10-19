@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
-import Quiz from 'react-quiz-component';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     withRouter
@@ -18,6 +17,8 @@ import NextQuestion from "./next-question";
 import Timer from "./timer";
 import TopicListing from "./topic-listing";
 import Footer from "./footer";
+import Quiz from './foundry/Quiz';
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
@@ -97,7 +98,7 @@ class Arena extends Component {
 
     componentDidMount() {
 
-        const baseUrl = "https://api.npoint.io/" 
+        const baseUrl = "https://api.npoint.io/"
 
 
         console.log(this.props)
@@ -192,7 +193,7 @@ class Arena extends Component {
                             }
                         </div>
                         <main>
-                            
+
                             {!isLoading &&
                                 <div>
                                     <section className="topics-list" >
@@ -206,7 +207,7 @@ class Arena extends Component {
                         </main>
                     </div>}
                 {!showTopics &&
-                    <div>
+                    <div style={{minHeight:'90%'}}>
                         <div style={{ margin: 'auto' }}>
                             {isLoading && <Loader
                                 type="ThreeDots"
@@ -216,7 +217,20 @@ class Arena extends Component {
                                 width={60} />}
                         </div>
                         <main>
-                            {!isLoading && quiz && <Quiz quiz={quiz} Timer={Timer} Tag={Tag} showInstantFeedback={true} NextQuestion={NextQuestion} HoverRating={HoverRating} StartQuiz={StartQuiz} OptionButton={OptionButton} />}
+                            {!isLoading && quiz &&
+                                <div>
+                                    <Quiz
+                                        quiz={quiz}
+                                        Timer={Timer}
+                                        Tag={Tag}
+                                        showInstantFeedback={true}
+                                        NextQuestion={NextQuestion}
+                                        HoverRating={HoverRating}
+                                        StartQuiz={StartQuiz}
+                                        OptionButton={OptionButton} />
+                                    <Footer />
+                                </div>
+                            }
                         </main>
                     </div>}
 

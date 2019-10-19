@@ -51,16 +51,18 @@ function Nav(props) {
         <li><span style={{ fontSize: '26px', cursor: 'pointer',color:'#bcb9d0' }} onClick={openNav} className="hamburger"> <i class="fas fa-bars"></i></span></li>
         <li className="logo"><div>
           {/* <img src={Logo} style={{ height: '32px',margin: '2px 0px 0px',padding: '0px 2px' }}></img>  */}
-          <i className="fa fa-bolt"> </i> <div style={{ display: 'initial' }} >Circuit<span>al</span></div>
+          <i className="fa fa-bolt"> </i> <div style={{ display: 'initial' }} ><RouterLink to="/" style={{ display: 'initial' ,color: 'inherit' }} className="mainLogo">Circuit<span>al</span></RouterLink></div>
         </div>
         </li>
       </ul>
       <ul className="mainNav">
+        {props.arena && <li><div>&nbsp;</div></li>}
+        {props.arena && <li><div>&nbsp;</div></li>}
         <li><RouterLink  onClick={props.forceRender}> <b>Practice</b></RouterLink></li>
 
         {!props.arena && <li><Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500} >About</Link></li>}
-
+        
         {(props.arena && props.userName) && <li><Link activeClass="active" offset={-70}
           duration={500} > <Icon className={classes.userIcon}>account_circle</Icon></Link></li>}
         {(props.arena && props.userName) && <li><Link activeClass="active" offset={-70}
