@@ -29,16 +29,19 @@ class Main extends Component {
       <main>
 
         <KeyFeatures />
-        <section className="results"  id="explore">
-          <div style={{ textAlign: 'center', fontSize: 'larger' }}>
-            <h1><Link className="locateme" to={{
-              pathname: '/arena'
-            }}>
-              Explore Quizzes
-                            </Link>
-            </h1>
+
+        <section className="results" id="discover">
+          <h2>Practice</h2>
+          <h1 style={{ margin: '0 auto',textAlign: 'center',padding: '15px' }}> Take the quick adaptive diagnostic test to get started and know where you stand.</h1>
+
+          <div>
+            <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+            <br />
+            <br />
           </div>
+
         </section>
+
         <section className="intro"  >
           <h2>Solve Real Interview Questions</h2>
           <Fade right>
@@ -74,21 +77,15 @@ class Main extends Component {
             </div>
         </section>
 
-
-        <section className="results" id="discover">
-          <h2>Practice</h2>
-          <h1 style={{ margin: '0 auto',textAlign: 'center',padding: '15px' }}> Take the quick adaptive diagnostic test to get started and know where you stand.</h1>
-          <div style={{ textAlign: 'center' }} >
-            <h3>Measure your electronics chops.
-                            <b> </b> </h3>
+        <section className="results"  id="explore">
+          <div style={{ textAlign: 'center', fontSize: 'larger' }}>
+            <h1><Link className="locateme" to={{
+              pathname: '/arena'
+            }}>
+              Explore Quizzes
+                            </Link>
+            </h1>
           </div>
-
-          <div>
-            <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
-            <br />
-            <br />
-          </div>
-
         </section>
 
         <section className="intro" id="about" style={{marginBottom: '130px'}}>

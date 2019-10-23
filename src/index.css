@@ -312,7 +312,7 @@ header div.head h1 span{
   display: block;
   color: #ffffff;
   font-weight: bold;
-  width: 20%;
+  width: 28%;
   margin: 10px auto;
   text-align: center;
   padding: 12px;
@@ -326,7 +326,7 @@ header div.head h1 span{
  .signin{
    margin: 10px auto;
    text-align: center;
-   font-size: 1.5em;
+   font-size: 1.8em;
  }
 
 
@@ -1128,7 +1128,7 @@ footer ul li a {
   }
   
   .locateme{
-    width: 50%;
+    width: 65%;
   }
 
   /* #mission {
