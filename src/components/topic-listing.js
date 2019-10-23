@@ -192,7 +192,7 @@ class DiscoverResults extends Component {
             <Fragment key="1" >
 
 
-                <ul style={{background: '#d6d6d71a' ,padding: '8px'}}>
+                <ul style={{background: '#d6d6d71a' ,padding: '32px 8px 32px 8px'}}>
 
                     {topics.map(topic => (
                         <li><RecipeReviewCard title={topic.name} content={topic.topicname} image={topic.photo} chapters={topic.chapters} index={topic.index} /></li>

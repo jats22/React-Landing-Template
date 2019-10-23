@@ -98,9 +98,6 @@ class Arena extends Component {
 
     componentDidMount() {
 
-        const baseUrl = "https://api.npoint.io/"
-
-
         console.log(this.props)
 
         const { location } = this.props;
@@ -111,50 +108,64 @@ class Arena extends Component {
         })
 
         if (location && location.state && location.state.profileObj) {
-            this.setState({
-                userName: location.state.profileObj.name,
-            })
-        }
+            const baseUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/";
+            const loginUrl = baseUrl + "user/login?userId=" + location.state.profileObj.email;
 
-        if (location && location.search) {
-            const params = new URLSearchParams(location.search)
-            const quizId = params.get('quizId')
-            var url = baseUrl + quizId;
-            console.log(url)
-            fetch(url)
-                .then((resp) => resp.json())
+            fetch(loginUrl, {
+                mode: 'cors',
+                method: 'POST',
+                body: JSON.stringify({
+                    userDetails: location.state.profileObj,
+                    // lastLoginTime: '' + new Date().today() + " @ " + new Date().timeNow(),
+                })
+            }
+            )
                 .then((data) => {
                     console.log(data)
                     this.setState({
-                        quiz: data,
-                        showTopics: false,
+                        userName: location.state.profileObj.name,
                     })
-                    setTimeout(() => {
+                    const baseQuizUrl = "https://api.npoint.io/"
+                    if (location && location.search) {
+                        const params = new URLSearchParams(location.search)
+                        const quizId = params.get('quizId')
+                        var url = baseQuizUrl + quizId;
+                        console.log(url)
+                        fetch(url)
+                            .then((resp) => resp.json())
+                            .then((data) => {
+                                console.log(data)
+                                this.setState({
+                                    quiz: data,
+                                    showTopics: false,
+                                    isLoading: false,
+                                })
+                            })
+                            .catch(e => {
+                                console.log(e)
+                                this.setState({
+                                    isLoading: false,
+                                    showTopics: true,
+                                    errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
+                                    quiz: {},
+                                })
+                                toast.error(this.state.errorMessage)
+                            })
+                    }
+                    else {
                         this.setState({
                             isLoading: false,
+                            quiz: null,
                         })
-                    }, 3000)
+                    }
+
                 })
                 .catch(e => {
                     console.log(e)
-                    this.setState({
-                        isLoading: false,
-                        showTopics: true,
-                        errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
-                        quiz: {},
-                    })
-                    toast.error(this.state.errorMessage)
+                    toast.error("Ouch. We are having trouble logging you in.")
                 })
-        }
-        else {
-            setTimeout(() => {
-                this.setState({
-                    isLoading: false,
-                    quiz: null,
-                })
-            }, 1000)
-        }
 
+        }
 
     }
     forceRender = () => {
@@ -197,7 +208,7 @@ class Arena extends Component {
                             {!isLoading &&
                                 <div>
                                     <section className="topics-list" >
-                                        <h3 style={{ textAlign: 'center', fontSize: 'x-large', padding: '50px', color: '#332c5c' }}> Pick a quiz from these tracks</h3>
+                                        <h3 style={{ textAlign: 'center', fontSize: '1.8em', padding: '50px', color: '#332c5c', fontWeight: '900' }}> Pick a quiz from these tracks</h3>
                                         <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
                                     </section>
                                     <Footer />
@@ -207,11 +218,11 @@ class Arena extends Component {
                         </main>
                     </div>}
                 {!showTopics &&
-                    <div style={{minHeight:'90%'}}>
+                    <div style={{ minHeight: '90%' }}>
                         <div style={{ margin: 'auto' }}>
                             {isLoading && <Loader
                                 type="ThreeDots"
-                                color="#6057a0"
+                                color="#362f6e"
                                 style={{ textAlign: 'center' }}
                                 height={'60vh'}
                                 width={60} />}
