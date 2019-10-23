@@ -58,7 +58,8 @@ function Nav(props) {
       <ul className="mainNav">
         {props.arena && <li><div>&nbsp;</div></li>}
         {props.arena && <li><div>&nbsp;</div></li>}
-        <li><RouterLink  onClick={props.forceRender}> <b>Practice</b></RouterLink></li>
+  <li>{ props.arena ? <RouterLink  onClick={props.forceRender}> <b>Practice</b></RouterLink> : <Link smooth={true} spy={true} activeClass="active" offset={-70}
+          duration={500} to="explore">Practice</Link>} </li>
 
         {!props.arena && <li><Link to="about" smooth={true} spy={true} activeClass="active" offset={-70}
           duration={500} >About</Link></li>}
@@ -73,8 +74,8 @@ function Nav(props) {
 
         {(!props.arena || !props.userName) && <li><Link className="login" activeClass="active" offset={-70}
           duration={500} >Login</Link></li>}
-        {!props.arena && <li><Link to="sign-up" smooth={true} spy={true} className="sign-up" activeClass="active" offset={-70}
-          duration={500}><b>Sign Up</b></Link></li>}
+        {!props.arena && <li><Link to="discover" smooth={true} spy={true} className="sign-up" activeClass="active" offset={-70}
+          duration={500}><b>Get Started</b></Link></li>}
       </ul>
     </nav>
   );

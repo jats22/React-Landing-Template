@@ -17,6 +17,8 @@
     "react-google-login": "^5.0.5",
     "react-https-redirect": "^1.1.0",
     "react-loader-spinner": "^3.1.2",
+    "react-markdown": "^4.2.2",
+    "react-mathjax": "^1.0.1",
     "react-quiz-component": "git+https://github.com/jats22/react-quiz-component.git#master",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.0.1",
@@ -24,6 +26,7 @@
     "react-scroll": "^1.7.12",
     "react-spinners": "^0.5.13",
     "react-toastify": "^5.4.0",
+    "remark-math": "^2.0.0",
     "superagent": "3.8.3"
   },
   "scripts": {

@@ -25,8 +25,10 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75); */
 .react-quiz-container{
   padding: 50px !important;
   margin: 20px auto !important;
-  width: 75% !important;
+  width: 90% !important;
+  margin-top: 70px !important;
   font-family: Helvetica;
+  background: #e8e8ec24;
   font-weight: 100;
   min-height: 80vh;
   overflow-y: scroll;
@@ -88,7 +90,7 @@ nav ul:first-of-type li{
 }
 nav ul:first-of-type li span {
   font-weight: 500;
-  color:#b5abf2;
+  color:#f0db01;
 }
 
 nav ul:last-of-type{
@@ -135,13 +137,14 @@ nav ul li .active {
   grid-template-columns: 1fr;
   padding: 0px;
   margin: 0px 0px;
-  background: #555173;
+  background: #4f44a1;
 }
 #contact .contact {
   padding: 13px;
-    margin-bottom: 30px;
-    max-width: 200px;
-    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 400px;
+    margin-top: 100px;
+    font-size: 1.8em;
 }
 /*------------- HEADER -------------------*/
 
@@ -190,6 +193,7 @@ header div.head  {
   margin-right: 10px;
   margin-left: 10px;
   font-size: 1em;
+  box-shadow: 0px 1px 24px 2px rgba(27, 23, 59, 0.05), 0px 1px 4px 0px rgba(27, 23, 59, 0.11), 0px 17px 12px -12px rgba(27, 23, 59, 0.28);
 }
 
 main section img {
@@ -242,7 +246,7 @@ header div.head h1 span{
 }
 
 .fa-bolt {
-  color: #7168b9;
+  color: #f0db01;
 }
 
 .nav-class-active .fa-bolt{
@@ -252,10 +256,15 @@ header div.head h1 span{
   color: #443b8b;
 }
 
+.nav-class-active ul:first-of-type li span{
+  color: #7168b9;
+}
+
+
 .contact {
  background: #f0db00;
  display: block;
- color: #443b8b;
+ color: #272250;
  font-weight: bolder;
  width: 50%;
  margin: 0 auto;
@@ -263,6 +272,7 @@ header div.head h1 span{
  padding: 20px;
  border-radius: 5px;
  text-decoration: none; 
+ box-shadow: 0px 1px 24px 2px rgba(27, 23, 59, 0.05), 0px 1px 4px 0px rgba(27, 23, 59, 0.11), 0px 17px 12px -12px rgba(27, 23, 59, 0.28);
 
  -webkit-animation-name: wiggle;
  -ms-animation-name: wiggle;
@@ -288,7 +298,14 @@ header div.head h1 span{
   -webkit-box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.9);
   -moz-box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.9);
   box-shadow: 0px 10px 20px -11px rgba(0,0,0,0.9);
+  box-shadow: 0px 1px 24px 2px rgba(27, 23, 59, 0.05), 0px 1px 4px 0px rgba(27, 23, 59, 0.11), 0px 17px 12px -12px rgba(27, 23, 59, 0.28);
  }
+
+ .card-body {
+  min-width: 0px;
+  margin: 0 auto;
+  max-width: 90%;
+}
 
  .locateme {
   background: #362f6e;
@@ -303,12 +320,13 @@ header div.head h1 span{
   text-decoration: none; 
   min-width: 200px;
   max-width: 300px;
+  box-shadow: 0px 1px 24px 2px rgba(27, 23, 59, 0.05), 0px 1px 4px 0px rgba(27, 23, 59, 0.11), 0px 17px 12px -12px rgba(27, 23, 59, 0.28);
  }
 
  .signin{
    margin: 10px auto;
    text-align: center;
-   font-size: larger;
+   font-size: 1.5em;
  }
 
 
@@ -397,7 +415,7 @@ header div.head h1 span{
 }
 .worstTopic{
   padding: 5px;
-  color: aquamarine;
+  color: #ffe901;
 }
 @keyframes rotate{
   0% {
@@ -718,7 +736,7 @@ main section form div textarea {
 
 
 footer {
-  background: #2a2649;
+  background: linear-gradient(45deg, #4e42a2, #262340);
   color: #ffffff;
   padding: 20px;
   /* margin-top: 80px; */
@@ -730,7 +748,9 @@ footer {
   /* border-radius: 0px 0px 0px 0px; */
  
 }
-
+.questionWrapper.End{
+  grid-template-columns: 1fr;
+}
 footer ul {
   
   list-style: none;
@@ -1126,5 +1146,9 @@ footer ul li a {
 
   footer h3 {
     display: none;
+  }
+
+  .react-quiz-container {
+    padding: 5px !important;
   }
 }

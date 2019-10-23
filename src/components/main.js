@@ -29,6 +29,16 @@ class Main extends Component {
       <main>
 
         <KeyFeatures />
+        <section className="results"  id="explore">
+          <div style={{ textAlign: 'center', fontSize: 'larger' }}>
+            <h1><Link className="locateme" to={{
+              pathname: '/arena'
+            }}>
+              Explore Quizzes
+                            </Link>
+            </h1>
+          </div>
+        </section>
         <section className="intro"  >
           <h2>Solve Real Interview Questions</h2>
           <Fade right>
@@ -41,19 +51,8 @@ class Main extends Component {
           </Fade>
         </section>
 
-        <section className="results" >
-          <div style={{ textAlign: 'center', fontSize: 'larger' }}>
-            <h1><Link className="locateme" to={{
-              pathname: '/arena'
-            }}>
-              Explore Quizzes
-                            </Link>
-            </h1>
-          </div>
-        </section>
-
         <section className="intro">
-          <h2>Get the feedback you need!</h2>
+        <h2>Get the feedback you need!</h2>
           <Fade right>
             <div>
               <img src={lpImage2}></img>
@@ -92,7 +91,7 @@ class Main extends Component {
 
         </section>
 
-        <section className="intro" id="about" >
+        <section className="intro" id="about" style={{marginBottom: '130px'}}>
           <h2>About Us</h2>
           <div>
             <p>

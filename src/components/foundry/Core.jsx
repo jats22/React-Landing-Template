@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
+import MarkdownRender from '../common/markdown-render'
 
 class Core extends Component {
   constructor(props){
@@ -251,14 +251,16 @@ class Core extends Component {
     
     if(isResultPage) {
       return (
-        <div className="explaination" dangerouslySetInnerHTML={this.rawMarkup(explanation)}>
+        <div className="explaination">
+          <MarkdownRender source={explanation} />
         </div>
       )
     }
 
     return (
       <div>
-        <div dangerouslySetInnerHTML={this.rawMarkup(explanation)}>
+        <div>
+        <MarkdownRender source={explanation} />
           {/* <br/> */}
           {/* {this.rawMarkup(explanation)} */}  
         </div>
@@ -314,7 +316,7 @@ class Core extends Component {
       return(
         <div key={index}>
            <button disabled={true} className={"answerBtn btn " + answerBtnCorrectClassName + answerBtnIncorrectClassName}>
-            { questionType == 'text' && <span>{ answer }</span> }
+            { questionType == 'text' && <span><MarkdownRender source={answer}/></span> }
             { questionType == 'photo' && <img src={ answer } /> }
           </button>
         </div>
@@ -346,7 +348,7 @@ class Core extends Component {
       return (
         <div className="result-answer-wrapper" key={index+1}>
 
-        <h3 dangerouslySetInnerHTML={this.rawMarkup(`Q${question.questionIndex}: ${question.question}`)}/> 
+        <h3><MarkdownRender source={`Q${question.questionIndex}: ${question.question})`}/></h3> 
         {
           this.renderTags(answerSelectionType, question.correctAnswer.length)
         }
@@ -384,11 +386,11 @@ class Core extends Component {
                 questionType == 'text'?
                 answer
                 :
-                <img src={answer}/>
+                { __html: <img src={answer}/>}
               }
               className={`${buttons[index].className} answerBtn btn`}  
-               onClick={() => this.checkAnswer(index+1, correctAnswer, answerSelectionType)}>
-            </OptionButton>
+               onClick={() => this.checkAnswer(index+1, correctAnswer, answerSelectionType)}
+            />
           </div>
         )
       } else {
@@ -396,15 +398,15 @@ class Core extends Component {
           <div key={index}>
             <OptionButton
               answer={
+                
                 questionType == 'text'?
                 answer
                 :
-                <img src={answer}/>
+                { __html: <img src={answer}/>}
               }
               className="answerBtn btn"
               onClick={() => this.checkAnswer(index+1, correctAnswer, answerSelectionType)} 
-              >
-            </OptionButton>
+              />
           </div>
         )
       }
@@ -500,7 +502,7 @@ class Core extends Component {
     answerSelectionType = answerSelectionType || 'single';
   
     return (
-      <div className={showNextQuestionButton?"questionWrapper":"questionWrapper " + "slide"}>
+      <div className={showNextQuestionButton ? "questionWrapper":(endQuiz? "questionWrapper " +"End":"questionWrapper " + "slide")}>
         {!endQuiz &&
           <div className="questionWrapperBody">
             <div className="questionModal">
@@ -514,8 +516,8 @@ class Core extends Component {
               }
             </div>
             <h3>{ appLocale.question } { currentQuestionIndex + 1 }:</h3>
-            <h2 dangerouslySetInnerHTML={this.rawMarkup(question.question)}/> 
-            { question.questionBody && <div dangerouslySetInnerHTML={this.rawMarkup(question.questionBody)}/>}
+            <h2> <MarkdownRender source={question.question}/> </h2> 
+            { question.questionBody && <div><MarkdownRender source={question.questionBody}/></div>}
             {
               <div>
                 {this.renderTags(answerSelectionType, question.correctAnswer.length)}

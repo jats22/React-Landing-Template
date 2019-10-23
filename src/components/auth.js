@@ -40,14 +40,14 @@ class Auth extends Component {
                 (<Link className="locateme"  to={{
                     pathname: '/',
                     state: {showAuth: true }}}>
-                    <i className="fa fa-info-circle"></i>  Take Assessment
+                     Take Assessment
                     </Link>)
                     :
                 ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  to={{
                     pathname: '/arena',
                     search: 'quizId=33103eea76083afe55b7'
                     }}>
-                    <i className="fa fa-info-circle"></i>  Take Assessment
+                     Take Assessment
                     </Link>)
                 }
 
