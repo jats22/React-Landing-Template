@@ -245,6 +245,7 @@ class Core extends Component {
 
   renderExplanation = (question, isResultPage) => {
     const explanation = question.explanation;
+    const circuitText = question.circuitText;
     if(!explanation) {
       return (null);
     }
@@ -264,9 +265,11 @@ class Core extends Component {
           {/* <br/> */}
           {/* {this.rawMarkup(explanation)} */}  
         </div>
-        <div>
-          <iframe frameborder="0" width='100%' height='500px' src={process.env.PUBLIC_URL +"/war/circuitjs.html?whiteBackground=true&cct=$+1+0.000005+10.20027730826997+58+5+50%0A213+464+288+528+288+0+2+-(a-b)/1000%0Aw+464+288+464+240+0%0Aw+464+240+560+240+0%0Aw+560+240+560+288+0%0Aw+464+320+464+368+0%0Aw+464+368+560+368+0%0Aw+560+368+560+320+1%0Ag+464+368+464+400+0%0AR+464+240+464+176+0+0+40+5+0+0+0.5%0A"}></iframe> 
-        </div>
+        {circuitText && 
+              <div>
+                <iframe frameborder="0" width='100%' height='500px' src={process.env.PUBLIC_URL +"/war/circuitjs.html?whiteBackground=true&cct=" + circuitText }></iframe> 
+              </div>
+        }
       </div>
     )
   }
