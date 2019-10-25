@@ -75,7 +75,7 @@ function Nav(props) {
         {(!props.arena || !props.userName) && <li><Link className="login" activeClass="active" offset={-70}
           duration={500} >Login</Link></li>}
         {!props.arena && <li><Link to="discover" smooth={true} spy={true} className="sign-up" activeClass="active" offset={-70}
-          duration={500}><b>Get Started</b></Link></li>}
+          duration={500}>Get Started</Link></li>}
       </ul>
     </nav>
   );

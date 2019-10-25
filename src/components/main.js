@@ -31,8 +31,8 @@ class Main extends Component {
         <KeyFeatures />
 
         <section className="results" id="discover">
-          <h2>Practice</h2>
-          <h1 style={{ margin: '0 auto',textAlign: 'center',padding: '15px' }}> Take the quick adaptive diagnostic test to get started and know where you stand.</h1>
+          <h1 className="assessment" style={{ marginBottom: '20px',padding: '15px',textAlign: 'center'}}>Take the quick diagnostic test to know where you stand.</h1>
+          {/* <h1 style={{ margin: '10px auto',textAlign: 'center',padding: '15px' }}> Take the quick diagnostic test to get started and know where you stand.</h1> */}
 
           <div>
             <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
@@ -54,7 +54,7 @@ class Main extends Component {
           </Fade>
         </section>
 
-        <section className="intro">
+        <section className="feedback">
         <h2>Get the feedback you need!</h2>
           <Fade right>
             <div>

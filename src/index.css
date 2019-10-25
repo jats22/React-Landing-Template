@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Raleway;
+  font-family: "Avenir Next";
   background: #ffffff;
   color: #18181a;
   /* background: url("./images/back10.jpg"); */
@@ -27,11 +27,11 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75); */
   margin: 20px auto !important;
   width: 80% !important;
   margin-top: 70px !important;
-  font-family: Helvetica;
   background: #e8e8ec24;
-  font-weight: 100;
   min-height: 80vh;
   overflow-y: scroll;
+  font-family: inherit;
+  font-weight: 300;
 }
 .explaination{
   padding: 20px;
@@ -83,14 +83,14 @@ nav ul:first-of-type{
 }
 nav ul:first-of-type li{
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 500;
   text-indent: 30px;
   margin-right: 30px;
   color: #ffffff;
 }
 nav ul:first-of-type li span {
   font-weight: 500;
-  color:#f0db01;
+  color:#7168b9;
 }
 
 nav ul:last-of-type{
@@ -102,7 +102,7 @@ nav ul:last-of-type{
 nav ul li a {
   color:#ffffff;
   text-decoration: none; 
-  font-weight: bold;
+  font-weight: 500;
   display: block;
 }
 
@@ -141,7 +141,7 @@ nav ul li .active {
 }
 #contact .contact {
   padding: 13px;
-    margin-bottom: 50px;
+    margin-bottom: 90px;
     max-width: 400px;
     margin-top: 100px;
     font-size: 1.8em;
@@ -157,6 +157,14 @@ header {
   background-size: 100%; 
   z-index: 4;
 }
+
+.feedback {
+  background: #f3f5fb;
+  width: 90%;
+  border-radius: 15px;
+  text-align: center;
+}
+
 
 header div.head {
   position: relative;
@@ -200,9 +208,14 @@ main section img {
   width: 100%;
 }
 
+nav ul li a:hover {
+  font-weight: 600;
+  border-bottom: 1px solid #4e44a0;
+}
+
 header div.head h1 {
   font-size: 2.2rem;
-  font-weight: bold;
+  font-weight: 500;
   /* text-transform: uppercase; */
   padding-top: 0px;
   margin: 0;
@@ -217,7 +230,6 @@ header div.head p {
 
 header div.head h1 span{
     color: #b5abf2;
-    font-family: Gotham, Tahma, sans-serif;
     font-weight: 100;
 }
 
@@ -246,7 +258,7 @@ header div.head h1 span{
 }
 
 .fa-bolt {
-  color: #f0db01;
+  color: #4f44a0;
 }
 
 .nav-class-active .fa-bolt{
@@ -265,7 +277,7 @@ header div.head h1 span{
  background: #f0db00;
  display: block;
  color: #272250;
- font-weight: bolder;
+ font-weight: 600;
  width: 50%;
  margin: 0 auto;
  text-align: center;
@@ -288,7 +300,7 @@ header div.head h1 span{
   background: #4b4b4c;
   display: block;
   color: #fff;
-  font-weight: bold;
+  font-weight: 500;
   width: 80%;
   margin: 0 auto;
   text-align: center;
@@ -311,7 +323,7 @@ header div.head h1 span{
   background: #362f6e;
   display: block;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 500;
   width: 28%;
   margin: 10px auto;
   text-align: center;
@@ -498,7 +510,9 @@ main {
   z-index: 3;
  overflow: hidden;
 }
-
+.assessment{
+  font-size: 2em;
+}
 
 main section {
   width: 60%;
@@ -507,12 +521,12 @@ main section {
   display: grid;
   grid-template-columns: 2fr 3fr;
   align-items: center;
-
 }
 
 main section h2 {
   font-size: 4.3rem;
   color: #444;
+  padding-left: 20px;
   /* text-transform: uppercase; */
  line-height: 4.2rem; 
  padding-right: 10px;
@@ -526,7 +540,7 @@ main section h2 {
   grid-template-columns: 1fr;
   align-items: center;
   background: #dcdcdc24;
-
+  border-radius: 15px;
 }
 
 main section ul {
@@ -547,8 +561,9 @@ main section div {
 }
 
 main section div p {
-  padding-left: 10px;
-  font-size: large;
+  padding-left: 10px;   
+  font-size: 1.3em;
+  padding-right:20px;
 }
 
 
@@ -625,13 +640,13 @@ div.services {
 
 .services div {
   text-align: center;
-  background: rgba(72, 62, 147, 0.02);
+  background: rgba(243, 245, 251, 0.6);
   width: 85%;
   height:100%;
   margin: 10px auto 10px auto;
-  
-  /* -webkit-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
+  border-radius: 15px;
+  /* -webkit-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75); */
+  /* -moz-box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75);
   box-shadow: 0px 10px 20px -17px rgba(0,0,0,0.75); */
   
 }
@@ -704,7 +719,7 @@ main section form div:last-of-type input {
 main section form div label {
   background: black;
   color: #fff;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1rem;
   padding: 6px;
   text-align: center;
@@ -748,6 +763,10 @@ footer {
   /* border-radius: 0px 0px 0px 0px; */
  
 }
+
+footer h3{
+  font-weight: 500;
+}
 .questionWrapper.End{
   grid-template-columns: 1fr;
 }
@@ -775,6 +794,9 @@ footer ul li a {
   }
   main section img {
     width: 100%;
+  }
+  .assessment{
+    font-size: 1.8em;
   }
   .nav-class-active  {
     grid-template-columns: 1fr;
@@ -1158,5 +1180,6 @@ footer ul li a {
 
   .react-quiz-container {
     padding: 5px !important;
+    width: 90% !important;
   }
 }
