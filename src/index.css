@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Avenir Next";
+  font-family: "Avenir Next",Raleway;
   background: #ffffff;
   color: #18181a;
   /* background: url("./images/back10.jpg"); */
@@ -10,6 +10,12 @@ body {
 }
 body * {
   /* transition: all 0.100s ease-out; */
+}
+
+
+@font-face {
+  font-family: "Avenir Next";
+  src: url("./AvenirNext-Regular.4d8fdeb2.ttf") format("truetype");
 }
 
 .container { 
@@ -26,7 +32,7 @@ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75); */
   padding: 50px !important;
   margin: 20px auto !important;
   width: 80% !important;
-  margin-top: 70px !important;
+  margin-top: 85px !important;
   background: #e8e8ec24;
   min-height: 80vh;
   overflow-y: scroll;
@@ -1098,6 +1104,7 @@ footer ul li a {
    padding: 15px;
    margin-top: 70px;
    margin-bottom: 70px;
+   grid-row-gap: 70px;
   }
   div.services div {
     width: 90%;
