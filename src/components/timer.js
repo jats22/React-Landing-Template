@@ -27,6 +27,9 @@ const Timer = (props) => {
 
     useEffect(() => {
         let interval = null;
+        if(props.pause){
+           props.captureTime(minutes,seconds);
+        }
         if (isActive && !props.pause) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds == 59 ? 0 : seconds + 1);

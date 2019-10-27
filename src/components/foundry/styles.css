@@ -73,7 +73,7 @@
   grid-template-columns: 1fr 1fr;
 }
 .questionWrapper.slide{
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .react-quiz-container .answerBtn {

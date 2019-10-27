@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RatingSnacker() {
+export default function RatingSnacker(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   
@@ -23,10 +23,11 @@ export default function RatingSnacker() {
     setOpen(true);
   }
 
-  function handleClose(event, reason) {
+  function handleClose(event,reason,rating) {
     if (reason === 'clickaway') {
       return;
     }
+    props.captureRating(rating)
 
     setOpen(false);
   }
@@ -115,7 +116,7 @@ export function HoverRating(props) {
             }}
             onChange={ (evt,newValue) => {
               SetValue(newValue);
-              props.handleClose();
+              props.handleClose(null,null,newValue);
             }}
           />
           <Box ml={3}>{labels[hover !== -1 ? hover : value]}</Box>

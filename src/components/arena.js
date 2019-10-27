@@ -88,6 +88,7 @@ class Arena extends Component {
     state = {
         isLoading: true,
         quiz: null,
+        quizId:null,
         userName: null,
         showTopics: true,
     }
@@ -116,7 +117,6 @@ class Arena extends Component {
                 method: 'POST',
                 body: JSON.stringify({
                     userDetails: location.state.profileObj,
-                    // lastLoginTime: '' + new Date().today() + " @ " + new Date().timeNow(),
                 })
             }
             )
@@ -137,8 +137,10 @@ class Arena extends Component {
                                 console.log(data)
                                 this.setState({
                                     quiz: data,
+                                    quizId:quizId,
                                     showTopics: false,
                                     isLoading: false,
+                                    userId:location.state.profileObj.email,
                                 })
                             })
                             .catch(e => {
@@ -178,6 +180,7 @@ class Arena extends Component {
                         console.log(data)
                         this.setState({
                             quiz: data,
+                            quizId:quizId,
                             showTopics: false,
                             isLoading: false,
                         })
@@ -219,7 +222,7 @@ class Arena extends Component {
 
     }
     render() {
-        const { isLoading, quiz, userName, showTopics, errorMessage } = this.state;
+        const { isLoading, quiz,quizId, userName,userId, showTopics, errorMessage } = this.state;
         console.log(this.props)
         console.log(this.state)
         return (
@@ -267,12 +270,15 @@ class Arena extends Component {
                                         quiz={quiz}
                                         Timer={Timer}
                                         Tag={Tag}
-                                        showInstantFeedback={true}
+                                        userName={userName}
+                                        quizId={quizId}
+                                        userId={userId}
+                                        // showInstantFeedback={true}
                                         NextQuestion={NextQuestion}
                                         HoverRating={HoverRating}
                                         StartQuiz={StartQuiz}
                                         OptionButton={OptionButton} />
-                                    <Footer />
+                                    {/* <Footer /> */}
                                 </div>
                             }
                         </main>

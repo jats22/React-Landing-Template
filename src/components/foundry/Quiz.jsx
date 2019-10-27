@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Core from './Core';
 import { defaultLocale } from './Locale';
+import { Footer } from '../footer';
 
 import "./styles.css";
 
@@ -96,7 +97,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { quiz, Tag, Timer, HoverRating, NextQuestion, OptionButton, shuffle, showDefaultResult, onComplete, customResultPage, showInstantFeedback, continueTillCorrect } = this.props;
+    const { quiz,quizId,userName,userId, Tag, Timer, HoverRating, NextQuestion, OptionButton, shuffle, showDefaultResult, onComplete, customResultPage, showInstantFeedback, continueTillCorrect } = this.props;
 
 
     if (!this.validateQuiz(quiz)) {
@@ -135,7 +136,21 @@ class Quiz extends Component {
             </div>
           }
           {
-            this.state.start && <Core questions={questions} Timer={Timer} NextQuestion={NextQuestion} OptionButton={OptionButton} HoverRating={HoverRating} showDefaultResult={showDefaultResult} onComplete={onComplete} Tag={Tag} customResultPage={customResultPage} showInstantFeedback={showInstantFeedback} continueTillCorrect={continueTillCorrect} appLocale={appLocale} />
+            this.state.start && <Core                                      
+            userName={userName}
+            quizId={quizId}
+            userId={userId}
+            questions={questions} 
+            Timer={Timer} 
+            NextQuestion={NextQuestion} 
+            OptionButton={OptionButton} 
+            HoverRating={HoverRating} 
+            showDefaultResult={showDefaultResult} 
+            onComplete={onComplete} Tag={Tag} 
+            customResultPage={customResultPage} 
+            showInstantFeedback={showInstantFeedback} 
+            continueTillCorrect={continueTillCorrect} 
+            appLocale={appLocale} />
           }
         </div>
     );
