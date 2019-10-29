@@ -121,6 +121,7 @@ class Arena extends Component {
             }
             )
                 .then((data) => {
+                    window.analytics.track("User Authenticated");
                     console.log(data)
                     this.setState({
                         userName: location.state.profileObj.name,
@@ -135,6 +136,11 @@ class Arena extends Component {
                             .then((resp) => resp.json())
                             .then((data) => {
                                 console.log(data)
+                                window.analytics.track("Quiz Loaded",{
+                                    "quizId":quizId,
+                                    "userId":location.state.profileObj.email,
+                                });
+
                                 this.setState({
                                     quiz: data,
                                     quizId:quizId,
@@ -145,6 +151,10 @@ class Arena extends Component {
                             })
                             .catch(e => {
                                 console.log(e)
+                                window.analytics.track("Quiz Could Not Be Loaded",{
+                                    "quizId":quizId,
+                                    "userId":location.state.profileObj.email,
+                                });
                                 this.setState({
                                     isLoading: false,
                                     showTopics: true,
@@ -163,6 +173,7 @@ class Arena extends Component {
 
                 })
                 .catch(e => {
+                    window.analytics.track("User Authentication Failed");
                     console.log(e)
                     toast.error("Ouch. We are having trouble logging you in.")
                 })

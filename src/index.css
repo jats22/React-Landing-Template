@@ -215,8 +215,8 @@ main section img {
 }
 
 nav ul li a:hover {
-  font-weight: 600;
-  border-bottom: 1px solid #4e44a0;
+  font-weight: 700;
+  /* border-bottom: 1px solid #4e44a0; */
 }
 
 header div.head h1 {

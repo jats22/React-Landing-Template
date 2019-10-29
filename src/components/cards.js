@@ -232,6 +232,9 @@ export default function RecipeReviewCard(props) {
           <List component="div" aria-label="main mailbox folders" className="">
             {chapters.map(chapter => (
               <ListItem button onClick={() => {
+                window.analytics.track("User Clicked on Locked Topic",{
+                  "topicName":chapter,
+                });
                 toast.info("This topic seems to be locked for you. Become a pro member to access it!", {
                   position: toast.POSITION.TOP_RIGHT
                 });

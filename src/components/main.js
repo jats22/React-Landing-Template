@@ -5,7 +5,7 @@ import Fade from 'react-reveal/Fade';
 import KeyFeatures from './key-features';
 import lpImage1 from '../images/landing-page.png'
 import lpImage2 from '../images/landing-page 2.png'
-import lpImage3 from '../images/hired2.gif'
+import lpImage3 from '../images/tick.gif'
 import AuthDecorator from './auth';
 
 import { Link } from 'react-router-dom';
@@ -69,9 +69,9 @@ class Main extends Component {
 
         <section className="intro">
           <h2>Get hired.</h2>
-            <div>
-              <img src={lpImage3}></img>
-              <p>
+            <div style={{textAlign:'center'} }>
+              <img style={{maxWidth: '200px'}} src={lpImage3}></img>
+              <p style={{    textAlign: 'left'}}>
                 We help you focus on your strengths and make sure you avoid any blind spots in the process just so you can nail your dream hardware job! Our goal is to help you get through to the hardware companies that are on the lookout for you.<br /><br />
               </p>
             </div>
@@ -79,7 +79,7 @@ class Main extends Component {
 
         <section className="results"  id="explore">
           <div style={{ textAlign: 'center', fontSize: 'larger' }}>
-            <h1><Link className="locateme" to={{
+            <h1><Link className="locateme" onClick={ ()=> {  window.analytics.track("User Clicked on Explore Quizzes");} } to={{
               pathname: '/arena'
             }}>
               Explore Quizzes

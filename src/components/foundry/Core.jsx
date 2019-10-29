@@ -227,7 +227,10 @@ class Core extends Component {
 
     setTimeout(() => {
       if (currentQuestionIndex + 1 == questions.length) {
-
+        window.analytics.track("User Completed Quiz",{
+          "quizId":quizId,
+        });
+        
         const quizResponseUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/" + "user/quiz";
         fetch(quizResponseUrl, {
           mode: 'cors',

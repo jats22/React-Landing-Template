@@ -131,7 +131,13 @@ class Quiz extends Component {
                 </div>
               }
               <div>
-                <button onClick={() => this.start()} className="startQuizBtn btn"><this.props.StartQuiz startQuizBtn={appLocale.startQuizBtn} /></button>
+                <button onClick={() => { 
+                  this.start();                                
+                  window.analytics.track("User Started Quiz",{
+                    "quizId":quizId,
+                  });
+                }} 
+                className="startQuizBtn btn"><this.props.StartQuiz startQuizBtn={appLocale.startQuizBtn} /></button>
               </div>
             </div>
           }

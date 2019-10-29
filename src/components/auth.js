@@ -28,6 +28,10 @@ class Auth extends Component {
                
                 { !this.props.isAuthenticated && showAuth && 
                 <GoogleLogin
+                    onClick={ ()=>{ 
+                        window.analytics.track("User Clicked on Login With Google");
+                    }}
+
                     clientId="881804489987-rcq59p85ff6lssk6knkf9a6i58t2unv0.apps.googleusercontent.com"
                     buttonText="Login with Google To Continue"
                     onSuccess={ (resp) => { console.log(resp);this.props.signIn(()=> this.props.history.replace("/arena?quizId=33103eea76083afe55b7",resp)); }}
@@ -39,11 +43,22 @@ class Auth extends Component {
                 { !this.props.isAuthenticated && !showAuth ? 
                 (<Link className="locateme"  to={{
                     pathname: '/',
-                    state: {showAuth: true }}}>
+                    state: {showAuth: true }}}
+                    onClick={ ()=>{ 
+                        window.analytics.track("User Clicked on Take Assessment",{
+                            "authenticated": "FALSE"
+                        });
+                    }}>
                      Take Assessment
                     </Link>)
                     :
-                ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  to={{
+                ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  
+                    onClick={ ()=>{ 
+                        window.analytics.track("User Clicked on Take Assessment",{
+                            "authenticated": "TRUE",
+                        });
+                    }}
+                    to={{
                     pathname: '/arena',
                     search: 'quizId=33103eea76083afe55b7'
                     }}>

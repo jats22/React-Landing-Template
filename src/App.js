@@ -27,7 +27,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, 
 
 function Home(props) {
   console.log("home")
-  console.log(props)
+
   return (
     <div className="container">
       <Header />

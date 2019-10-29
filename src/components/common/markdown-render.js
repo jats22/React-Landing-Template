@@ -14,11 +14,11 @@ function MarkdownRender(props) {
           math: (props) => 
             <MathJax.Node formula={props.value} />,
           inlineMath: (props) =>
-            <MathJax.Node inline formula={props.value} />
+            <MathJax.Node inline formula={props.value}  />
         }
       };
       return (
-        <MathJax.Provider input="tex">
+        <MathJax.Provider input="tex" options={{ messageStyle:"none",showProcessingMessages:false, errorSettings:{ style:{'display':'none'}}} } >
             <ReactMarkdown {...newProps}  escapeHtml={false} />
         </MathJax.Provider>
       );
