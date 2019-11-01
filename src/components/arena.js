@@ -121,6 +121,10 @@ class Arena extends Component {
             }
             )
                 .then((data) => {
+                    window.analytics.identify({
+                        "email": location.state.profileObj.email,
+                        "name": location.state.profileObj.name,
+                    })
                     window.analytics.track("User Authenticated");
                     console.log(data)
                     this.setState({

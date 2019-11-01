@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Core from './Core';
 import { defaultLocale } from './Locale';
 import { Footer } from '../footer';
+import MarkdownRender from '../common/markdown-render'
 
 import "./styles.css";
 
@@ -127,7 +128,7 @@ class Quiz extends Component {
               <div> {appLocale.landingHeaderText.replace("<questionLength>", quiz.questions.length)}</div>
               {quiz.quizSynopsis &&
                 <div className="quiz-synopsis">
-                  {quiz.quizSynopsis}
+                  <MarkdownRender source={quiz.quizSynopsis} />
                 </div>
               }
               <div>
