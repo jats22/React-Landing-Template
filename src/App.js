@@ -12,6 +12,8 @@ import Footer from "./components/footer";
 import Nav from "./components/nav";
 import Arena from "./components/arena";
 import HttpsRedirect from 'react-https-redirect';
+import QMS from './components/qms/questions';
+
 
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
@@ -36,6 +38,8 @@ function Home(props) {
     </div>
   )
 }
+
+
 
 class App extends Component {
 
@@ -69,7 +73,7 @@ class App extends Component {
         <Router basename={process.env.PUBLIC_URL} >
           <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
           <PrivateRoute exact path="/arena" isAuthenticated={this.state.isAuthenticated} component={Arena} />
-          {/* <PrivateRoute exact path="/" component={Arena} isAuthenticated={true} /> */}
+          <Route exact path="/qms/question/:questionId" component={QMS} />
         </Router>
       </HttpsRedirect>
     );

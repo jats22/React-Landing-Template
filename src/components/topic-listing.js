@@ -154,6 +154,7 @@ class DiscoverResults extends Component {
             hasMore,
             isLoading,
             locationAvailable,
+            forceRender,
             gpsError,
             lat,
             long,
@@ -166,7 +167,7 @@ class DiscoverResults extends Component {
                 photo: "user.picture.medium",
                 username: "user.login.username",
                 uuid: "user.login.uuid",
-                chapters: ["Basics of Analog circuits and Signals", "Diodes And Applications", "Measurement and Control Circuits", "Bipolar Junction Transistors", "Special Purpose Amplifiers", "Communication Circuits", "Data Conversion Circuits"],
+                chapters: [{"Basics of Analog circuits and Signals":1}, {"Electronic devices":0}, {"Measurement and Control Circuits":1}, {"Bipolar Junction Transistors":1}, {"Special Purpose Amplifiers":1}, {"Communication Circuits":1}, {"Data Conversion Circuits":1}],
                 index: 0
             },
             {
@@ -175,7 +176,7 @@ class DiscoverResults extends Component {
                 photo: "user.picture.medium",
                 username: "user.login.username",
                 uuid: "user.login.uuid",
-                chapters: ["Number Systems", "Digital and Analog Systems", "Logic Circuits", "Memory", "Parellel And Serial Transmission"],
+                chapters: [{"Number Systems":1}, {"Digital and Analog Systems":1}, {"Logic Circuits":1}, {"Memory":1}, {"Parellel And Serial Transmission":1}],
                 index: 1
             },
             {
@@ -184,18 +185,19 @@ class DiscoverResults extends Component {
                 photo: "user.picture.medium",
                 username: "user.login.username",
                 uuid: "user.login.uuid",
-                chapters: ["The Memory System", "MicroProgramming And Microarchitecture", "Operating System", "Pipelining", "Embedded Systems", "Control Unit Operation", "Assembly"],
+                chapters: [{"The Memory System":1}, {"MicroProgramming And Microarchitecture":1}, {"Operating System":1}, {"Pipelining":1}, {"Embedded Systems":1}, {"Control Unit Operation":1}, {"Assembly":1}],
                 index: 2
             }];
+
 
         return (
             <Fragment key="1" >
 
 
-                <ul style={{background: '#d6d6d71a' ,padding: '32px 8px 32px 8px'}}>
+                <ul style={{ background: '#d6d6d71a', padding: '32px 8px 32px 8px' }}>
 
                     {topics.map(topic => (
-                        <li><RecipeReviewCard title={topic.name} content={topic.topicname} image={topic.photo} chapters={topic.chapters} index={topic.index} /></li>
+                        <li><RecipeReviewCard forceRender={forceRender} title={topic.name} content={topic.topicname} image={topic.photo} chapters={topic.chapters} index={topic.index} /></li>
 
                     ))}
 

@@ -12,6 +12,10 @@ body * {
   /* transition: all 0.100s ease-out; */
 }
 
+a {
+  text-decoration: none ;
+  color: inherit;
+}
 
 @font-face {
   font-family: "Avenir Next";
@@ -212,6 +216,51 @@ header div.head  {
 
 main section img {
   width: 100%;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
+blockquote{
+  font-size: 1em;
+  width:70%;
+  margin:50px auto;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:5px solid #7c83aa ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family:Arial;
+  content: "\201C";
+  color:#7c83aa;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+code {
+  background: #ededed;
+  padding: 5px;
+}
+
+.preview section {
+  grid-template-columns: 1fr;
+}
+blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
 }
 
 nav ul li a:hover {

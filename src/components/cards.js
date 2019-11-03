@@ -36,13 +36,14 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 toast.configure()
 
 const useStyles = makeStyles(theme => ({
   card: {
     width: '100%',
-    maxWidth:'360px',
+    maxWidth: '360px',
     transition: 'all 0.200s ease-in-out',
     '&:hover': {
       boxShadow: '0px 1px 15px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '56.25%', // 16:9
     'max-width': '70%',
     margin: '0 auto',
-    backgroundSize:'84%',
+    backgroundSize: '84%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -150,7 +151,7 @@ export default function RecipeReviewCard(props) {
     window.open(newUrl, "_blank")
   }
 
-  const { chapters } = props;
+  const { chapters, forceRender } = props;
 
   return (
     <Card className={classes.card}
@@ -230,22 +231,52 @@ export default function RecipeReviewCard(props) {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut odio auctor, semper lacus et, finibus odio.
           </Typography> */}
           <List component="div" aria-label="main mailbox folders" className="">
-            {chapters.map(chapter => (
-              <ListItem button onClick={() => {
-                window.analytics.track("User Clicked on Locked Topic",{
-                  "topicName":chapter,
-                });
-                toast.info("This topic seems to be locked for you. Become a pro member to access it!", {
-                  position: toast.POSITION.TOP_RIGHT
-                });
-              }}>
-                <ListItemText primary={chapter} />
-                <LockIcon />
-                <ListItemIcon>
-                  <StyledRating value={0} readOnly size="small" />
-                </ListItemIcon>
-              </ListItem>
-            ))}
+            {chapters.map((chapter) => {
+              let chapterName = Object.keys(chapter)[0];
+              let lockStatus = chapter[chapterName];
+
+              if (lockStatus) {
+                return <ListItem button onClick={() => {
+                  if (lockStatus) {
+                    window.analytics.track("User Clicked on Locked Topic", {
+                      "topicName": chapter,
+                    });
+                    toast.info("This topic seems to be locked for you. Become a pro member to access it!", {
+                      position: toast.POSITION.TOP_RIGHT
+                    });
+                  }
+                }}>
+
+                  <ListItemText primary={chapterName} />
+                  {lockStatus > 0 && <LockIcon />}
+                  <ListItemIcon>
+                    {/* <StyledRating value={0} readOnly size="small" /> */}
+                  </ListItemIcon>
+                </ListItem>
+
+              } else {
+                return <Link to={{
+                  pathname: '/arena',
+                  search: 'quizId=0502b824e85c65bb8419'
+                }} > <ListItem button onClick={() => {
+                  if (lockStatus) {
+                    window.analytics.track("User Clicked on Locked Topic", {
+                      "topicName": chapter,
+                    });
+                    toast.info("This topic seems to be locked for you. Become a pro member to access it!", {
+                      position: toast.POSITION.TOP_RIGHT
+                    });
+                  }
+                }}>
+
+                    <ListItemText primary={chapterName} />
+                    {lockStatus > 0 && <LockIcon />}
+                    <ListItemIcon>
+                      {/* <StyledRating value={0} readOnly size="small" /> */}
+                    </ListItemIcon>
+                  </ListItem></Link>
+              }
+            })}
           </List>
         </CardContent>
       </Collapse>

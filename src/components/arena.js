@@ -88,7 +88,7 @@ class Arena extends Component {
     state = {
         isLoading: true,
         quiz: null,
-        quizId:null,
+        quizId: null,
         userName: null,
         showTopics: true,
     }
@@ -124,6 +124,7 @@ class Arena extends Component {
                     window.analytics.identify({
                         "email": location.state.profileObj.email,
                         "name": location.state.profileObj.name,
+                        "displayName": location.state.profileObj.name,
                     })
                     window.analytics.track("User Authenticated");
                     console.log(data)
@@ -140,24 +141,24 @@ class Arena extends Component {
                             .then((resp) => resp.json())
                             .then((data) => {
                                 console.log(data)
-                                window.analytics.track("Quiz Loaded",{
-                                    "quizId":quizId,
-                                    "userId":location.state.profileObj.email,
+                                window.analytics.track("Quiz Loaded", {
+                                    "quizId": quizId,
+                                    "userId": location.state.profileObj.email,
                                 });
 
                                 this.setState({
                                     quiz: data,
-                                    quizId:quizId,
+                                    quizId: quizId,
                                     showTopics: false,
                                     isLoading: false,
-                                    userId:location.state.profileObj.email,
+                                    userId: location.state.profileObj.email,
                                 })
                             })
                             .catch(e => {
                                 console.log(e)
-                                window.analytics.track("Quiz Could Not Be Loaded",{
-                                    "quizId":quizId,
-                                    "userId":location.state.profileObj.email,
+                                window.analytics.track("Quiz Could Not Be Loaded", {
+                                    "quizId": quizId,
+                                    "userId": location.state.profileObj.email,
                                 });
                                 this.setState({
                                     isLoading: false,
@@ -195,7 +196,7 @@ class Arena extends Component {
                         console.log(data)
                         this.setState({
                             quiz: data,
-                            quizId:quizId,
+                            quizId: quizId,
                             showTopics: false,
                             isLoading: false,
                         })
@@ -219,12 +220,65 @@ class Arena extends Component {
             }
         }
     }
+
+    fetchQuiz = () => {
+        const baseQuizUrl = "https://api.npoint.io/"
+        const { location } = this.props;
+
+        if (location && location.search) {
+            const params = new URLSearchParams(location.search)
+            const quizId = params.get('quizId')
+            var url = baseQuizUrl + quizId;
+            console.log(url)
+            fetch(url)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    console.log(data)
+                    this.setState({
+                        quiz: data,
+                        quizId: quizId,
+                        showTopics: false,
+                        isLoading: false,
+                    })
+                })
+                .catch(e => {
+                    console.log(e)
+                    this.setState({
+                        isLoading: false,
+                        showTopics: true,
+                        errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
+                        quiz: {},
+                    })
+                    toast.error(this.state.errorMessage)
+                })
+        }
+        else {
+            this.setState({
+                isLoading: false,
+                quiz: null,
+                showTopics:true,
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+            this.setState({
+                isLoading: true,
+                quiz: null,
+            })
+            this.fetchQuiz()
+        }
+    }
+
     forceRender = () => {
         this.setState({
             isLoading: true,
             quiz: null,
             showTopics: false,
         })
+
+        console.log("called")
 
         setTimeout(() => {
             this.setState({
@@ -237,7 +291,7 @@ class Arena extends Component {
 
     }
     render() {
-        const { isLoading, quiz,quizId, userName,userId, showTopics, errorMessage } = this.state;
+        const { isLoading, quiz, quizId, userName, userId, showTopics, errorMessage } = this.state;
         console.log(this.props)
         console.log(this.state)
         return (
@@ -260,7 +314,7 @@ class Arena extends Component {
                                 <div>
                                     <section className="topics-list" >
                                         <h3 style={{ textAlign: 'center', fontSize: '1.8em', padding: '50px', color: '#332c5c', fontWeight: '600' }}> Pick a quiz from these tracks</h3>
-                                        <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+                                        <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} forceRender={this.forceRender} />
                                     </section>
                                     <Footer />
                                 </div>
@@ -288,6 +342,7 @@ class Arena extends Component {
                                         userName={userName}
                                         quizId={quizId}
                                         userId={userId}
+                                        shuffle={true}
                                         // showInstantFeedback={true}
                                         NextQuestion={NextQuestion}
                                         HoverRating={HoverRating}

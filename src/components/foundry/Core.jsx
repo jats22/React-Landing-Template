@@ -212,7 +212,7 @@ class Core extends Component {
   }
 
   nextQuestion = (currentQuestionIndex) => {
-    const { questions,userName,userId,quizId } = this.props;
+    const { questions, userName, userId, quizId, previewMode } = this.props;
 
     var initState = {
       incorrectAnswer: false,
@@ -227,26 +227,28 @@ class Core extends Component {
 
     setTimeout(() => {
       if (currentQuestionIndex + 1 == questions.length) {
-        window.analytics.track("User Completed Quiz",{
-          "quizId":quizId,
-        });
-        
+        if (!previewMode) {
+          window.analytics.track("User Completed Quiz", {
+            "quizId": quizId,
+          });
+        }
+
         const quizResponseUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/" + "user/quiz";
         fetch(quizResponseUrl, {
           mode: 'cors',
           method: 'POST',
           body: JSON.stringify({
-              userId: userId || "sandilya.jatin@gmail.com",
-              quizId:quizId,
-              response: {
-                input: this.state.userInput,
-                timings: this.state.userTimings,
-                ratings: this.state.userRatings,
-              }
+            userId: userId || "sandilya.jatin@gmail.com",
+            quizId: quizId,
+            response: {
+              input: this.state.userInput,
+              timings: this.state.userTimings,
+              ratings: this.state.userRatings,
+            }
           })
-      }
-      ).then( d => console.log(d))
-      .catch( e => console.log(e))
+        }
+        ).then(d => console.log(d))
+          .catch(e => console.log(e))
 
         this.setState({
           ...initState,
@@ -309,7 +311,7 @@ class Core extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.currentQuestionIndex != this.state.currentQuestionIndex) {
-      console.log("this works")
+      // console.log("this works")
       // this.props.Timer.toggle()
     }
   }
@@ -468,9 +470,9 @@ class Core extends Component {
     )
   }
 
-  captureTime = (minutes,seconds) => {
+  captureTime = (minutes, seconds) => {
     let userTimings = this.state.userTimings || []
-    userTimings.push( (minutes*60) + seconds)
+    userTimings.push((minutes * 60) + seconds)
     this.setState({
       userTimings: userTimings
     })
@@ -489,7 +491,7 @@ class Core extends Component {
   }
 
   render() {
-    const { questions, appLocale, Tag, Timer, HoverRating,captureRating,  NextQuestion } = this.props;
+    const { questions, appLocale, Tag, Timer, HoverRating,previewMode, captureRating, NextQuestion } = this.props;
     const {
       correct,
       incorrect,
@@ -557,56 +559,56 @@ class Core extends Component {
     return (
       <div className={showNextQuestionButton && !isLoading ? "questionWrapper" : (endQuiz ? "questionWrapper " + "End" : "questionWrapper " + "slide")}>
         {!endQuiz &&
-                   isLoading ? <Loader
-                    type="ThreeDots"
-                    color="#362f6e"
-                    style={{ textAlign: 'center' }}
-                    height={'60vh'}
-                    width={60} /> 
-                    :
+          isLoading ? <Loader
+            type="ThreeDots"
+            color="#362f6e"
+            style={{ textAlign: 'center' }}
+            height={'60vh'}
+            width={60} />
+          :
           (!endQuiz && <div className="questionWrapperBody">
-              <div>
-                <div className="questionModal">
-                  {incorrectAnswer && showInstantFeedback &&
-                    <div className="alert incorrect">{this.renderMessageforIncorrectAnswer(question)}</div>
-                  }
-                  {correctAnswer && showInstantFeedback &&
-                    <div className="alert correct">
-                      {this.renderMessageforCorrectAnswer(question)}
-                    </div>
-                  }
-                </div>
-                <h3>{appLocale.question} {currentQuestionIndex + 1}:</h3>
-                <h2> <MarkdownRender source={question.question} /> </h2>
-                {question.questionBody && <div><MarkdownRender source={question.questionBody} /></div>}
-                {
-                  <div>
-                    {this.renderTags(answerSelectionType, question.correctAnswer.length)}
-
-                    <Timer key={currentQuestionIndex} pause={showNextQuestionButton} captureTime={this.captureTime}/>
-                  </div>
+            <div>
+              <div className="questionModal">
+                {incorrectAnswer && showInstantFeedback &&
+                  <div className="alert incorrect">{this.renderMessageforIncorrectAnswer(question)}</div>
                 }
-                {
-                  this.renderAnswers(question, buttons)
-                }
-
-
-                {showNextQuestionButton &&
-                  <div>
-                    <div>
-                      <NextQuestion onClick={() => this.nextQuestion(currentQuestionIndex)} className="nextQuestionBtn btn" >
-                        {appLocale.nextQuestionBtn}
-                      </NextQuestion>
-                    </div>
-                    <div className="rating" >
-                      <this.props.HoverRating captureRating={this.captureRating} />
-                    </div>
+                {correctAnswer && showInstantFeedback &&
+                  <div className="alert correct">
+                    {this.renderMessageforCorrectAnswer(question)}
                   </div>
                 }
               </div>
-              </div>  )
+              <h3>{appLocale.question} {currentQuestionIndex + 1}:</h3>
+              <h2> <MarkdownRender source={question.question} /> </h2>
+              {question.questionBody && <div><MarkdownRender source={question.questionBody} /></div>}
+              {
+                <div>
+                  {this.renderTags(answerSelectionType, question.correctAnswer.length)}
+
+              { !previewMode && <Timer key={currentQuestionIndex} pause={showNextQuestionButton} captureTime={this.captureTime} /> }
+                </div>
+              }
+              {
+                this.renderAnswers(question, buttons)
+              }
+
+
+              {showNextQuestionButton &&
+                <div>
+                  <div>
+                    <NextQuestion onClick={() => this.nextQuestion(currentQuestionIndex)} className="nextQuestionBtn btn" >
+                      {appLocale.nextQuestionBtn}
+                    </NextQuestion>
+                  </div>
+                  <div className="rating" >
+                    <this.props.HoverRating captureRating={this.captureRating} />
+                  </div>
+                </div>
+              }
+            </div>
+          </div>)
         }
-        {showNextQuestionButton && !isLoading && 
+        {showNextQuestionButton && !isLoading &&
           <div className="explaination">
             <h3>Explanation: </h3>
             {this.renderExplanation(question, false)}
