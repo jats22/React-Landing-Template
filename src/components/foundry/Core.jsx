@@ -593,7 +593,7 @@ class Core extends Component {
               }
 
 
-              {showNextQuestionButton &&
+              {showNextQuestionButton && !previewMode &&
                 <div>
                   <div>
                     <NextQuestion onClick={() => this.nextQuestion(currentQuestionIndex)} className="nextQuestionBtn btn" >
