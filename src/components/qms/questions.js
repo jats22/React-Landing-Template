@@ -53,11 +53,13 @@ class QMS extends Component {
             fetch(fetchQuestionUrl)
                 .then((resp) => resp.json())
                 .then(question => {
-                    console.log(question[0].question);
-                    this.setState(question[0].question);
+                    console.log(question[0]);
+                    this.setState(question[0]);
                 })
-
-                .catch(e => window.alert("No such question"))
+                .catch(e => {
+                    window.alert("No such question");
+                    console.log(e);
+                })
         }
 
         this.stackedit.on('fileChange', (file) => {
@@ -284,51 +286,55 @@ class QMS extends Component {
                 </section>
                 <section>
                     <button onClick={() => {
-                            this.setState({
-                                showQuestion: true,
-                            })
-                        }}>
-                        <h3 
+                        this.setState({
+                            showQuestion: true,
+                        })
+                    }}>
+                        <h3
                         >Preview </h3>
                     </button>
                 </section>
 
                 <section>
                     <button onClick={() => {
-                            const { match: { params } } = this.props;
-                            const saveQuestionUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/question";
-                            if (params.questionId !== "new" ) {
-                                
+                        const { match: { params } } = this.props;
+                        const saveQuestionUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/question";
+                        if (params.questionId !== "new") {
 
-                                fetch(saveQuestionUrl, {
-                                    mode: 'cors',
-                                    // headers: { 'Content-Type': 'application/json' },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        "questionId": params.questionId,
-                                        "question": this.state,
-                                    })
-                                }
-                                )
+
+                            fetch(saveQuestionUrl, {
+                                mode: 'cors',
+                                // headers: { 'Content-Type': 'application/json' },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    "questionId": params.questionId,
+                                    "question": this.state,
+                                },jsonIgnore)
+                            }
+                            )
                                 .then(() => window.alert("Saved!"))
                                 .catch(() => window.alert("Backend Error!"))
+                        }
+                        else {
+                            fetch(saveQuestionUrl, {
+                                mode: 'cors',
+                                // headers: { 'Content-Type': 'application/json' },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    "questionId": "",
+                                    "question": this.state,
+                                },jsonIgnore)
                             }
-                            else {
-                                fetch(saveQuestionUrl, {
-                                    mode: 'cors',
-                                    // headers: { 'Content-Type': 'application/json' },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        "questionId": "",
-                                        "question": this.state,
-                                    })
-                                }
-                                )
+                            )
                                 .then((resp) => resp.json())
-                                .then((Id) => window.alert("Saved with Id: "+ Id))
-                                .catch((e) => window.alert("Backend Error!"))
-                            }
-                        }}
+                                .then((Id) => {
+                                    window.alert("Saved with Id: " + Id);
+                                    this.props.history.push('./' + Id)
+
+                                })
+                                .catch((e) => { window.alert("Backend Error!") })
+                        }
+                    }}
                     >
                         <h3> Save/Update </h3>
                     </button>

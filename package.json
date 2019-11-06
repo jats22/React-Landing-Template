@@ -17,6 +17,7 @@
     "react-dom": "^16.8.6",
     "react-google-login": "^5.0.5",
     "react-https-redirect": "^1.1.0",
+    "react-katex": "^2.0.2",
     "react-loader-spinner": "^3.1.2",
     "react-markdown": "^4.2.2",
     "react-mathjax": "^1.0.1",
