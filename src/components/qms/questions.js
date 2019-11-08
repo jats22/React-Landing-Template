@@ -3,7 +3,7 @@ import Stackedit from 'stackedit-js';
 import Core from '../foundry/Core.jsx';
 import { defaultLocale } from '../foundry/Locale.jsx';
 import HoverRating from "../rating";
-import { Tag } from "../arena";
+import Tag  from "../common/tag";
 import NextQuestion from "../next-question";
 import Timer from "../timer";
 import OptionButton from "../option";

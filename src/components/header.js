@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-scroll";
 import { makeStyles } from '@material-ui/core/styles';
-import FireEmoji from "../images/fire5.webp"
+
 import Icon from '@material-ui/core/Icon';
 
 import Nav from "./nav";

@@ -98,7 +98,7 @@ class Quiz extends Component {
   }
 
   render() {
-    const { quiz,quizId,userName,userId, Tag, Timer, HoverRating, NextQuestion, OptionButton, shuffle, showDefaultResult, onComplete, customResultPage, showInstantFeedback, continueTillCorrect } = this.props;
+    const { quiz,quizId,userName,userId, Timer, HoverRating, NextQuestion, OptionButton, shuffle, showDefaultResult, onComplete, customResultPage, showInstantFeedback, continueTillCorrect } = this.props;
 
 
     if (!this.validateQuiz(quiz)) {
@@ -153,7 +153,7 @@ class Quiz extends Component {
             OptionButton={OptionButton} 
             HoverRating={HoverRating} 
             showDefaultResult={showDefaultResult} 
-            onComplete={onComplete} Tag={Tag} 
+            onComplete={onComplete}
             customResultPage={customResultPage} 
             showInstantFeedback={showInstantFeedback} 
             continueTillCorrect={continueTillCorrect} 

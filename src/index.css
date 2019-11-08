@@ -233,20 +233,6 @@ blockquote{
   background:#EDEDED;
 }
 
-blockquote::before{
-  font-family:Arial;
-  content: "\201C";
-  color:#7c83aa;
-  font-size:4em;
-  position: absolute;
-  left: 10px;
-  top:-10px;
-}
-
-blockquote::after{
-  content: '';
-}
-
 code {
   background: #ededed;
   padding: 5px;
@@ -475,14 +461,19 @@ header div.head h1 span{
   bottom: -250px;
 }
 
+.rv-xy-plot {
+  margin: 0 auto;
+}
 .resultSuggestion {
-  background: #7665ea;
+  background: #ffffff;
   padding: 15px;
-  color: white;
+  color: #737171;
+  /* text-align: center; */
+  border-radius: 10px;
 }
 .worstTopic{
   padding: 5px;
-  color: #ffe901;
+  color: #464646;
 }
 @keyframes rotate{
   0% {
@@ -643,40 +634,6 @@ main section div p {
    filter: grayscale(83%);
 }
 
-/* images are not compressed, remember to compress them before deployment */
-.gallery div.gallery-item-one {
-  background: url("./images/toa-heftiba-526264-unsplash.jpg");
-  background-size: 160%;
- grid-column-end: span 2;
- grid-row-end: span 2;
-}
-
-.gallery div.gallery-item-two {
-  background: url("./images/chuttersnap-598266-unsplash.jpg");
-  background-size: 160%;
-}
-.gallery div.gallery-item-three {
-  background: url("./images/rawpixel-196509-unsplash.jpg");
-  background-size: 160%;
-}
-
-.logo-icon {
-  background: url("./images/chip.png");
-  background-size: 100%;
-}
-
-.gallery div.gallery-item-four {
-  background: url("./images/rawpixel-284723-unsplash.jpg");
-  background-size: 160%;
-}
-.gallery div.gallery-item-five {
-  background: url("./images/volkan-olmez-73767-unsplash.jpg");
-  background-size: 160%;
-}
-.gallery div.gallery-item-six {
-  background: url("./images/taduuda-72915-unsplash.jpg");
-  background-size: 160%;
-}
 .gallery div.gallery-item-one:hover, .gallery div.gallery-item-two:hover, .gallery div.gallery-item-three:hover, .gallery div.gallery-item-four:hover, .gallery div.gallery-item-five:hover, .gallery div.gallery-item-six:hover{
   background-size: 100%;
   filter: grayscale(0%);
@@ -691,6 +648,8 @@ div.services {
  padding: 70px;
 
 }
+
+
 
 
 .services div {

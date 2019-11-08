@@ -180,7 +180,6 @@ export default function RecipeReviewCard(props) {
       <CardMedia
         className={classes.media}
         image={images[props.index]}
-        title="Paella dish"
       />
       {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">

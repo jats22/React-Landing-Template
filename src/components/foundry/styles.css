@@ -68,6 +68,12 @@
   width: 100%;
 }
 
+.MuiAvatar-img {
+  width: 70% !important;
+  height: 70% !important;
+  border-radius: 50% !important;
+}
+
 .questionWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;

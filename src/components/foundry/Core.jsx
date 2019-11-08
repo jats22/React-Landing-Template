@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import MarkdownRender from '../common/markdown-render'
 import Loader from 'react-loader-spinner'
+
+import MarkdownRender from '../common/markdown-render'
+import Tag from '../common/tag';
+import TI from '../../images/ti.png';
+import DiagnosticAnalysis from '../diagnostic-analysis';
+import 'github-markdown-css'
 
 class Core extends Component {
   constructor(props) {
@@ -447,14 +447,13 @@ class Core extends Component {
     })
   }
 
-  renderTags(answerSelectionType, numberOfSelection) {
+  renderTags(answerSelectionType, numberOfSelection, companyCodes) {
     const {
       appLocale: {
         singleSelectionTagText,
         multipleSelectionTagText,
         pickNumberOfSelection,
-      },
-      Tag
+      }
     } = this.props;
 
     return (
@@ -466,6 +465,17 @@ class Core extends Component {
           answerSelectionType == 'multiple' && <Tag label={multipleSelectionTagText} color="primary" />
         }
         <Tag color="primary" label={pickNumberOfSelection.replace("<numberOfSelection>", numberOfSelection)} />
+        {
+          companyCodes
+          &&
+          companyCodes.map(company => {
+            // Todo : Move to CDN. & Backend when data is available.
+            if (company === "TI")
+              return <Tag color="default" variant="outlined" avatar={{ alt: 'Asked in', img: TI }} label="Texas Instruments" />
+          }
+          )
+        }
+
       </div>
     )
   }
@@ -491,7 +501,7 @@ class Core extends Component {
   }
 
   render() {
-    const { questions, appLocale, Tag, Timer, HoverRating,previewMode, captureRating, NextQuestion } = this.props;
+    const { questions, appLocale, Timer, HoverRating, previewMode, captureRating, NextQuestion } = this.props;
     const {
       correct,
       incorrect,
@@ -556,6 +566,8 @@ class Core extends Component {
     // Default single to avoid code breaking due to automatic version upgrade
     answerSelectionType = answerSelectionType || 'single';
 
+    let { companyCodes } = question.metaData || {};
+
     return (
       <div className={showNextQuestionButton && !isLoading ? "questionWrapper" : (endQuiz ? "questionWrapper " + "End" : "questionWrapper " + "slide")}>
         {!endQuiz &&
@@ -583,9 +595,9 @@ class Core extends Component {
               {question.questionBody && <div><MarkdownRender source={question.questionBody} /></div>}
               {
                 <div>
-                  {this.renderTags(answerSelectionType, question.correctAnswer.length)}
+                  {this.renderTags(answerSelectionType, question.correctAnswer.length, companyCodes)}
 
-              { !previewMode && <Timer key={currentQuestionIndex} pause={showNextQuestionButton} captureTime={this.captureTime} /> }
+                  {!previewMode && <Timer key={currentQuestionIndex} pause={showNextQuestionButton} captureTime={this.captureTime} />}
                 </div>
               }
               {
@@ -609,25 +621,25 @@ class Core extends Component {
           </div>)
         }
         {showNextQuestionButton && !isLoading &&
-          <div className="explaination">
+          <div className="explaination markdown-body">
             <h3>Explanation: </h3>
             {this.renderExplanation(question, false)}
           </div>
         }
         {endQuiz && showDefaultResult && customResultPage == null &&
           <div className="card-body">
-            <h2>
-              {appLocale.resultPageHeaderText.replace("<correctIndexLength>", correct.length).replace("<questionLength>", questions.length)}
-            </h2>
-            <h2>
-              {appLocale.resultPagePoint.replace("<correctPoints>", correctPoints).replace("<totalPoints>", totalPoints)}
-            </h2>
-            <br />
-            {this.renderQuizResultFilter()}
-            {this.renderQuizResultQuestions()}
+            <h1>
+              {appLocale.resultPageHeaderText.replace("<correctPoints>", correctPoints).replace("<totalPoints>", totalPoints)}
+            </h1>
             <h2 className="resultSuggestion">
-              You did great! &#127881; Focus on <span className="worstTopic">{worstTopic}</span> next to stand a better chance at landing your dream job!
+              &#128214; <span className="worstTopic"> <Tag color="secondary" component="a" href="/arena?quizId=locked" clickable label={worstTopic} /></span> should be your top focus item!
             </h2>
+            <h3 style={{textAlign:'center'}}>
+              {appLocale.resultPagePoint.replace("<correctIndexLength>", correct.length).replace("<questionLength>", questions.length)}
+            </h3>
+            <br />
+            <DiagnosticAnalysis/>
+            {this.renderQuizResultQuestions()}
           </div>
         }
 

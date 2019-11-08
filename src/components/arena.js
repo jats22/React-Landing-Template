@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
-import { makeStyles } from '@material-ui/core/styles';
+
 import {
     withRouter
 } from 'react-router-dom'
 
-import Chip from '@material-ui/core/Chip';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,26 +18,12 @@ import TopicListing from "./topic-listing";
 import Footer from "./footer";
 import Quiz from './foundry/Quiz';
 
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 
 toast.configure()
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-    },
-    chip: {
-        margin: theme.spacing(1),
-    },
-}));
-
-export function Tag(props) {
-    const classes = useStyles();
-    return <Chip {...props} label={props.label} className={classes.chip} component={props.children} />
-}
 
 const iconList = [
     "fa-graduation-cap",
@@ -338,7 +323,6 @@ class Arena extends Component {
                                     <Quiz
                                         quiz={quiz}
                                         Timer={Timer}
-                                        Tag={Tag}
                                         userName={userName}
                                         quizId={quizId}
                                         userId={userId}
