@@ -241,7 +241,7 @@ class Arena extends Component {
             this.setState({
                 isLoading: false,
                 quiz: null,
-                showTopics:true,
+                showTopics: true,
             })
         }
     }
@@ -298,8 +298,8 @@ class Arena extends Component {
                             {!isLoading &&
                                 <div>
                                     <section className="topics-list" >
-                                        <h3 style={{ textAlign: 'center', fontSize: '1.8em', padding: '50px', color: '#332c5c', fontWeight: '600' }}> Pick a quiz from these tracks</h3>
-                                        <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} forceRender={this.forceRender} />
+                                    <h3 style={{ textAlign: 'left', fontSize: '1.8em', padding: '50px 50px 50px 40px', color: '#332c5c', fontWeight: '600' }}> Pick a quiz from these tracks</h3>
+                                    <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} forceRender={this.forceRender} />
                                     </section>
                                     <Footer />
                                 </div>

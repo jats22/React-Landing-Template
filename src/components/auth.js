@@ -49,7 +49,7 @@ class Auth extends Component {
                             "authenticated": "FALSE"
                         });
                     }}>
-                     Take Assessment
+                     { this.props.message || 'Take Assessment'}
                     </Link>)
                     :
                 ( this.props.isAuthenticated && !showAuth && <Link className="locateme"  
@@ -62,7 +62,7 @@ class Auth extends Component {
                     pathname: '/arena',
                     search: 'quizId=33103eea76083afe55b7'
                     }}>
-                     Take Assessment
+                     { this.props.message || 'Take Assessment'}
                     </Link>)
                 }
 

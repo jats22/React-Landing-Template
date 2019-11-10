@@ -35,7 +35,11 @@ class Main extends Component {
           {/* <h1 style={{ margin: '10px auto',textAlign: 'center',padding: '15px' }}> Take the quick diagnostic test to get started and know where you stand.</h1> */}
 
           <div>
-            <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} />
+            <div className="signin"><Link  to={{
+                    pathname: '/login',
+                    state: { to : '/arena?quizId=33103eea76083afe55b7'}
+                    }} className="locateme">Take Assessment</Link></div>
+            {/* <AuthDecorator isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} /> */}
             <br />
             <br />
           </div>
