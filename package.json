@@ -15,6 +15,7 @@
     "github-markdown-css": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-cookie": "^4.0.1",
     "react-dom": "^16.8.6",
     "react-google-login": "^5.0.5",
     "react-https-redirect": "^1.1.0",

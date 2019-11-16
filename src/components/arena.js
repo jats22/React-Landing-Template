@@ -17,7 +17,7 @@ import Timer from "./timer";
 import TopicListing from "./topic-listing";
 import Footer from "./footer";
 import Quiz from './foundry/Quiz';
-
+import { withCookies, Cookies } from 'react-cookie';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -38,35 +38,6 @@ const messageList = [
     "Almost there ...",
 ]
 
-// function Loader() {
-
-//     // Start the changing images
-//     const [counter, setCounter] = React.useState(0);
-
-//     React.useEffect(() => {
-//         const interval = setInterval(() => {
-//             setCounter(counter => (counter < 3) ? counter + 1 : 0);
-//         }, 3000);
-
-//         return () => {
-//             clearInterval(interval);
-//         };
-//     }, []);
-
-
-//     return (
-//         <div className="loader">
-//             <div className="image">
-//                 <i className={"fa " + iconList[counter || 0]}></i>
-//             </div>
-//             <span>
-//                 <h2>
-//                     {messageList[counter]}
-//                 </h2>
-//             </span>
-//         </div>
-//     )
-// }
 
 class Arena extends Component {
 
@@ -83,136 +54,29 @@ class Arena extends Component {
     }
 
     componentDidMount() {
+        const { cookies } = this.props;
+        this.setState({
+            userName: cookies.get('circuital_user_name'),
+        })
+        this.fetchQuiz();
+    }
 
+    fetchQuiz = () => {
         console.log(this.props)
-
-        const { location } = this.props;
 
         this.setState({
             isLoading: true,
             quiz: null,
         })
 
-        if (location && location.state && location.state.profileObj) {
-            const baseUrl = "https://asia-east2-ciruital-prod-254903.cloudfunctions.net/qmsapi/";
-            const loginUrl = baseUrl + "user/login?userId=" + location.state.profileObj.email;
-
-            fetch(loginUrl, {
-                mode: 'cors',
-                method: 'POST',
-                body: JSON.stringify({
-                    userDetails: location.state.profileObj,
-                })
-            }
-            )
-                .then((data) => {
-                    window.analytics.identify({
-                        "email": location.state.profileObj.email,
-                        "name": location.state.profileObj.name,
-                        "displayName": location.state.profileObj.name,
-                    })
-                    window.analytics.track("User Authenticated");
-                    console.log(data)
-                    this.setState({
-                        userName: location.state.profileObj.name,
-                    })
-                    const baseQuizUrl = "https://api.npoint.io/"
-                    if (location && location.search) {
-                        const params = new URLSearchParams(location.search)
-                        const quizId = params.get('quizId')
-                        var url = baseQuizUrl + quizId;
-                        console.log(url)
-                        fetch(url)
-                            .then((resp) => resp.json())
-                            .then((data) => {
-                                console.log(data)
-                                window.analytics.track("Quiz Loaded", {
-                                    "quizId": quizId,
-                                    "userId": location.state.profileObj.email,
-                                });
-
-                                this.setState({
-                                    quiz: data,
-                                    quizId: quizId,
-                                    showTopics: false,
-                                    isLoading: false,
-                                    userId: location.state.profileObj.email,
-                                })
-                            })
-                            .catch(e => {
-                                console.log(e)
-                                window.analytics.track("Quiz Could Not Be Loaded", {
-                                    "quizId": quizId,
-                                    "userId": location.state.profileObj.email,
-                                });
-                                this.setState({
-                                    isLoading: false,
-                                    showTopics: true,
-                                    errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
-                                    quiz: {},
-                                })
-                                toast.error(this.state.errorMessage)
-                            })
-                    }
-                    else {
-                        this.setState({
-                            isLoading: false,
-                            quiz: null,
-                        })
-                    }
-
-                })
-                .catch(e => {
-                    window.analytics.track("User Authentication Failed");
-                    console.log(e)
-                    toast.error("Ouch. We are having trouble logging you in.")
-                })
-
-        } else {
-            const baseQuizUrl = "https://api.npoint.io/"
-            if (location && location.search) {
-                const params = new URLSearchParams(location.search)
-                const quizId = params.get('quizId')
-                var url = baseQuizUrl + quizId;
-                console.log(url)
-                fetch(url)
-                    .then((resp) => resp.json())
-                    .then((data) => {
-                        console.log(data)
-                        this.setState({
-                            quiz: data,
-                            quizId: quizId,
-                            showTopics: false,
-                            isLoading: false,
-                        })
-                    })
-                    .catch(e => {
-                        console.log(e)
-                        this.setState({
-                            isLoading: false,
-                            showTopics: true,
-                            errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
-                            quiz: {},
-                        })
-                        toast.error(this.state.errorMessage)
-                    })
-            }
-            else {
-                this.setState({
-                    isLoading: false,
-                    quiz: null,
-                })
-            }
-        }
-    }
-
-    fetchQuiz = () => {
         const baseQuizUrl = "https://api.npoint.io/"
-        const { location } = this.props;
+        const { location, cookies } = this.props;
 
         if (location && location.search) {
+
             const params = new URLSearchParams(location.search)
             const quizId = params.get('quizId')
+
             var url = baseQuizUrl + quizId;
             console.log(url)
             fetch(url)
@@ -224,6 +88,7 @@ class Arena extends Component {
                         quizId: quizId,
                         showTopics: false,
                         isLoading: false,
+                        userName: cookies.get('circuital_user_name'),
                     })
                 })
                 .catch(e => {
@@ -233,6 +98,7 @@ class Arena extends Component {
                         showTopics: true,
                         errorMessage: "Oops! The quiz could not be fetched. Please explore other quizzes.",
                         quiz: {},
+                        userName: cookies.get('circuital_user_name'),
                     })
                     toast.error(this.state.errorMessage)
                 })
@@ -242,16 +108,13 @@ class Arena extends Component {
                 isLoading: false,
                 quiz: null,
                 showTopics: true,
+                userName: cookies.get('circuital_user_name'),
             })
         }
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.location !== prevProps.location) {
-            this.setState({
-                isLoading: true,
-                quiz: null,
-            })
             this.fetchQuiz()
         }
     }
@@ -298,8 +161,8 @@ class Arena extends Component {
                             {!isLoading &&
                                 <div>
                                     <section className="topics-list" >
-                                    <h3 style={{ textAlign: 'left', fontSize: '1.8em', padding: '50px 50px 50px 40px', color: '#332c5c', fontWeight: '600' }}> Pick a quiz from these tracks</h3>
-                                    <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} forceRender={this.forceRender} />
+                                        <h3 style={{ textAlign: 'left', fontSize: '1.8em', padding: '50px 50px 50px 40px', color: '#332c5c', fontWeight: '600' }}> Pick a quiz from these tracks</h3>
+                                        <TopicListing isAuthenticated={this.props.isAuthenticated} signIn={this.props.signIn} showAuth={this.props.showAuth} forceRender={this.forceRender} />
                                     </section>
                                     <Footer />
                                 </div>
@@ -326,7 +189,7 @@ class Arena extends Component {
                                         userName={userName}
                                         quizId={quizId}
                                         userId={userId}
-                                        shuffle={true}
+                                        // shuffle={true}
                                         // showInstantFeedback={true}
                                         NextQuestion={NextQuestion}
                                         HoverRating={HoverRating}
@@ -343,4 +206,4 @@ class Arena extends Component {
     }
 }
 
-export default withRouter(Arena);
+export default withCookies(withRouter(Arena));
