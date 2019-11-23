@@ -149,6 +149,7 @@ class Quiz extends Component {
             userId={userId}
             questions={questions} 
             Timer={Timer} 
+            showAnalysis={quiz.showAnalysis}
             NextQuestion={NextQuestion} 
             OptionButton={OptionButton} 
             HoverRating={HoverRating} 

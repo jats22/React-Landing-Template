@@ -501,7 +501,7 @@ class Core extends Component {
   }
 
   render() {
-    const { questions, appLocale, Timer, HoverRating, previewMode, captureRating, NextQuestion } = this.props;
+    const { questions, appLocale, Timer, HoverRating,showAnalysis, previewMode, captureRating, NextQuestion } = this.props;
     const {
       correct,
       incorrect,
@@ -631,14 +631,14 @@ class Core extends Component {
             <h1>
               {appLocale.resultPageHeaderText.replace("<correctPoints>", correctPoints).replace("<totalPoints>", totalPoints)}
             </h1>
-            <h2 className="resultSuggestion">
+            {showAnalysis && <h2 className="resultSuggestion">
               &#128214; <span className="worstTopic"> <Tag color="secondary" component="a" href="/arena?quizId=locked" clickable label={worstTopic} /></span> should be your top focus item!
-            </h2>
+            </h2>}
             <h3 style={{textAlign:'center'}}>
               {appLocale.resultPagePoint.replace("<correctIndexLength>", correct.length).replace("<questionLength>", questions.length)}
             </h3>
             <br />
-            <DiagnosticAnalysis/>
+            {showAnalysis && <DiagnosticAnalysis/>}
             {this.renderQuizResultQuestions()}
           </div>
         }

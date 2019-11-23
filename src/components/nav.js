@@ -47,7 +47,7 @@ function Nav(props) {
 
   return (
     <nav className={navClass}>
-      <SideNav />
+      <SideNav {...props}/>
       <ul className="logo-container">
         <li><span style={{ fontSize: '26px', cursor: 'pointer', color: '#bcb9d0' }} onClick={openNav} className="hamburger"> <i class="fas fa-bars"></i></span></li>
         <li className="logo"><div>
