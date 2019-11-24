@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>react-hls</title>
+</head>
+<body>
+    <div id="container"></div>
+    <style>
+       progress {
+      color: green;
+      font-size: 12px;
+      width: 220px;
+      height: 16px;
+      border: none;
+      margin-right: 10px;
+      background: #434343;
+      border-radius: 9px;
+      vertical-align: middle;
+    }
+    progress::-moz-progress-bar { 
+      color:green;
+      background:#434343; 
+    }
+    
+    progress[value]::-webkit-progress-bar {
+      background-color: #434343;
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    } 
+    </style>
+    <script type="text/javascript" src="assets/index.bundle.js"></script>
+</body>
+</html>

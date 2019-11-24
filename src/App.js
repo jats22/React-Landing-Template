@@ -18,6 +18,8 @@ import HttpsRedirect from 'react-https-redirect';
 import QMS from './components/qms/questions';
 import QMSList from './components/qms/question-list';
 import Login from './components/common/login';
+import Player from './components/common/player';
+
 
 const PrivateRoute = ({ component: Component, isAuthenticated: IsAuthenticated, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -100,6 +102,7 @@ class App extends Component {
           <PrivateRoute exact path="/arena" isAuthenticated={this.state.isAuthenticated} component={Arena} />
           <Route exact path="/qms/question/:questionId" component={QMS} />
           <Route exact path="/qms/questions" component={QMSList} />
+          <Route exact path="/player" component={Player}/>
           <Route exact path="/login" render={(props) => <Login signIn={this.signIn} {...props} />} />
         </Router>
       </HttpsRedirect>
