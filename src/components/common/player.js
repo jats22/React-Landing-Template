@@ -3,7 +3,7 @@ import ReactHLS from './react-hls';
 
 
 const player = (props) => { 
-    return <ReactHLS url={"https://theverbmedia-output.s3.amazonaws.com/kartik/kartik.m3u8"} /> 
+    return <ReactHLS url={"https://theverbmedia-output.s3.amazonaws.com/velu_backview/velu_backview.m3u8"} /> 
 }
 
 

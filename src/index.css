@@ -1,3 +1,5 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +11,7 @@ body {
   /* opacity: 0.98; */
 }
 body * {
-  /* transition: all 0.100s ease-out; */
+  transition: all 0.100s linear;
   color: white;
 }
 
@@ -21,15 +23,72 @@ progress {
   color: #ef5350;
   font-size: 12px;
   width: 95%;
-  height: 6px;
+  height: 3px;
   border: none;
   margin-right: 10px;
   background: #e2dedd;
   border-radius: 9px;
   vertical-align: middle;
   margin-left: 10px;
-  margin-top: 30px;
+  margin-top: 43px;
+  cursor: pointer;
 }
+
+.playPause{
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transform: translate(-260px, -40px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.playPause img {
+  margin: 0px 50px;
+  cursor: pointer;
+}
+.playPauseShow{
+  top: -90px;
+  display: none;
+}
+
+.player-controls{
+  width: 100%;
+  background: grey;
+  position: absolute;
+  bottom: -60px;
+  height: 85px;
+  background: linear-gradient(-0deg, #00000061, #0a090900);
+  display: grid;
+  grid-template-columns: 0.1fr 0.1fr 1fr 0.1fr 0.1fr;
+  transition: all 0.100s ease-out;
+}
+
+.top-controls {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
+  width: 100%;
+  background: linear-gradient(-180deg, #00000061, #0a090900);
+  position: absolute;
+  top: 0px;
+  height: 70px;
+}
+
+.top-controls-hide {
+  top:-90px;
+  display: none;
+}
+
+.top-controls img {
+  margin: 20px;
+}
+
+.show {
+  bottom: 0px;
+}
+
 progress::-moz-progress-bar { 
   color:#ef5350;
   background:#e2dedd; 
@@ -63,8 +122,8 @@ input[type=range]:focus {
 
 .slider-vertical{
   transform: rotate(180deg);
-  position: absolute;
-  bottom: 0px;
+  position: relative;
+  /* bottom: 0px; */
 }
 .slider-vertical .rangeslider__handle {
   width: 15px;
@@ -74,6 +133,7 @@ input[type=range]:focus {
   background-color: #fff;
   box-shadow: 0 1px 1px #e5e3e2;
   margin-left: -5px;
+  outline: none;
 }
 .slider-vertical .rangeslider__fill {
   background-color: #ef5350;
@@ -98,6 +158,12 @@ input[type=range]:focus {
   width: 250px;
   height: 100%;
   left: 10px;
+}
+
+.slider{
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: -110px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -190,6 +256,8 @@ button{
   margin:0;
   padding:0;
   cursor: pointer;
+  outline:  none;
+  /* margin-top:100px; */
 }
 
 @font-face {
