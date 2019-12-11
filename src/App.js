@@ -98,11 +98,11 @@ class App extends Component {
       <HttpsRedirect>
 
         <Router basename={process.env.PUBLIC_URL} >
-          <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} />
+          {/* <Route default exact path="/" render={(props) => <Home isAuthenticated={this.state.isAuthenticated} signIn={this.signIn} {...props} />} /> */}
           <PrivateRoute exact path="/arena" isAuthenticated={this.state.isAuthenticated} component={Arena} />
           <Route exact path="/qms/question/:questionId" component={QMS} />
           <Route exact path="/qms/questions" component={QMSList} />
-          <Route exact path="/player" component={Player}/>
+          <Route exact path="/" component={Player}/>
           <Route exact path="/login" render={(props) => <Login signIn={this.signIn} {...props} />} />
         </Router>
       </HttpsRedirect>

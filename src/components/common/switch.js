@@ -18,22 +18,17 @@ const RedSwitch = withStyles({
   })(Switch);
 
 export default function SwitchView(props) {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
 
   const handleChange = (name,next) => (event) => {
-    setState({ ...state, [name]: event.target.checked });
     next(event.target.checked);
   };
 
   return (
     <div style={{    margin: 'auto'}}>
       <RedSwitch
-        checked={state.checkedA}
-        onChange={handleChange('checkedA',props.handleChange) }
-        value="checkedA"
+        checked={props.switchedView}
+        onChange={props.handleChange}
+        // value={props.switchedView}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
       </div>

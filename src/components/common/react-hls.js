@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Hls from 'hls.js';
-import Fullscreen from "react-full-screen";
+import Fullscreen from 'react-full-screen';
+import DeviceOrientation, { Orientation } from 'react-screen-orientation';
+
 import VolumeBar from './volume-bar';
 import SwitchView from './switch';
-
-import Tap from '../../assets/pause.svg'
+import Pause from '../../assets/pause.svg'
 import Backward from '../../assets/backward.svg';
 import Forward from '../../assets/forward.svg';
 import Back from '../../assets/back.svg';
 import Settings from '../../assets/settings.svg';
 import Options from '../../assets/options.svg';
-
-
+import SideNav from '../../components/sidenav';
+import Play from '../../assets/play.svg';
+import msToTime from '../common/utils';
 
 class ReactHls extends React.Component {
     constructor(props) {
@@ -23,7 +25,11 @@ class ReactHls extends React.Component {
             isFull: false,
             showVolume: false,
             showControls: false,
-            switchedView:false,
+            switchedView: false,
+            isPlaying: false,
+            currentMillisecond: 0.0,
+            totalMilliseconds: 1000,
+            currentSectionIndex: 0,
         };
 
         this.hls = null;
@@ -51,66 +57,124 @@ class ReactHls extends React.Component {
 
 
         // Update the video volume
-        // volumeBar.addEventListener("change", function (evt) {
-        //     video.volume = evt.target.value;
-        // });
-
-        // btnFullScreen.disabled = true;
-        // Add a listener for the timeupdate event so we can update the progress bar
-        video.addEventListener('timeupdate', this.updateProgressBar, false);
-
         let self = this;
-        // Add a listener for the play and pause events so the buttons state can be updated
-        video.addEventListener('play', function () {
-            // Change the button to be a pause button
-            // self.changeButtonType(btnPlayPause, 'Pause');
-        }, false);
-
-        video.addEventListener('pause', function () {
-            // Change the button to be a play button
-            // self.changeButtonType(btnPlayPause, 'Play');
-        }, false);
-
-        video.addEventListener('volumechange', function (e) {
-            // Update the button to be mute/unmute
-
-            if (video.muted) self.changeButtonType(btnMute, 'Unmute');
-            else self.changeButtonType(btnMute, 'Mute');
-        }, false);
-
-        video.addEventListener('ended', function () { this.pause(); }, false);
-
-        progressBar.addEventListener("click", this.seek);
-
-        this._initPlayer();
-    }
-
-    componentWillUnmount() {
-        let { hls } = this;
-
-        if (hls) {
-            hls.destroy();
-        }
-    }
-
-    _initPlayer() {
-        if (this.hls) {
-            this.hls.destroy();
-        }
-
-        let { url, autoplay, hlsConfig } = this.props;
-        let { video: $video } = this.refs;
-        let hls = new Hls(hlsConfig);
-
-        hls.loadSource(url);
-        hls.attachMedia($video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            if (autoplay) {
-                $video.play();
+        window.screen.orientation.addEventListener("change", function (evt) {
+            if(window.screen.orientation.type != 'landscape-primary' && self.state.isFull ){
+                window.screen.orientation.unlock();
+                self.goFull();
             }
         });
 
+        // btnFullScreen.disabled = true;
+        // Add a listener for the timeupdate event so we can update the progress bar
+        if (video) {
+            video.addEventListener('timeupdate', this.updateProgressBar, false);
+
+            let self = this;
+            // Add a listener for the play and pause events so the buttons state can be updated
+            video.addEventListener('play', function () {
+                // Change the button to be a pause button
+                // self.changeButtonType(btnPlayPause, Pause);
+            }, false);
+
+            video.addEventListener('pause', function () {
+                // Change the button to be a play button
+                // self.changeButtonType(btnPlayPause, Play );
+            }, false);
+
+            video.addEventListener('onended', () => {
+                console.log("media ended")
+            });
+
+            video.addEventListener('volumechange', function (e) {
+                // Update the button to be mute/unmute
+
+                // if (video.muted) self.changeButtonType(btnMute, 'Unmute');
+                // else self.changeButtonType(btnMute, 'Mute');
+            }, false);
+
+            video.addEventListener('ended', function () { this.pause(); }, false);
+        }
+
+        if (progressBar)
+            progressBar.addEventListener("click", this.seek);
+
+        this._initPlayer();
+
+    }
+
+    componentWillUnmount() {
+        // let { hls } = this;
+
+        // if (hls) {
+        //     hls.destroy();
+        // }
+    }
+
+    _initPlayer(next) {
+        // if (this.hls) {
+        //     this.hls.destroy();
+        // }
+
+        let { frontUrl, autoplay, hlsConfig, backUrl } = this.props;
+        let { video: $video, videoBack } = this.refs;
+        let { switchedView, isPlaying } = this.state;
+
+        console.log(switchedView)
+
+        let hls = new Hls(hlsConfig);
+        let hls2 = new Hls(hlsConfig)
+
+        let url = switchedView ? backUrl : frontUrl;
+
+        hls.loadSource(frontUrl);
+        hls2.loadSource(backUrl);
+        
+        if(switchedView){
+            hls2.attachMedia($video);
+        }
+        else { 
+            hls.attachMedia($video);
+        }
+
+
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+            console.log("video and hls.js are now bound together !");
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                if (isPlaying) {
+                    $video.play();
+                }
+            });
+        });
+
+
+        hls.on(Hls.Events.MEDIA_DETACHED, () => {
+            console.log("detached!");
+        });
+
+
+        hls2.on(Hls.Events.MEDIA_ATTACHED, () => {
+            console.log("video and hls2.js are now bound together !");
+            hls2.on(Hls.Events.MANIFEST_PARSED, () => {
+                if (isPlaying) {
+                    $video.play();
+                }
+            });
+        });
+
+
+        // hls2.on(Hls.Events.MANIFEST_PARSED, () => {
+        //     if (isPlaying && switchedView) {
+        //         $video.play();
+        //     }
+        // });
+
         this.hls = hls;
+        this.hls2 = hls2;
+
+        if (next)
+            next();
+
     }
 
     seek = (e) => {
@@ -121,18 +185,25 @@ class ReactHls extends React.Component {
         e.target.innerHTML = progressBar.value + '% played';
     }
 
+    seekToTime = (timeInMicroSeconds) => {
+        const { video } = this.refs;
+        video.currentTime = timeInMicroSeconds;
+    }
+
     playPauseVideo = () => {
         const { video, btnPlayPause } = this.refs;
 
         if (video.paused || video.ended) {
-            // Change the button to a pause button
-            // this.changeButtonType(btnPlayPause, 'Pause');
             video.play();
+            this.setState({
+                isPlaying: true,
+            })
         }
         else {
-            // Change the button to a play button
-            // this.changeButtonType(btnPlayPause, 'Play');
             video.pause();
+            this.setState({
+                isPlaying: false,
+            })
         }
     }
 
@@ -141,7 +212,11 @@ class ReactHls extends React.Component {
         const { video } = this.refs;
         video.pause();
         // console.log(this.refs)
+
         if (video.currentTime) video.currentTime = 0;
+        this.setState({
+            isPlaying: false,
+        })
     }
 
     // Toggles the media player's mute and unmute status
@@ -151,12 +226,12 @@ class ReactHls extends React.Component {
 
         if (video.muted) {
             // Change the button to a mute button
-            this.changeButtonType(btnMute, 'Mute');
+            // this.changeButtonType(btnMute, 'Mute');
             video.muted = false;
         }
         else {
             // Change the button to an unmute button
-            this.changeButtonType(btnMute, 'Unmute');
+            // this.changeButtonType(btnMute, 'Unmute');
             video.muted = true;
         }
     }
@@ -172,25 +247,34 @@ class ReactHls extends React.Component {
     updateProgressBar = () => {
         const { video, progressBar } = this.refs;
 
-        // console.log(video.currentTime)
+        // console.log(video.duration)
+
+        if (video) {
+            this.setState({
+                currentMillisecond: video.currentTime * 1000,
+                totalMilliseconds: !video.duration ? this.state.totalMilliseconds : video.duration * 1000,
+            })
+        }
+
         // Work out how much of the media has played via the duration and currentTime parameters
         var percentage = 0;
-        if (video.duration > 0) {
+        if (video && video.duration > 0) {
             percentage = Math.floor((100 / video.duration) * video.currentTime);
         }
 
-        // console.log(percentage)
-        // Update the progress bar's value
-        progressBar.value = percentage;
+        // // console.log(percentage)
+        // // Update the progress bar's value
+        if (progressBar)
+            progressBar.value = percentage;
         // Update the progress bar's text (for browsers that don't support the progress element)
         // progressBar.innerHTML = percentage + '% played';
     }
 
     // Updates a button's title, innerHTML and CSS class
-    changeButtonType = (btn, value) => {
-        btn.title = value;
-        btn.innerHTML = value;
-        btn.className = value;
+    changeButtonType = (img, value) => {
+        // btn.title = value;
+        img.src = value;
+        // btn.className = value;
     }
 
     resetPlayer = () => {
@@ -228,33 +312,53 @@ class ReactHls extends React.Component {
         }
     }
 
+    lockOrientation = () => {
+        window.screen.orientation.lock("landscape-primary")
+            .then(function () {
+                console.log("in landspace mode")
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    }
     toggleFullScreen = () => {
-        const { video } = this.refs;
+        const { player } = this.refs;
 
-        if (video.requestFullscreen)
+        // this.goFull();
+
+        if (player.requestFullscreen)
             if (document.fullScreenElement) {
                 document.cancelFullScreen();
+                window.screen.orientation.unlock();
             } else {
-                video.requestFullscreen();
+                player.requestFullscreen();
+                this.lockOrientation();
             }
-        else if (video.msRequestFullscreen)
+        else if (player.msRequestFullscreen)
             if (document.msFullscreenElement) {
                 document.msExitFullscreen();
+                window.screen.orientation.unlock();
             } else {
-                video.msRequestFullscreen();
+                player.msRequestFullscreen();
+                this.lockOrientation();
             }
-        else if (video.mozRequestFullScreen)
+        else if (player.mozRequestFullScreen)
             if (document.mozFullScreenElement) {
                 document.mozCancelFullScreen();
+                window.screen.orientation.unlock();
             } else {
-                video.mozRequestFullScreen();
+                player.mozRequestFullScreen();
+                this.lockOrientation();
             }
-        else if (video.webkitRequestFullscreen)
+        else if (player.webkitRequestFullscreen)
             if (document.webkitFullscreenElement) {
                 document.webkitCancelFullScreen();
+                window.screen.orientation.unlock();
             } else {
-                video.webkitRequestFullscreen();
+                player.webkitRequestFullscreen();
+                this.lockOrientation();
             }
+
         else {
             alert("Fullscreen is not supported in your browser");
         }
@@ -283,102 +387,119 @@ class ReactHls extends React.Component {
         })
     }
 
+    openNav = () => {
+        document.getElementById("mySidenav").style.width = "45%";
+    }
+
+    sectionChange = (currentSectionIndex, change) => {
+        const { sections } = this.props;
+        let numberOfSections = sections.length;
+        this.setState({
+            currentSectionIndex: currentSectionIndex + change,
+        })
+    }
+
     render() {
-        let { playerId, isFull, showVolume, showControls, switchedView } = this.state;
+        let { playerId, isFull, isPlaying, currentMillisecond, totalMilliseconds, currentSectionIndex, showVolume, showControls, switchedView } = this.state;
         // console.log("test");
         let timeout;
 
-        const { controls, width, poster, videoProps } = this.props;
+        const { controls, width, poster, videoProps, sections } = this.props;
 
-        let height = isFull ? 'calc(100% - 25px)' : '100%';
+        // console.log(sections)
+
+        let height = '100%';
 
         let playerControls = showControls ? "player-controls show" : "player-controls";
         let playPauseControl = showControls ? "playPause" : "playPauseShow";
-        let topControls  = showControls ? "top-controls" :"top-controls-hide";
+        let topControls = showControls ? "top-controls" : "top-controls-hide";
+        let toggleFullScreen = isFull ? "player-area-full" : "player-area";
+        let playerContainerControls = showControls ? "player-container-controls":"player-container";
 
+        if (!sections)
+            return <div></div>
         return (
             <section>
-                <div key={playerId} className="player-area">
-                    <Fullscreen
+                {!isFull && <p className='fullscreen' title='toggle full screen' accessKey="T" onClick={() => {
+                    this.toggleFullScreen();
+                    this.goFull();
+                }}>Tap me to watch</p>}
+                <div key={playerId} className={toggleFullScreen}>
+                    {/* <Fullscreen
                         enabled={this.state.isFull}
                         onChange={isFull => this.setState({ isFull })}
-                    >
-                        <div className="player-container">
-                            <video ref="video"
-                                className="hls-player"
-                                id={`react-hls-${playerId}`}
-                                //    controls={controls}
-                                width={'100%'}
-                                style={{ 
-                                        height: height, 
-                                        background: 'black',
-                                        objectFit: 'cover',
-                                        objectPosition: switchedView ? '0 100%' : '0 0%' }}
-
-                                poster={poster}
-                                onMouseMove={(e) => {
-                                    if (!this.state.showControls) {
-                                        this.setState({
-                                            showControls: true,
-                                        })
-                                    }
-                                    clearTimeout(timeout);
-                                    timeout = setTimeout(this.hideControls, 6500, e);
-                                }}
-
-                                {...videoProps}
-                            ></video>
-                            <div className={playPauseControl}>
-                                <img src={Backward} height="80px" width="80px" onClick={this.backward} />
-                                <img src={Tap} height="80px" width="80px" onClick={this.playPauseVideo} />
-                                <img src={Forward} height="80px" width="80px" onClick={this.forward} />
-                            </div>
-                            <div id='controls' className={playerControls} onFocus={() => {
-                                this.setState({
-                                    showControls: true,
-                                })
-                            }}>
-
-                                {/* <button ref='btnPlayPause' className='play' title='play' accessKey="P" onClick={this.playPauseVideo}>Play</button> */}
-
-                                <button
-                                    onMouseEnter={this.handleMouseEnter}
-                                    onMouseLeave={this.handleMouseLeave}
-                                >      {showVolume && <VolumeBar ref="volumeBar"
-
-                                    onFocus={() => {
-                                        this.setState({
-                                            showControls: true,
-                                        })
-                                    }}
-                                    updateVolume={(value) => {
-                                        const { video } = this.refs;
-
-                                        video.volume = value;
-                                    }} />} Vol</button>
-
-                                <button ref='btnMute' className='mute' title='mute' onClick={this.muteVolume} >Mute</button>
-                                <progress ref='progressBar' min='0' max='100' value='0'>0% played</progress>
-
-
-                                {/* <button className='mute' title='mute' onClick={this.forward}>&lt; 15 </button> */}
-                                {/* <button className='mute' title='mute' onClick={this.backward}> &gt; 15  </button> */}
-                                <SwitchView handleChange={(switchedView)=>{
+                    > */}
+                    <div ref="player" className={playerContainerControls}>
+                        <video ref="video"
+                            className="hls-player"
+                            id={`react-hls-${playerId}`}
+                            //    controls={controls}
+                            width={'100%'}
+                            style={{
+                                height: height,
+                                background: 'black',
+                                objectFit: 'cover',
+                            }}
+                            // autobuffer="true"
+                            poster={poster}
+                            onMouseMove={(e) => {
+                                if (!this.state.showControls) {
                                     this.setState({
-                                        switchedView : switchedView,
+                                        showControls: true,
                                     })
-                                }} />
-                                <button ref='btnFullScreen' className='fullscreen' title='toggle full screen' accessKey="T" onClick={this.goFull}>[&nbsp;&nbsp;]</button>
-                                {/* <button ref='btnReplay' className='replay' title='replay' accesskey="R" onClick={this.replayVideo}>Replay</button> */}
-                            </div>
-                            <div className={topControls} >
-                                <img src={Back} height="30px" width="30px" onClick={this.toggleFullScreen} />
-                                <img></img>
-                                <img src={Options} height="30px" width="30px" onClick={this.playPauseVideo} />
-                                <img src={Settings} height="30px" width="30px" onClick={this.forward} />
-                            </div>
+                                }
+                                clearTimeout(timeout);
+                                timeout = setTimeout(this.hideControls, 6500, e);
+                            }}
+
+                            {...videoProps}
+                        ></video>
+                        <div className={playPauseControl}>
+                            <img src={Backward} height="80px" width="80px" onClick={this.backward} />
+                            <img ref='btnPlayPause' src={isPlaying ? Pause : Play} height="80px" width="80px" onClick={this.playPauseVideo} />
+                            <img src={Forward} height="80px" width="80px" onClick={this.forward} />
                         </div>
-                    </Fullscreen>
+                        <div id='controls' className={playerControls} onFocus={() => {
+                            this.setState({
+                                showControls: true,
+                            })
+                        }}>
+
+                            <button className='play' title='play' accessKey="P" onClick={this.playPauseVideo}>{msToTime(currentMillisecond)} </button>
+
+                            {/* <button ref='btnMute' className='mute' title='mute' onClick={this.muteVolume} >Mute</button> */}
+                            <progress ref='progressBar' min='0' max='100' value='0'>0% played</progress>
+
+
+                            <button className='mute' title='mute' onClick={this.forward}>{msToTime(totalMilliseconds)}</button>
+                            {/* <button className='mute' title='mute' onClick={this.backward}> &gt; 15  </button> */}
+                            <SwitchView switchedView={this.state.switchedView} handleChange={() => {
+                                this.setState({
+                                    switchedView: !this.state.switchedView,
+                                })
+                                this._initPlayer(() => this.seekToTime(currentMillisecond / 1000));
+
+                            }} />
+                            {/* <button ref='btnReplay' className='replay' title='replay' accesskey="R" onClick={this.replayVideo}>Replay</button> */}
+                        </div>
+                        <div className={topControls} >
+                            <img src={Back} height="30px" width="30px" onClick={() => {
+                                this.toggleFullScreen();
+                                this.goFull();
+                            }} />
+                            <img></img>
+                            <SideNav
+                                onSubsectionClick={this.seekToTime}
+                                currentSectionIndex={currentSectionIndex}
+                                currentSubsectionIndex={2}
+                                sections={sections}
+                                sectionChange={this.sectionChange}
+                            />
+                            <img src={Options} height="30px" width="30px" onClick={this.openNav} />
+                            {/* <img src={Settings} height="30px" width="30px" onClick={this.forward} /> */}
+                        </div>
+                    </div>
+                    {/* </Fullscreen> */}
                 </div>
             </section>
         )
@@ -386,7 +507,8 @@ class ReactHls extends React.Component {
 }
 
 ReactHls.propTypes = {
-    url: PropTypes.string.isRequired,
+    frontUrl: PropTypes.string.isRequired,
+    backUrl: PropTypes.string.isRequired,
     autoplay: PropTypes.bool,
     hlsConfig: PropTypes.object, //https://github.com/dailymotion/hls.js/blob/master/API.md#fine-tuning
     controls: PropTypes.bool,

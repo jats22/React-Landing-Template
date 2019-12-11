@@ -58,17 +58,25 @@ progress {
   width: 100%;
   background: grey;
   position: absolute;
-  bottom: -60px;
+  bottom: -100px;
   height: 85px;
   background: linear-gradient(-0deg, #00000061, #0a090900);
   display: grid;
-  grid-template-columns: 0.1fr 0.1fr 1fr 0.1fr 0.1fr;
+  grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
   transition: all 0.100s ease-out;
+}
+
+.line-break{
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(128, 128, 128, 0.75), rgba(0, 0, 0, 0));
+  margin:0px;
+  width: 100%;
 }
 
 .top-controls {
   display: grid;
-  grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
+  grid-template-columns: 0.1fr 1fr 0.1fr;
   width: 100%;
   background: linear-gradient(-180deg, #00000061, #0a090900);
   position: absolute;
@@ -83,10 +91,18 @@ progress {
 
 .top-controls img {
   margin: 20px;
+  cursor: pointer;
 }
 
 .show {
   bottom: 0px;
+}
+
+.sub-section {
+  cursor: pointer;
+}
+.sub-section p:hover{
+  color: #ef5350;
 }
 
 progress::-moz-progress-bar { 
@@ -103,8 +119,41 @@ progress[value]::-webkit-progress-bar {
 .player-container {
   height: 100vh;
 }
+
+.player-container-controls{
+  height: 100vh;
+  width: 100%;
+}
+
 progress[value]::-webkit-progress-value {
   background-color: #ef5350;
+}
+
+.player-area {
+  display: none;
+}
+.player-area-full {
+  display: block;
+}
+
+video[poster] {
+  object-fit: cover;
+}
+
+.player-container-controls:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.fullscreen {
+  color: black;
+  text-align: center;
 }
 
 input[type=range] {
@@ -756,11 +805,11 @@ header div.head h1 span{
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
-  background-color: #fff;
+  right: 0;
+  background-color: #1a1617db;
   overflow-x: hidden;
   transition: 0.2s;
-  padding-top: 60px;
+  padding-top: 0px;
   text-align:center;
 }
 
@@ -768,14 +817,14 @@ header div.head h1 span{
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #1d1d1f;
+  color: #d5cfcf;
   display: block;
   transition: 0.3s;
 
 }
 
 .sidenav a:hover{
-  color: #1d1d1f;
+  color: #d5cfcf;
 }
 
 
@@ -787,19 +836,45 @@ header div.head h1 span{
 }
 .sidenav .closebtn {
   position: absolute;
-  top: -15px;
-  left: -20px;
-  font-size: 55px;
+  top: 0px;
+  left: -60px;
+  font-size: 40px;
   margin-left: 50px;
-  color: #362f6e;
+  color: #c52e2c;
 }
 
 @media screen and (max-width: 1310px) {
-  .sidenav {padding-top: 15px;}
+  .sidenav {padding-top: 0px;}
   .sidenav a {font-size: 18px;}
 }
 /*------------- MAIN SECTION -------------------*/
 
+.section-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  overflow-y: scroll;
+  text-align: left;
+}
+.section-header {
+  padding-bottom: 20px;
+  border-bottom: solid 1px #fdfdfd;
+  text-align: center;
+}
+
+.section-container div:not(.break) {
+  display: grid;
+  grid-template-columns: .3fr .7fr .2fr;
+  padding: 0px 40px;
+  /* border-bottom: solid .5px #b0afaf4a; */
+}
+
+.section-container div p {
+  font-size:1.3em;
+}
+.section-container .active p{
+  color: #c52e2c;
+}
 
 main {
  
@@ -1287,12 +1362,12 @@ footer ul li a {
     right: 0;
     left: auto;
   }
-
+/* 
   .sidenav .closebtn {
     top: -15px;
     right: 15px;
     left: auto;
-  }
+  } */
 
   nav ul:last-of-type li{
    text-align: center;

@@ -2,7 +2,7 @@
   "name": "react-landing-page-1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://circuit.al",
+  "homepage": "https://jats22.github.io/React-Landing-Template/",
   "dependencies": {
     "@material-ui/core": "^4.3.0",
     "@material-ui/icons": "^4.2.1",
@@ -17,6 +17,7 @@
     "react": "^16.8.6",
     "react-cookie": "^4.0.1",
     "react-dom": "^16.8.6",
+    "react-full-screen": "^0.2.4",
     "react-google-login": "^5.0.5",
     "react-hls": "0.0.8",
     "react-https-redirect": "^1.1.0",
@@ -28,6 +29,7 @@
     "react-rangeslider": "^2.2.0",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.0.1",
+    "react-screen-orientation": "0.0.4",
     "react-scripts": "2.0.3",
     "react-scroll": "^1.7.12",
     "react-spinners": "^0.5.13",
@@ -44,7 +46,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages --remote upstream -d build"
+    "deploy": "gh-pages --remote origin -d build"
   },
   "browserslist": [
     ">0.2%",
