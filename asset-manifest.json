@@ -1,10 +1,10 @@
 {
   "main.css": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css",
-  "main.js": "/React-Landing-Template/static/js/main.f9933a34.chunk.js",
-  "main.js.map": "/React-Landing-Template/static/js/main.f9933a34.chunk.js.map",
+  "main.js": "/React-Landing-Template/static/js/main.05f95967.chunk.js",
+  "main.js.map": "/React-Landing-Template/static/js/main.05f95967.chunk.js.map",
   "static/css/1.daf87ae6.chunk.css": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css",
-  "static/js/1.793f6e39.chunk.js": "/React-Landing-Template/static/js/1.793f6e39.chunk.js",
-  "static/js/1.793f6e39.chunk.js.map": "/React-Landing-Template/static/js/1.793f6e39.chunk.js.map",
+  "static/js/1.a7a4687a.chunk.js": "/React-Landing-Template/static/js/1.a7a4687a.chunk.js",
+  "static/js/1.a7a4687a.chunk.js.map": "/React-Landing-Template/static/js/1.a7a4687a.chunk.js.map",
   "runtime~main.js": "/React-Landing-Template/static/js/runtime~main.94367ffa.js",
   "runtime~main.js.map": "/React-Landing-Template/static/js/runtime~main.94367ffa.js.map",
   "static/media/analog.png": "/React-Landing-Template/static/media/analog.fc6f90ea.png",
@@ -25,9 +25,10 @@
   "static/media/tick.gif": "/React-Landing-Template/static/media/tick.6b196a14.gif",
   "static/media/katex.min.css": "/React-Landing-Template/static/media/KaTeX_Typewriter-Regular.6b9645af.ttf",
   "static/media/settings.svg": "/React-Landing-Template/static/media/settings.65817086.svg",
-  "static/css/main.6f6a3ba7.chunk.css.map": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css.map",
+  "static/media/spinner.svg": "/React-Landing-Template/static/media/spinner.5fcb6cd0.svg",
   "static/css/1.daf87ae6.chunk.css.map": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css.map",
+  "static/css/main.6f6a3ba7.chunk.css.map": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css.map",
   "index.html": "/React-Landing-Template/index.html",
-  "precache-manifest.5e519f54fe451e52217de4953fb64d9e.js": "/React-Landing-Template/precache-manifest.5e519f54fe451e52217de4953fb64d9e.js",
+  "precache-manifest.9773497f87195bb105a4c1ba158bf160.js": "/React-Landing-Template/precache-manifest.9773497f87195bb105a4c1ba158bf160.js",
   "service-worker.js": "/React-Landing-Template/service-worker.js"
 }
