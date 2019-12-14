@@ -1,7 +1,7 @@
 {
-  "main.css": "/React-Landing-Template/static/css/main.c5b2f8bb.chunk.css",
-  "main.js": "/React-Landing-Template/static/js/main.98468332.chunk.js",
-  "main.js.map": "/React-Landing-Template/static/js/main.98468332.chunk.js.map",
+  "main.css": "/React-Landing-Template/static/css/main.b2477b2b.chunk.css",
+  "main.js": "/React-Landing-Template/static/js/main.7e693087.chunk.js",
+  "main.js.map": "/React-Landing-Template/static/js/main.7e693087.chunk.js.map",
   "static/css/1.daf87ae6.chunk.css": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css",
   "static/js/1.68b782a5.chunk.js": "/React-Landing-Template/static/js/1.68b782a5.chunk.js",
   "static/js/1.68b782a5.chunk.js.map": "/React-Landing-Template/static/js/1.68b782a5.chunk.js.map",
@@ -25,9 +25,9 @@
   "static/media/tick.gif": "/React-Landing-Template/static/media/tick.6b196a14.gif",
   "static/media/katex.min.css": "/React-Landing-Template/static/media/KaTeX_Typewriter-Regular.6b9645af.ttf",
   "static/media/settings.svg": "/React-Landing-Template/static/media/settings.65817086.svg",
+  "static/css/main.b2477b2b.chunk.css.map": "/React-Landing-Template/static/css/main.b2477b2b.chunk.css.map",
   "static/css/1.daf87ae6.chunk.css.map": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css.map",
-  "static/css/main.c5b2f8bb.chunk.css.map": "/React-Landing-Template/static/css/main.c5b2f8bb.chunk.css.map",
   "index.html": "/React-Landing-Template/index.html",
-  "precache-manifest.d2d94cd4b1ae4549c8f30dadbd244018.js": "/React-Landing-Template/precache-manifest.d2d94cd4b1ae4549c8f30dadbd244018.js",
+  "precache-manifest.4c74dca6b0a4473fdc280b3eee1f4c8f.js": "/React-Landing-Template/precache-manifest.4c74dca6b0a4473fdc280b3eee1f4c8f.js",
   "service-worker.js": "/React-Landing-Template/service-worker.js"
 }
