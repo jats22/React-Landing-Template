@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "7e69308756eb174c109b",
-    "url": "/React-Landing-Template/static/css/main.b2477b2b.chunk.css"
+    "revision": "49e2cd9a488282b8542a",
+    "url": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css"
   },
   {
-    "revision": "7e69308756eb174c109b",
-    "url": "/React-Landing-Template/static/js/main.7e693087.chunk.js"
+    "revision": "49e2cd9a488282b8542a",
+    "url": "/React-Landing-Template/static/js/main.49e2cd9a.chunk.js"
   },
   {
     "revision": "68b782a5c5fece24f6d9",
@@ -88,16 +88,16 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_AMS-Regular.3d8245dc.woff2"
   },
   {
+    "revision": "970d3e76493b82fccf21ad5888ddee77",
+    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Bold.970d3e76.woff2"
+  },
+  {
     "revision": "c67be87adba7d31c013be127b936233d",
     "url": "/React-Landing-Template/static/media/KaTeX_AMS-Regular.c67be87a.ttf"
   },
   {
     "revision": "ac1d46d953d403677171697581a284d2",
     "url": "/React-Landing-Template/static/media/KaTeX_AMS-Regular.ac1d46d9.woff"
-  },
-  {
-    "revision": "970d3e76493b82fccf21ad5888ddee77",
-    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Bold.970d3e76.woff2"
   },
   {
     "revision": "3f61a84d76e80396489d32bc9dd8d444",
@@ -108,28 +108,20 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Bold.445f96a3.woff"
   },
   {
-    "revision": "74f6918c7d2b768ffd32048102bc0172",
-    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Regular.74f6918c.woff"
-  },
-  {
     "revision": "950649ba5e5cfd37cdad74095411d350",
     "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Bold.950649ba.woff2"
-  },
-  {
-    "revision": "c3bc8fcec0e85a50cabf71e4e8074991",
-    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Regular.c3bc8fce.ttf"
   },
   {
     "revision": "0ef0f2e356a2e1c457b6585d34edae77",
     "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Regular.0ef0f2e3.woff2"
   },
   {
-    "revision": "1aca7ef7f976fb54a207ffc8aa180e38",
-    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Bold.1aca7ef7.woff"
+    "revision": "c3bc8fcec0e85a50cabf71e4e8074991",
+    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Regular.c3bc8fce.ttf"
   },
   {
-    "revision": "e11e6bf02fc41279a540d3655abf3b07",
-    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Bold.e11e6bf0.ttf"
+    "revision": "74f6918c7d2b768ffd32048102bc0172",
+    "url": "/React-Landing-Template/static/media/KaTeX_Caligraphic-Regular.74f6918c.woff"
   },
   {
     "revision": "135ccd74931753318f6f52f3fce19018",
@@ -140,12 +132,20 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Regular.c5b430bf.woff"
   },
   {
-    "revision": "a9509497466d16e6b7265a223ea39093",
-    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Regular.a9509497.ttf"
+    "revision": "1aca7ef7f976fb54a207ffc8aa180e38",
+    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Bold.1aca7ef7.woff"
+  },
+  {
+    "revision": "e11e6bf02fc41279a540d3655abf3b07",
+    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Bold.e11e6bf0.ttf"
   },
   {
     "revision": "c5b67fb3f6bdaa7f2dd75e5bc8d929eb",
     "url": "/React-Landing-Template/static/media/KaTeX_Main-Bold.c5b67fb3.woff2"
+  },
+  {
+    "revision": "a9509497466d16e6b7265a223ea39093",
+    "url": "/React-Landing-Template/static/media/KaTeX_Fraktur-Regular.a9509497.ttf"
   },
   {
     "revision": "0ba875a1d548ebfdd00c7594022e01b7",
@@ -160,12 +160,12 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_Main-BoldItalic.0719833c.woff2"
   },
   {
-    "revision": "bdbadb27e05fb8e51da903db59f90d77",
-    "url": "/React-Landing-Template/static/media/KaTeX_Main-BoldItalic.bdbadb27.ttf"
-  },
-  {
     "revision": "5aeca883bc41b522fdf1409ee912b51c",
     "url": "/React-Landing-Template/static/media/KaTeX_Main-BoldItalic.5aeca883.woff"
+  },
+  {
+    "revision": "bdbadb27e05fb8e51da903db59f90d77",
+    "url": "/React-Landing-Template/static/media/KaTeX_Main-BoldItalic.bdbadb27.ttf"
   },
   {
     "revision": "6bf616283a81e40e4ac755883862b472",
@@ -184,44 +184,44 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_Main-Regular.29b27903.woff2"
   },
   {
-    "revision": "1fd21713706a2b70960faf21b1fa4e26",
-    "url": "/React-Landing-Template/static/media/KaTeX_Main-Regular.1fd21713.woff"
-  },
-  {
     "revision": "7b8d1fa0668e317c4a2d34399e74af25",
     "url": "/React-Landing-Template/static/media/KaTeX_Main-Regular.7b8d1fa0.ttf"
   },
   {
-    "revision": "7a31741a44e58952cb4b8a763c206fcd",
-    "url": "/React-Landing-Template/static/media/KaTeX_Math-Italic.7a31741a.woff2"
+    "revision": "1fd21713706a2b70960faf21b1fa4e26",
+    "url": "/React-Landing-Template/static/media/KaTeX_Main-Regular.1fd21713.woff"
   },
   {
     "revision": "8eb56b3ff5b141cd3732a24e65c2b339",
     "url": "/React-Landing-Template/static/media/KaTeX_Math-Italic.8eb56b3f.woff"
   },
   {
-    "revision": "e38d0f6844b9520510715fd989bdd5bd",
-    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.e38d0f68.woff2"
+    "revision": "7a31741a44e58952cb4b8a763c206fcd",
+    "url": "/React-Landing-Template/static/media/KaTeX_Math-Italic.7a31741a.woff2"
   },
   {
     "revision": "10740d7488d690a743339650103f1cb3",
     "url": "/React-Landing-Template/static/media/KaTeX_Math-Italic.10740d74.ttf"
   },
   {
-    "revision": "84299b016163b0ae5c776604aa1cb726",
-    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.84299b01.woff"
+    "revision": "e38d0f6844b9520510715fd989bdd5bd",
+    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.e38d0f68.woff2"
   },
   {
     "revision": "1057b70228cb6936e7714e7817db6ce2",
     "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Italic.1057b702.woff2"
   },
   {
-    "revision": "9123667cef81279761df5cd62ec8c46e",
-    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.9123667c.ttf"
-  },
-  {
     "revision": "95c5a3d43efbcb8c14184d00a7c5eed4",
     "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Italic.95c5a3d4.woff"
+  },
+  {
+    "revision": "84299b016163b0ae5c776604aa1cb726",
+    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.84299b01.woff"
+  },
+  {
+    "revision": "9123667cef81279761df5cd62ec8c46e",
+    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Bold.9123667c.ttf"
   },
   {
     "revision": "f9c440abdd25c5a954d855516fed39f9",
@@ -232,12 +232,12 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Regular.f9e06d59.woff2"
   },
   {
-    "revision": "35bda414c6c2f75940b086de18f42e72",
-    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Regular.35bda414.woff"
-  },
-  {
     "revision": "2eae604dbbc4b2c0ceede62c61c9e8df",
     "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Regular.2eae604d.ttf"
+  },
+  {
+    "revision": "35bda414c6c2f75940b086de18f42e72",
+    "url": "/React-Landing-Template/static/media/KaTeX_SansSerif-Regular.35bda414.woff"
   },
   {
     "revision": "ae1fad1f4d1c227c9d567da8ea9f988c",
@@ -264,24 +264,20 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/KaTeX_Size1-Regular.f2e296ef.ttf"
   },
   {
-    "revision": "a7a0eb93afb696cb9b4efb87e6cd45a3",
-    "url": "/React-Landing-Template/static/media/KaTeX_Size2-Regular.a7a0eb93.woff2"
-  },
-  {
     "revision": "f48e83b7bcaa68a86a78e8edfee1a04e",
     "url": "/React-Landing-Template/static/media/KaTeX_Size2-Regular.f48e83b7.woff"
   },
   {
-    "revision": "397bd6872be7adff4f000c49fa85a9c3",
-    "url": "/React-Landing-Template/static/media/KaTeX_Size3-Regular.397bd687.woff2"
+    "revision": "a7a0eb93afb696cb9b4efb87e6cd45a3",
+    "url": "/React-Landing-Template/static/media/KaTeX_Size2-Regular.a7a0eb93.woff2"
   },
   {
     "revision": "0767ede65042583bcc06f09055f4d7ca",
     "url": "/React-Landing-Template/static/media/KaTeX_Size2-Regular.0767ede6.ttf"
   },
   {
-    "revision": "3c14ed11dd8eea981c93bf283193856d",
-    "url": "/React-Landing-Template/static/media/KaTeX_Size4-Regular.3c14ed11.woff2"
+    "revision": "397bd6872be7adff4f000c49fa85a9c3",
+    "url": "/React-Landing-Template/static/media/KaTeX_Size3-Regular.397bd687.woff2"
   },
   {
     "revision": "882f723427a0986846fe786bd8d6f6c7",
@@ -290,6 +286,10 @@ self.__precacheManifest = [
   {
     "revision": "0387ab387ace32f15b43c3a4a39f187f",
     "url": "/React-Landing-Template/static/media/KaTeX_Size3-Regular.0387ab38.woff"
+  },
+  {
+    "revision": "3c14ed11dd8eea981c93bf283193856d",
+    "url": "/React-Landing-Template/static/media/KaTeX_Size4-Regular.3c14ed11.woff2"
   },
   {
     "revision": "726db3bd435c8a6e45e44741dae67263",
@@ -316,7 +316,7 @@ self.__precacheManifest = [
     "url": "/React-Landing-Template/static/media/settings.65817086.svg"
   },
   {
-    "revision": "ea3d0005f544f675fc85656a776e5ab7",
+    "revision": "4d381b1b775818b9e5d0232c638e7326",
     "url": "/React-Landing-Template/index.html"
   }
 ];
