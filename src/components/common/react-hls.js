@@ -12,6 +12,8 @@ import Forward from '../../assets/forward.svg';
 import Back from '../../assets/back.svg';
 import Settings from '../../assets/settings.svg';
 import Options from '../../assets/options.svg';
+import Spinner from '../../assets/spinner.svg';
+
 import SideNav from '../../components/sidenav';
 import Play from '../../assets/play.svg';
 import msToTime from '../common/utils';
@@ -30,6 +32,8 @@ class ReactHls extends React.Component {
             currentMillisecond: 0.0,
             totalMilliseconds: 1000,
             currentSectionIndex: 0,
+            currentSubsectionIndex:0,
+            selectedSectionIndex:0,
         };
 
         this.hls = null;
@@ -58,12 +62,14 @@ class ReactHls extends React.Component {
 
         // Update the video volume
         let self = this;
-        window.screen.orientation.addEventListener("change", function (evt) {
-            if(window.screen.orientation.type != 'landscape-primary' && self.state.isFull ){
-                window.screen.orientation.unlock();
-                self.goFull();
-            }
-        });
+        if(window.screen.orientation){
+            window.screen.orientation.addEventListener("change", function (evt) {
+                if(window.screen.orientation.type != 'landscape-primary' && self.state.isFull ){
+                    window.screen.orientation.unlock();
+                    self.goFull();
+                }
+            });
+        }
 
         // btnFullScreen.disabled = true;
         // Add a listener for the timeupdate event so we can update the progress bar
@@ -82,9 +88,6 @@ class ReactHls extends React.Component {
                 // self.changeButtonType(btnPlayPause, Play );
             }, false);
 
-            video.addEventListener('onended', () => {
-                console.log("media ended")
-            });
 
             video.addEventListener('volumechange', function (e) {
                 // Update the button to be mute/unmute
@@ -99,7 +102,7 @@ class ReactHls extends React.Component {
         if (progressBar)
             progressBar.addEventListener("click", this.seek);
 
-        this._initPlayer();
+        this._initPlayer(false);
 
     }
 
@@ -111,16 +114,17 @@ class ReactHls extends React.Component {
         // }
     }
 
-    _initPlayer(next) {
+    _initPlayer(switchedView,next) {
         // if (this.hls) {
         //     this.hls.destroy();
+        //     this.hls2.destroy();
         // }
 
         let { frontUrl, autoplay, hlsConfig, backUrl } = this.props;
         let { video: $video, videoBack } = this.refs;
-        let { switchedView, isPlaying } = this.state;
+        let { isPlaying } = this.state;
 
-        console.log(switchedView)
+        // console.log(switchedView)
 
         let hls = new Hls(hlsConfig);
         let hls2 = new Hls(hlsConfig)
@@ -139,42 +143,33 @@ class ReactHls extends React.Component {
 
 
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-            console.log("video and hls.js are now bound together !");
+            // console.log("video and hls.js are now bound together !");
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
+
                 if (isPlaying) {
                     $video.play();
                 }
             });
         });
-
-
-        hls.on(Hls.Events.MEDIA_DETACHED, () => {
-            console.log("detached!");
-        });
-
 
         hls2.on(Hls.Events.MEDIA_ATTACHED, () => {
-            console.log("video and hls2.js are now bound together !");
+            // console.log("video and hls2.js are now bound together !");
             hls2.on(Hls.Events.MANIFEST_PARSED, () => {
+
                 if (isPlaying) {
                     $video.play();
                 }
             });
         });
-
-
-        // hls2.on(Hls.Events.MANIFEST_PARSED, () => {
-        //     if (isPlaying && switchedView) {
-        //         $video.play();
-        //     }
-        // });
 
         this.hls = hls;
         this.hls2 = hls2;
 
-        if (next)
-            next();
+        $video.addEventListener('timeupdate', this.updateProgressBar, false);
 
+        if (next){
+            next();
+        }
     }
 
     seek = (e) => {
@@ -187,7 +182,12 @@ class ReactHls extends React.Component {
 
     seekToTime = (timeInMicroSeconds) => {
         const { video } = this.refs;
+        const { isPlaying } = this.state;
         video.currentTime = timeInMicroSeconds;
+        // video.play();
+        if(isPlaying){
+            video.play();
+        }
     }
 
     playPauseVideo = () => {
@@ -240,7 +240,8 @@ class ReactHls extends React.Component {
     replayVideo = () => {
         const { video } = this.refs;
         this.resetPlayer();
-        video.play();
+        if(!video.paused)
+            video.play();
     }
 
     // Update the progress bar
@@ -250,6 +251,7 @@ class ReactHls extends React.Component {
         // console.log(video.duration)
 
         if (video) {
+            // console.log(video.currentTime*1000)
             this.setState({
                 currentMillisecond: video.currentTime * 1000,
                 totalMilliseconds: !video.duration ? this.state.totalMilliseconds : video.duration * 1000,
@@ -290,14 +292,22 @@ class ReactHls extends React.Component {
 
     forward = () => {
         const { progressBar, video } = this.refs;
+        const { isPlaying } = this.state;
         video.currentTime = video.currentTime + 15; // Todo: handle edge case here
-        this.updateProgressBar();
+        // this.updateProgressBar();
+        if(isPlaying){
+            video.play();
+        }
     }
 
     backward = () => {
         const { progressBar, video } = this.refs;
+        const { isPlaying } = this.state;
         video.currentTime = video.currentTime - 15; // Todo: handle edge case here. 
-        this.updateProgressBar();
+        // this.updateProgressBar();
+        if(isPlaying){
+            video.play();
+        }
     }
 
     exitFullScreen = () => {
@@ -313,13 +323,15 @@ class ReactHls extends React.Component {
     }
 
     lockOrientation = () => {
-        window.screen.orientation.lock("landscape-primary")
-            .then(function () {
-                console.log("in landspace mode")
-            })
-            .catch(function (error) {
-                alert(error);
-            });
+        if(window.screen.orientation){
+            window.screen.orientation.lock("landscape-primary")
+                .then(function () {
+                    console.log("in landspace mode")
+                })
+                .catch(function (error) {
+                    alert(error);
+                });
+        }
     }
     toggleFullScreen = () => {
         const { player } = this.refs;
@@ -392,16 +404,21 @@ class ReactHls extends React.Component {
     }
 
     sectionChange = (currentSectionIndex, change) => {
-        const { sections } = this.props;
-        let numberOfSections = sections.length;
         this.setState({
             currentSectionIndex: currentSectionIndex + change,
         })
     }
 
+    onSubsectionChange = (time,subsectionIndex,sectionIndex) => {
+        this.seekToTime(time);
+        this.setState({
+            selectedSectionIndex:sectionIndex,
+            currentSubsectionIndex:subsectionIndex, 
+        })
+    }
+
     render() {
-        let { playerId, isFull, isPlaying, currentMillisecond, totalMilliseconds, currentSectionIndex, showVolume, showControls, switchedView } = this.state;
-        // console.log("test");
+        let { playerId, isFull, isPlaying,selectedSectionIndex, currentMillisecond,currentSubsectionIndex, totalMilliseconds, currentSectionIndex, showVolume, showControls, switchedView } = this.state;
         let timeout;
 
         const { controls, width, poster, videoProps, sections } = this.props;
@@ -415,6 +432,7 @@ class ReactHls extends React.Component {
         let topControls = showControls ? "top-controls" : "top-controls-hide";
         let toggleFullScreen = isFull ? "player-area-full" : "player-area";
         let playerContainerControls = showControls ? "player-container-controls":"player-container";
+        let playButtonSrc =  isPlaying ? Pause : Play;
 
         if (!sections)
             return <div></div>
@@ -440,8 +458,8 @@ class ReactHls extends React.Component {
                                 background: 'black',
                                 objectFit: 'cover',
                             }}
-                            // autobuffer="true"
                             poster={poster}
+                            preload ='metadata'
                             onMouseMove={(e) => {
                                 if (!this.state.showControls) {
                                     this.setState({
@@ -455,9 +473,9 @@ class ReactHls extends React.Component {
                             {...videoProps}
                         ></video>
                         <div className={playPauseControl}>
-                            <img src={Backward} height="80px" width="80px" onClick={this.backward} />
-                            <img ref='btnPlayPause' src={isPlaying ? Pause : Play} height="80px" width="80px" onClick={this.playPauseVideo} />
-                            <img src={Forward} height="80px" width="80px" onClick={this.forward} />
+                            <img src={Backward} height="50px" width="50px" onClick={this.backward} />
+                            <img ref='btnPlayPause' src={playButtonSrc} height="50px" width="50px" onClick={this.playPauseVideo} />
+                            <img src={Forward} height="50px" width="50px" onClick={this.forward} />
                         </div>
                         <div id='controls' className={playerControls} onFocus={() => {
                             this.setState({
@@ -473,11 +491,17 @@ class ReactHls extends React.Component {
 
                             <button className='mute' title='mute' onClick={this.forward}>{msToTime(totalMilliseconds)}</button>
                             {/* <button className='mute' title='mute' onClick={this.backward}> &gt; 15  </button> */}
-                            <SwitchView switchedView={this.state.switchedView} handleChange={() => {
-                                this.setState({
-                                    switchedView: !this.state.switchedView,
-                                })
-                                this._initPlayer(() => this.seekToTime(currentMillisecond / 1000));
+                            <SwitchView switchedView={switchedView} handleChange={(value) => {
+                                const { video } = this.refs;
+                                video.removeEventListener('timeupdate', this.updateProgressBar, false);
+
+                                this._initPlayer(value.target.checked,() => { 
+                                    this.setState({
+                                        switchedView: value.target.checked,
+                                    });
+                                    this.seekToTime(currentMillisecond / 1000);
+                                    
+                                });
 
                             }} />
                             {/* <button ref='btnReplay' className='replay' title='replay' accesskey="R" onClick={this.replayVideo}>Replay</button> */}
@@ -489,9 +513,10 @@ class ReactHls extends React.Component {
                             }} />
                             <img></img>
                             <SideNav
-                                onSubsectionClick={this.seekToTime}
+                                onSubsectionClick={this.onSubsectionChange}
                                 currentSectionIndex={currentSectionIndex}
-                                currentSubsectionIndex={2}
+                                currentSubsectionIndex={currentSubsectionIndex}
+                                selectedSectionIndex={selectedSectionIndex}
                                 sections={sections}
                                 sectionChange={this.sectionChange}
                             />

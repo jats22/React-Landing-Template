@@ -25,7 +25,7 @@ function SideNav(props) {
   }
 
 
-  const { sections, currentSectionIndex, onSubsectionClick, sectionChange, currentSubsectionIndex } = props;
+  const { sections, currentSectionIndex, onSubsectionClick, sectionChange,selectedSectionIndex, currentSubsectionIndex } = props;
   // console.log(props);
 
   return (
@@ -40,15 +40,15 @@ function SideNav(props) {
             {currentSectionIndex < (sections.length - 1 )? <ArrowForwardIosIcon onClick={() => sectionChange(currentSectionIndex, 1)}
               style={{ margin: 'auto' }} /> : <div></div>}
           </div>
-          {sections[currentSectionIndex].section.map((section, index) => {
+          {sections[currentSectionIndex].section.map((subSection, index) => {
             return <Fragment>
               <div onClick={() => { 
-                onSubsectionClick(section.offSetMicroSeconds);
+                onSubsectionClick(subSection.offSetMicroSeconds,index,currentSectionIndex);
                 closeNav();
                 }}
-                className={currentSubsectionIndex == index ? "sub-section active" : "sub-section"} >
-                <p>{msToTime(section.offSetMicroSeconds * 1000)}</p>
-                <p>{section.subSecDesc}</p>
+                className={(currentSubsectionIndex == index && selectedSectionIndex == currentSectionIndex)  ? "sub-section active" : "sub-section"} >
+                <p>{msToTime(subSection.offSetMicroSeconds * 1000)}</p>
+                <p>{subSection.subSecDesc}</p>
               </div>
               <SectionBreak />
             </Fragment>

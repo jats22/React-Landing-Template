@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import ReactHLS from './react-hls';
 
-
-const player = (props) => {
-    // "https://theverbmedia-output.s3.amazonaws.com/kartik/kartik.m3u8"
-    return <ReactHLS url={"https://theverbmedia-output.s3.amazonaws.com/kartik/kartik.m3u8"} />
-}
-
 class Player extends Component {
     constructor(props) {
         super(props);
