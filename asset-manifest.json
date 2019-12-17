@@ -1,7 +1,7 @@
 {
   "main.css": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css",
-  "main.js": "/React-Landing-Template/static/js/main.c57a2991.chunk.js",
-  "main.js.map": "/React-Landing-Template/static/js/main.c57a2991.chunk.js.map",
+  "main.js": "/React-Landing-Template/static/js/main.235e4840.chunk.js",
+  "main.js.map": "/React-Landing-Template/static/js/main.235e4840.chunk.js.map",
   "static/css/1.daf87ae6.chunk.css": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css",
   "static/js/1.dff591cf.chunk.js": "/React-Landing-Template/static/js/1.dff591cf.chunk.js",
   "static/js/1.dff591cf.chunk.js.map": "/React-Landing-Template/static/js/1.dff591cf.chunk.js.map",
@@ -29,6 +29,6 @@
   "static/css/main.6f6a3ba7.chunk.css.map": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css.map",
   "static/css/1.daf87ae6.chunk.css.map": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css.map",
   "index.html": "/React-Landing-Template/index.html",
-  "precache-manifest.450267990f1a5293ec7f66283e1d31ee.js": "/React-Landing-Template/precache-manifest.450267990f1a5293ec7f66283e1d31ee.js",
+  "precache-manifest.a47d95b28981921af2e7ac965a0da800.js": "/React-Landing-Template/precache-manifest.a47d95b28981921af2e7ac965a0da800.js",
   "service-worker.js": "/React-Landing-Template/service-worker.js"
 }
