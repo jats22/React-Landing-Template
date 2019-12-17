@@ -1,7 +1,7 @@
 {
   "main.css": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css",
-  "main.js": "/React-Landing-Template/static/js/main.31794de5.chunk.js",
-  "main.js.map": "/React-Landing-Template/static/js/main.31794de5.chunk.js.map",
+  "main.js": "/React-Landing-Template/static/js/main.73fa5c05.chunk.js",
+  "main.js.map": "/React-Landing-Template/static/js/main.73fa5c05.chunk.js.map",
   "static/css/1.daf87ae6.chunk.css": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css",
   "static/js/1.dff591cf.chunk.js": "/React-Landing-Template/static/js/1.dff591cf.chunk.js",
   "static/js/1.dff591cf.chunk.js.map": "/React-Landing-Template/static/js/1.dff591cf.chunk.js.map",
@@ -23,12 +23,12 @@
   "static/media/landing-page.png": "/React-Landing-Template/static/media/landing-page.eecf5882.png",
   "static/media/landing-page 2.png": "/React-Landing-Template/static/media/landing-page 2.0f817670.png",
   "static/media/tick.gif": "/React-Landing-Template/static/media/tick.6b196a14.gif",
-  "static/media/katex.min.css": "/React-Landing-Template/static/media/KaTeX_Typewriter-Regular.ba01f72a.woff",
+  "static/media/katex.min.css": "/React-Landing-Template/static/media/KaTeX_Typewriter-Regular.6b9645af.ttf",
   "static/media/settings.svg": "/React-Landing-Template/static/media/settings.65817086.svg",
   "static/media/spinner.svg": "/React-Landing-Template/static/media/spinner.5fcb6cd0.svg",
-  "static/css/1.daf87ae6.chunk.css.map": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css.map",
   "static/css/main.6f6a3ba7.chunk.css.map": "/React-Landing-Template/static/css/main.6f6a3ba7.chunk.css.map",
+  "static/css/1.daf87ae6.chunk.css.map": "/React-Landing-Template/static/css/1.daf87ae6.chunk.css.map",
   "index.html": "/React-Landing-Template/index.html",
-  "precache-manifest.52c9971bb496e4e7c060fe3f6d1da4b7.js": "/React-Landing-Template/precache-manifest.52c9971bb496e4e7c060fe3f6d1da4b7.js",
+  "precache-manifest.7ee8356544c5dd6abf1e2fc060657b14.js": "/React-Landing-Template/precache-manifest.7ee8356544c5dd6abf1e2fc060657b14.js",
   "service-worker.js": "/React-Landing-Template/service-worker.js"
 }
