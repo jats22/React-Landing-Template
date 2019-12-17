@@ -57,7 +57,7 @@ class ReactHls extends React.Component {
     componentDidMount() {
         // Get a handle to the player
 
-        const { video, btnPlayPause, btnMute, btnFullScreen, progressBar, volumeBar } = this.refs;
+        const { video,videoBack, btnPlayPause, btnMute, btnFullScreen, progressBar, volumeBar } = this.refs;
 
 
         // Update the video volume
@@ -115,13 +115,13 @@ class ReactHls extends React.Component {
     }
 
     _initPlayer(switchedView,next) {
-        // if (this.hls) {
-        //     this.hls.destroy();
-        //     this.hls2.destroy();
-        // }
+        if (this.hls) {
+            this.hls.destroy();
+            this.hls2.destroy();
+        }
 
         let { frontUrl, autoplay, hlsConfig, backUrl } = this.props;
-        let { video: $video, videoBack } = this.refs;
+        let { video, videoBack } = this.refs;
         let { isPlaying } = this.state;
 
         // console.log(switchedView)
@@ -132,14 +132,12 @@ class ReactHls extends React.Component {
         let url = switchedView ? backUrl : frontUrl;
 
         hls.loadSource(frontUrl);
+        hls.attachMedia(video);
+
         hls2.loadSource(backUrl);
+        hls2.attachMedia(videoBack);
         
-        if(switchedView){
-            hls2.attachMedia($video);
-        }
-        else { 
-            hls.attachMedia($video);
-        }
+        
 
 
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
@@ -147,7 +145,7 @@ class ReactHls extends React.Component {
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
 
                 if (isPlaying) {
-                    $video.play();
+                    video.play();
                 }
             });
         });
@@ -157,7 +155,7 @@ class ReactHls extends React.Component {
             hls2.on(Hls.Events.MANIFEST_PARSED, () => {
 
                 if (isPlaying) {
-                    $video.play();
+                    videoBack.play();
                 }
             });
         });
@@ -165,7 +163,7 @@ class ReactHls extends React.Component {
         this.hls = hls;
         this.hls2 = hls2;
 
-        $video.addEventListener('timeupdate', this.updateProgressBar, false);
+        video.addEventListener('timeupdate', this.updateProgressBar, false);
 
         if (next){
             next();
@@ -173,34 +171,42 @@ class ReactHls extends React.Component {
     }
 
     seek = (e) => {
-        const { video, progressBar } = this.refs;
+        const { video,videoBack, progressBar } = this.refs;
         var percent = e.offsetX / progressBar.offsetWidth;
         video.currentTime = percent * video.duration;
+        videoBack.currentTime = percent * video.duration;
         e.target.value = Math.floor(percent / 100);
         e.target.innerHTML = progressBar.value + '% played';
     }
 
     seekToTime = (timeInMicroSeconds) => {
-        const { video } = this.refs;
+        const { video,videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = timeInMicroSeconds;
+        videoBack.currentTime = timeInMicroSeconds;
         // video.play();
         if(isPlaying){
             video.play();
+            videoBack.play();
         }
     }
 
     playPauseVideo = () => {
-        const { video, btnPlayPause } = this.refs;
+        const { video,videoBack,switchedView, btnPlayPause } = this.refs;
+
 
         if (video.paused || video.ended) {
             video.play();
+            videoBack.play();
+
             this.setState({
                 isPlaying: true,
             })
         }
         else {
             video.pause();
+            videoBack.pause();
+
             this.setState({
                 isPlaying: false,
             })
@@ -291,22 +297,26 @@ class ReactHls extends React.Component {
     }
 
     forward = () => {
-        const { progressBar, video } = this.refs;
+        const { progressBar, video,videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = video.currentTime + 15; // Todo: handle edge case here
+        videoBack.currentTime = videoBack.currentTime + 15;
         // this.updateProgressBar();
         if(isPlaying){
             video.play();
+            videoBack.play();
         }
     }
 
     backward = () => {
-        const { progressBar, video } = this.refs;
+        const { progressBar, video,videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = video.currentTime - 15; // Todo: handle edge case here. 
+        videoBack.currentTime = videoBack.currentTime - 15;
         // this.updateProgressBar();
         if(isPlaying){
             video.play();
+            videoBack.play();
         }
     }
 
@@ -439,7 +449,7 @@ class ReactHls extends React.Component {
         return (
             <section>
                 {!isFull && <p className='fullscreen' title='toggle full screen' accessKey="T" onClick={() => {
-                    this.toggleFullScreen();
+                    // this.toggleFullScreen();
                     this.goFull();
                 }}>Tap me to watch</p>}
                 <div key={playerId} className={toggleFullScreen}>
@@ -450,14 +460,41 @@ class ReactHls extends React.Component {
                     <div ref="player" className={playerContainerControls}>
                         <video ref="video"
                             className="hls-player"
-                            id={`react-hls-${playerId}`}
+                            id={`react-hls-1`}
                             //    controls={controls}
                             width={'100%'}
                             style={{
                                 height: height,
                                 background: 'black',
                                 objectFit: 'cover',
+                                display: switchedView?'none':'block', 
                             }}
+                            muted={!switchedView?false:true}
+                            poster={poster}
+                            preload ='metadata'
+                            onMouseMove={(e) => {
+                                if (!this.state.showControls) {
+                                    this.setState({
+                                        showControls: true,
+                                    })
+                                }
+                                clearTimeout(timeout);
+                                timeout = setTimeout(this.hideControls, 6500, e);
+                            }}
+
+                            {...videoProps}
+                        ></video>
+                        <video ref="videoBack"
+                            className="hls-player"
+                            id={`react-hls-2`}
+                            width={'100%'}
+                            style={{
+                                height: height,
+                                background: 'black',
+                                objectFit: 'cover',
+                                display: switchedView?'block':'none', 
+                            }}
+                            muted={switchedView?false:true}
                             poster={poster}
                             preload ='metadata'
                             onMouseMove={(e) => {
@@ -493,15 +530,15 @@ class ReactHls extends React.Component {
                             {/* <button className='mute' title='mute' onClick={this.backward}> &gt; 15  </button> */}
                             <SwitchView switchedView={switchedView} handleChange={(value) => {
                                 const { video } = this.refs;
-                                video.removeEventListener('timeupdate', this.updateProgressBar, false);
+                                // video.removeEventListener('timeupdate', this.updateProgressBar, false);
 
-                                this._initPlayer(value.target.checked,() => { 
+                                // this._initPlayer(value.target.checked,() => { 
                                     this.setState({
                                         switchedView: value.target.checked,
                                     });
                                     this.seekToTime(currentMillisecond / 1000);
                                     
-                                });
+                                // });
 
                             }} />
                             {/* <button ref='btnReplay' className='replay' title='replay' accesskey="R" onClick={this.replayVideo}>Replay</button> */}

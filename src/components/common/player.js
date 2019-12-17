@@ -8,12 +8,12 @@ class Player extends Component {
             video : { "section":{}},
         }
         const videoAPI = "https://7mfhkvwjii.execute-api.us-east-1.amazonaws.com/dev/video/1";
-        // fetch(videoAPI)
-        //     .then(resp => resp.json())
-        //     .then(data => {
-        //         console.log(data);
+        fetch(videoAPI)
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
                 
-        //     })
+        })
 
     }
 
