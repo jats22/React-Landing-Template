@@ -64,6 +64,23 @@ progress {
   display: grid;
   grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
   transition: all 0.100s ease-out;
+  z-index: 9999;
+}
+.right-control{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 20%;
+  height: 100%;
+  /* background: #003c00; */
+}
+.left-control{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 20%;
+  height: 100%;
+  /* background: #003c00; */
 }
 
 .line-break{
@@ -82,6 +99,7 @@ progress {
   position: absolute;
   top: 0px;
   height: 70px;
+  z-index: 9999;
 }
 
 .top-controls-hide {

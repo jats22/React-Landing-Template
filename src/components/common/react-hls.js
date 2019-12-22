@@ -32,8 +32,9 @@ class ReactHls extends React.Component {
             currentMillisecond: 0.0,
             totalMilliseconds: 1000,
             currentSectionIndex: 0,
-            currentSubsectionIndex:0,
-            selectedSectionIndex:0,
+            currentSubsectionIndex: 0,
+            selectedSectionIndex: 0,
+            timeout:null,
         };
 
         this.hls = null;
@@ -57,14 +58,14 @@ class ReactHls extends React.Component {
     componentDidMount() {
         // Get a handle to the player
 
-        const { video,videoBack, btnPlayPause, btnMute, btnFullScreen, progressBar, volumeBar } = this.refs;
+        const { video, videoBack, btnPlayPause, btnMute, btnFullScreen, progressBar, volumeBar } = this.refs;
 
 
         // Update the video volume
         let self = this;
-        if(window.screen.orientation){
+        if (window.screen.orientation) {
             window.screen.orientation.addEventListener("change", function (evt) {
-                if(window.screen.orientation.type != 'landscape-primary' && self.state.isFull ){
+                if (window.screen.orientation.type != 'landscape-primary' && self.state.isFull) {
                     window.screen.orientation.unlock();
                     self.goFull();
                 }
@@ -114,7 +115,7 @@ class ReactHls extends React.Component {
         // }
     }
 
-    _initPlayer(switchedView,next) {
+    _initPlayer(switchedView, next) {
         if (this.hls) {
             this.hls.destroy();
             this.hls2.destroy();
@@ -136,8 +137,8 @@ class ReactHls extends React.Component {
 
         hls2.loadSource(backUrl);
         hls2.attachMedia(videoBack);
-        
-        
+
+
 
 
         hls.on(Hls.Events.MEDIA_ATTACHED, () => {
@@ -165,13 +166,13 @@ class ReactHls extends React.Component {
 
         video.addEventListener('timeupdate', this.updateProgressBar, false);
 
-        if (next){
+        if (next) {
             next();
         }
     }
 
     seek = (e) => {
-        const { video,videoBack, progressBar } = this.refs;
+        const { video, videoBack, progressBar } = this.refs;
         var percent = e.offsetX / progressBar.offsetWidth;
         video.currentTime = percent * video.duration;
         videoBack.currentTime = percent * video.duration;
@@ -180,19 +181,19 @@ class ReactHls extends React.Component {
     }
 
     seekToTime = (timeInMicroSeconds) => {
-        const { video,videoBack } = this.refs;
+        const { video, videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = timeInMicroSeconds;
         videoBack.currentTime = timeInMicroSeconds;
         // video.play();
-        if(isPlaying){
+        if (isPlaying) {
             video.play();
             videoBack.play();
         }
     }
 
     playPauseVideo = () => {
-        const { video,videoBack,switchedView, btnPlayPause } = this.refs;
+        const { video, videoBack, switchedView, btnPlayPause } = this.refs;
 
 
         if (video.paused || video.ended) {
@@ -246,7 +247,7 @@ class ReactHls extends React.Component {
     replayVideo = () => {
         const { video } = this.refs;
         this.resetPlayer();
-        if(!video.paused)
+        if (!video.paused)
             video.play();
     }
 
@@ -297,24 +298,24 @@ class ReactHls extends React.Component {
     }
 
     forward = () => {
-        const { progressBar, video,videoBack } = this.refs;
+        const { progressBar, video, videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = video.currentTime + 15; // Todo: handle edge case here
         videoBack.currentTime = videoBack.currentTime + 15;
         // this.updateProgressBar();
-        if(isPlaying){
+        if (isPlaying) {
             video.play();
             videoBack.play();
         }
     }
 
     backward = () => {
-        const { progressBar, video,videoBack } = this.refs;
+        const { progressBar, video, videoBack } = this.refs;
         const { isPlaying } = this.state;
         video.currentTime = video.currentTime - 15; // Todo: handle edge case here. 
         videoBack.currentTime = videoBack.currentTime - 15;
         // this.updateProgressBar();
-        if(isPlaying){
+        if (isPlaying) {
             video.play();
             videoBack.play();
         }
@@ -333,7 +334,7 @@ class ReactHls extends React.Component {
     }
 
     lockOrientation = () => {
-        if(window.screen.orientation){
+        if (window.screen.orientation) {
             window.screen.orientation.lock("landscape-primary")
                 .then(function () {
                     console.log("in landspace mode")
@@ -419,17 +420,17 @@ class ReactHls extends React.Component {
         })
     }
 
-    onSubsectionChange = (time,subsectionIndex,sectionIndex) => {
+    onSubsectionChange = (time, subsectionIndex, sectionIndex) => {
         this.seekToTime(time);
         this.setState({
-            selectedSectionIndex:sectionIndex,
-            currentSubsectionIndex:subsectionIndex, 
+            selectedSectionIndex: sectionIndex,
+            currentSubsectionIndex: subsectionIndex,
         })
     }
 
     render() {
-        let { playerId, isFull, isPlaying,selectedSectionIndex, currentMillisecond,currentSubsectionIndex, totalMilliseconds, currentSectionIndex, showVolume, showControls, switchedView } = this.state;
-        let timeout;
+        let { playerId, isFull, isPlaying,timeout, selectedSectionIndex, currentMillisecond, currentSubsectionIndex, totalMilliseconds, currentSectionIndex, showVolume, showControls, switchedView } = this.state;
+        // let timeout;
 
         const { controls, width, poster, videoProps, sections } = this.props;
 
@@ -441,15 +442,15 @@ class ReactHls extends React.Component {
         let playPauseControl = showControls ? "playPause" : "playPauseShow";
         let topControls = showControls ? "top-controls" : "top-controls-hide";
         let toggleFullScreen = isFull ? "player-area-full" : "player-area";
-        let playerContainerControls = showControls ? "player-container-controls":"player-container";
-        let playButtonSrc =  isPlaying ? Pause : Play;
+        let playerContainerControls = showControls ? "player-container-controls" : "player-container";
+        let playButtonSrc = isPlaying ? Pause : Play;
 
         if (!sections)
             return <div></div>
         return (
             <section>
                 {!isFull && <p className='fullscreen' title='toggle full screen' accessKey="T" onClick={() => {
-                    // this.toggleFullScreen();
+                    this.toggleFullScreen();
                     this.goFull();
                 }}>Tap me to watch</p>}
                 <div key={playerId} className={toggleFullScreen}>
@@ -467,19 +468,19 @@ class ReactHls extends React.Component {
                                 height: height,
                                 background: 'black',
                                 objectFit: 'cover',
-                                display: switchedView?'none':'block', 
+                                display: switchedView ? 'none' : 'block',
                             }}
-                            muted={!switchedView?false:true}
+                            muted={!switchedView ? false : true}
                             poster={poster}
-                            preload ='metadata'
+                            preload='metadata'
                             onMouseMove={(e) => {
+                                clearTimeout(timeout);
+                                timeout = setTimeout(this.hideControls, 6500, e);
                                 if (!this.state.showControls) {
                                     this.setState({
                                         showControls: true,
                                     })
                                 }
-                                clearTimeout(timeout);
-                                timeout = setTimeout(this.hideControls, 6500, e);
                             }}
 
                             {...videoProps}
@@ -492,19 +493,19 @@ class ReactHls extends React.Component {
                                 height: height,
                                 background: 'black',
                                 objectFit: 'cover',
-                                display: switchedView?'block':'none', 
+                                display: switchedView ? 'block' : 'none',
                             }}
-                            muted={switchedView?false:true}
+                            muted={switchedView ? false : true}
                             poster={poster}
-                            preload ='metadata'
+                            preload='metadata'
                             onMouseMove={(e) => {
+                                clearTimeout(timeout);
+                                timeout = setTimeout(this.hideControls, 6500, e);
                                 if (!this.state.showControls) {
                                     this.setState({
                                         showControls: true,
                                     })
                                 }
-                                clearTimeout(timeout);
-                                timeout = setTimeout(this.hideControls, 6500, e);
                             }}
 
                             {...videoProps}
@@ -514,7 +515,9 @@ class ReactHls extends React.Component {
                             <img ref='btnPlayPause' src={playButtonSrc} height="50px" width="50px" onClick={this.playPauseVideo} />
                             <img src={Forward} height="50px" width="50px" onClick={this.forward} />
                         </div>
-                        <div id='controls' className={playerControls} onFocus={() => {
+                        <div id='controls' className={playerControls} onFocus={(e) => {
+                            clearTimeout(timeout);
+                            timeout = setTimeout(this.hideControls, 6500, e);
                             this.setState({
                                 showControls: true,
                             })
@@ -533,11 +536,12 @@ class ReactHls extends React.Component {
                                 // video.removeEventListener('timeupdate', this.updateProgressBar, false);
 
                                 // this._initPlayer(value.target.checked,() => { 
-                                    this.setState({
-                                        switchedView: value.target.checked,
-                                    });
-                                    this.seekToTime(currentMillisecond / 1000);
-                                    
+                                this.setState({
+                                    switchedView: value.target.checked,
+                                });
+                                // this.seekToTime(currentMillisecond / 1000);
+                                
+
                                 // });
 
                             }} />
@@ -547,9 +551,23 @@ class ReactHls extends React.Component {
                             <img src={Back} height="30px" width="30px" onClick={() => {
                                 this.toggleFullScreen();
                                 this.goFull();
+                                const { video, videoBack } = this.refs;
+                                video.pause();
+                                videoBack.pause();
+
+                                this.setState({
+                                    isPlaying: false,
+                                })
                             }} />
                             <img></img>
                             <SideNav
+                                onFocus={(e) => {
+                                    clearTimeout(timeout);
+                                    timeout = setTimeout(this.hideControls, 6500, e);
+                                    this.setState({
+                                        showControls: true,
+                                    })
+                                }}
                                 onSubsectionClick={this.onSubsectionChange}
                                 currentSectionIndex={currentSectionIndex}
                                 currentSubsectionIndex={currentSubsectionIndex}
@@ -559,6 +577,29 @@ class ReactHls extends React.Component {
                             />
                             <img src={Options} height="30px" width="30px" onClick={this.openNav} />
                             {/* <img src={Settings} height="30px" width="30px" onClick={this.forward} /> */}
+                        </div>
+                        <div className="right-control" onDoubleClick={this.forward}                             
+                                onMouseMove={(e) => {
+                                clearTimeout(timeout);
+                                timeout = setTimeout(this.hideControls, 6500, e);
+                                if (!this.state.showControls) {
+                                    this.setState({
+                                        showControls: true,
+                                    })
+                                }
+                            }}>
+                        </div>
+                        <div className="left-control" onDoubleClick={this.backward}
+                                                    onMouseMove={(e) => {
+                                                        clearTimeout(timeout);
+                                                        timeout = setTimeout(this.hideControls, 6500, e);
+                                                        if (!this.state.showControls) {
+                                                            this.setState({
+                                                                showControls: true,
+                                                            })
+                                                        }
+                                                    }}
+                                                    >
                         </div>
                     </div>
                     {/* </Fullscreen> */}

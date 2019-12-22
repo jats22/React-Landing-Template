@@ -8,7 +8,9 @@ class Player extends Component {
             video : { "section":{}},
         }
         const videoAPI = "https://7mfhkvwjii.execute-api.us-east-1.amazonaws.com/dev/video/1";
-        fetch(videoAPI)
+        fetch(videoAPI,{
+            mode: 'cors',
+        })
             .then(resp => resp.json())
             .then(data => {
                 console.log(data);
@@ -25,8 +27,8 @@ class Player extends Component {
                 "instructor_id": 5,
                 "video_code": "NULL",
                 "url": "https://videos.theverbstudio.com/Classes/Full+class/Velu+Full+Class",
-                "front_url": "https://theverbmedia-output.s3.amazonaws.com/kartik/kartik.m3u8",
-                "back_url": "https://dgu0266wyhbs1.cloudfront.net/velu/velu.m3u8",
+                "front_url": "https://theverbmedia-output.s3.amazonaws.com/test/kartiktest.m3u8",
+                "back_url": "https://theverbmedia-output.s3.amazonaws.com/test/kartikinvertedtest.m3u8",
                 "level": "INTERMEDIATE",
                 "style": "HIP-HOP",
                 "length": 62,
